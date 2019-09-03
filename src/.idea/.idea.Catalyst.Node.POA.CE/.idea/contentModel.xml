@@ -1,0 +1,1845 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.Rider2019.1/system/resharper-host/local/Transient/ReSharperHost/v191/SolutionCaches/_Catalyst.Node.POA.CE.-508452474.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/sharprepository.azuredocumentdbrepository/2.0.2-alpha4/contentFiles/any/netstandard1.5/repository.azureDocumentDb.json" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/sharprepository.inmemoryrepository/2.0.3.1/contentFiles/any/netstandard2.0/repository.inMemory.json" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/sharprepository.mongodbrepository/2.0.7.3/contentFiles/any/netstandard1.5/repository.mongoDb.json" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/sharprepository.repository/2.0.4.6/contentFiles/any/netstandard2.0/repository.default.json" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/sharprepository.xmlrepository/2.0.1-alpha3/contentFiles/any/netstandard2.0/repository.xml.json" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../LICENSE" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="Catalyst.Cli" t="IncludeRecursive">
+        <e p="Catalyst.Cli.csproj" t="IncludeRecursive" />
+        <e p="CatalystCli.cs" t="Include" />
+        <e p="CatalystCliBase.cs" t="Include" />
+        <e p="CliConfigCopier.cs" t="Include" />
+        <e p="CommandTypes" t="Include">
+          <e p="BaseCommand.cs" t="Include" />
+          <e p="BaseMessageCommand.cs" t="Include" />
+        </e>
+        <e p="Commands" t="Include">
+          <e p="AddFileCommand.cs" t="Include" />
+          <e p="ChangeDataFolderCommand.cs" t="Include" />
+          <e p="CommandContext.cs" t="Include" />
+          <e p="ConnectCommand.cs" t="Include" />
+          <e p="DisconnectCommand.cs" t="Include" />
+          <e p="GetDeltaCommand.cs" t="Include" />
+          <e p="GetFileCommand.cs" t="Include" />
+          <e p="GetInfoCommand.cs" t="Include" />
+          <e p="GetMempoolCommand.cs" t="Include" />
+          <e p="GetPeerInfoCommand.cs" t="Include" />
+          <e p="GetVersionCommand.cs" t="Include" />
+          <e p="MessageSignCommand.cs" t="Include" />
+          <e p="MessageVerifyCommand.cs" t="Include" />
+          <e p="PeerBlackListingCommand.cs" t="Include" />
+          <e p="PeerCountCommand.cs" t="Include" />
+          <e p="PeerListCommand.cs" t="Include" />
+          <e p="PeerRemoveCommand.cs" t="Include" />
+          <e p="PeerReputationCommand.cs" t="Include" />
+        </e>
+        <e p="Config" t="Include">
+          <e p="nodes.json" t="Include" />
+          <e p="serilog.json" t="Include" />
+          <e p="shell.components.json" t="Include" />
+          <e p="shell.config.json" t="Include" />
+        </e>
+        <e p="Ctalyst.Cli.snk" t="Include" />
+        <e p="Options" t="Include">
+          <e p="AddFileOptions.cs" t="Include" />
+          <e p="ChangeDataFolderOptions.cs" t="Include" />
+          <e p="ConnectOptions.cs" t="Include" />
+          <e p="DisconnectOptions.cs" t="Include" />
+          <e p="GetDeltaOptions.cs" t="Include" />
+          <e p="GetFileOptions.cs" t="Include" />
+          <e p="GetInfoOptions.cs" t="Include" />
+          <e p="GetMempoolOptions.cs" t="Include" />
+          <e p="GetPeerInfoOptions.cs" t="Include" />
+          <e p="GetVersionOptions.cs" t="Include" />
+          <e p="OptionsBase.cs" t="Include" />
+          <e p="PeerBlackListingOptions.cs" t="Include" />
+          <e p="PeerCountOptions.cs" t="Include" />
+          <e p="PeerListOptions.cs" t="Include" />
+          <e p="PeerReputationOptions.cs" t="Include" />
+          <e p="RemovePeerOptions.cs" t="Include" />
+          <e p="SignOptions.cs" t="Include" />
+          <e p="VerifyOptions.cs" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Cli.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Cli.IntegrationTests" t="IncludeRecursive">
+        <e p="Catalyst.Cli.IntegrationTests.csproj" t="IncludeRecursive" />
+        <e p="Catalyst.Cli.IntergrationsTests.snk" t="Include" />
+        <e p="Commands" t="Include">
+          <e p="AddFileCommandTests.cs" t="Include" />
+          <e p="ChangeDataFolderCommandTests.cs" t="Include" />
+          <e p="CliCommandTestBase.cs" t="Include" />
+          <e p="ConnectNodeTests.cs" t="Include" />
+          <e p="GetDeltaCommandTests.cs" t="Include" />
+          <e p="GetFileCommandTests.cs" t="Include" />
+          <e p="GetInfoCommandTests.cs" t="Include" />
+          <e p="GetMempoolTests.cs" t="Include" />
+          <e p="GetPeerInfoCommandTests.cs" t="Include" />
+          <e p="GetVersionCommandTests.cs" t="Include" />
+          <e p="MessageSignCommandTests.cs" t="Include" />
+          <e p="MessageVerifyCommandTests.cs" t="Include" />
+          <e p="PeerCountCommandTests.cs" t="Include" />
+          <e p="PeerListCommandTests.cs" t="Include" />
+          <e p="PeerRemoveCommandTests.cs" t="Include" />
+          <e p="PeerReputationCommandTests.cs" t="Include" />
+        </e>
+        <e p="Config" t="Include">
+          <e p="GlobalConfigTests.cs" t="Include" />
+        </e>
+        <e p="Connection" t="Include">
+          <e p="CliToNodeTests.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Cli.IntegrationTests.AssemblyInfo.cs" t="Include" />
+              <e p="Catalyst.Cli.IntegrationTests.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Cli.UnitTests" t="IncludeRecursive">
+        <e p="Catalyst.Cli.UnitTests.csproj" t="IncludeRecursive" />
+        <e p="Catalyst.Cli.UnitTests.snk" t="Include" />
+        <e p="CatalystCliOptionsTest.cs" t="Include" />
+        <e p="CatalystCliTests.cs" t="Include" />
+        <e p="CommandContextTests.cs" t="Include" />
+        <e p="Commands" t="Include">
+          <e p="ConnectTests.cs" t="Include" />
+          <e p="DisconnectTests.cs" t="Include" />
+          <e p="Request" t="Include">
+            <e p="AddFileToDfsRequestTests.cs" t="Include" />
+            <e p="GetDeltaRequestTests.cs" t="Include" />
+            <e p="GetFileFromDfsRequestTests.cs" t="Include" />
+            <e p="GetInfoRequestTests.cs" t="Include" />
+            <e p="GetMempoolRequestTests.cs" t="Include" />
+            <e p="GetPeerBlackListingRequestTests.cs" t="Include" />
+            <e p="GetPeerCountRequestTests.cs" t="Include" />
+            <e p="GetPeerInfoRequestTests.cs" t="Include" />
+            <e p="GetPeerListRequestTests.cs" t="Include" />
+            <e p="GetPeerReputationRequestTests.cs" t="Include" />
+            <e p="GetVersionRequestTests.cs" t="Include" />
+            <e p="RemovePeerRequestTests.cs" t="Include" />
+            <e p="SignMessageRequestTests.cs" t="Include" />
+            <e p="VerifyMessageResponseTests.cs" t="Include" />
+          </e>
+          <e p="Response" t="Include">
+            <e p="AddFileToDfsResponseTests.cs" t="Include" />
+            <e p="GetDeltaResponseTests.cs" t="Include" />
+            <e p="GetFileFromDfsResponseTests.cs" t="Include" />
+            <e p="GetInfoResponseTests.cs" t="Include" />
+            <e p="GetMempoolResponseTests.cs" t="Include" />
+            <e p="GetPeerBlackListingResponseTests.cs" t="Include" />
+            <e p="GetPeerCountResponseTests.cs" t="Include" />
+            <e p="GetPeerInfoResponseTests.cs" t="Include" />
+            <e p="GetPeerListResponseTests.cs" t="Include" />
+            <e p="GetPeerReputationResponseTests.cs" t="Include" />
+            <e p="GetVersionResponseTests.cs" t="Include" />
+            <e p="RemovePeerResponseTests.cs" t="Include" />
+            <e p="SignMessageResponseTests.cs" t="Include" />
+            <e p="VerifyMessageResponseTests.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="TestCommandHelpers.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Cli.UnitTests.AssemblyInfo.cs" t="Include" />
+              <e p="Catalyst.Cli.UnitTests.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Core" t="Include">
+        <e p="nethermind" t="Include" />
+      </e>
+      <e p="Catalyst.Node.POA.CE" t="IncludeRecursive">
+        <e p="Catalyst.Node.POA.CE.csproj" t="IncludeRecursive" />
+        <e p="Catalyst.Node.POA.CE.snk" t="Include" />
+        <e p="CataystNodePoa.cs" t="Include" />
+        <e p="Config" t="Include">
+          <e p="AuthCredentials.xml" t="Include" />
+          <e p="Modules" t="Include">
+            <e p="consensus.json" t="Include" />
+            <e p="dfs.json" t="Include" />
+            <e p="dfshttp.json" t="Include" />
+            <e p="keysigner.json" t="Include" />
+            <e p="ledger.json" t="Include" />
+            <e p="mempool.inmemory.json" t="Include" />
+            <e p="mempool.json" t="Include" />
+            <e p="moduleWithRepository.inmemory.json" t="Include" />
+            <e p="moduleWithRepository.xml.json" t="Include" />
+          </e>
+          <e p="addfile_test.json" t="Include" />
+          <e p="components.json" t="Include" />
+          <e p="devnet.json" t="Include" />
+          <e p="mainnet.json" t="Include" />
+          <e p="messageHandlers.json" t="Include" />
+          <e p="poa.nodes.json" t="Include" />
+          <e p="serilog.json" t="Include" />
+          <e p="testnet.json" t="Include" />
+        </e>
+        <e p="Consensus" t="Include">
+          <e p="Deltas" t="Include">
+            <e p="PoaDeltaProducersProvider.cs" t="Include" />
+          </e>
+        </e>
+        <e p="P2P" t="Include">
+          <e p="PeerHeartbeatChecker.cs" t="Include" />
+          <e p="PoaDiscovery.cs" t="Include" />
+          <e p="PoaPeer.cs" t="Include" />
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Node.POA.CE.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Node.POA.CE.IntegrationTests" t="IncludeRecursive">
+        <e p="Catalyst.Node.POA.CE.IntegrationTests.csproj" t="IncludeRecursive" />
+        <e p="Catalyst.Node.POA.CE.IntegrationTests.snk" t="Include" />
+        <e p="Config" t="Include">
+          <e p="ConfigurableRepoIntegrationTests.cs" t="Include" />
+          <e p="GlobalConfigTests.cs" t="Include" />
+          <e p="Modules" t="Include">
+            <e p="mempool.inmemory.json" t="Include" />
+            <e p="moduleWithRepository.inmemory.json" t="Include" />
+            <e p="moduleWithRepository.xml.json" t="Include" />
+          </e>
+        </e>
+        <e p="Consensus" t="Include">
+          <e p="NoDiscovery.cs" t="Include" />
+          <e p="PoaConsensusTests.cs" t="Include" />
+          <e p="PoaTestNode.cs" t="Include" />
+          <e p="TestFileSystem.cs" t="Include" />
+          <e p="TestMempoolDocumentRepository.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="FileSystemTest.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Node.POA.CE.IntegrationTests.AssemblyInfo.cs" t="Include" />
+              <e p="Catalyst.Node.POA.CE.IntegrationTests.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Node.POA.CE.UnitTests" t="IncludeRecursive">
+        <e p="Catalyst.Node.POA.CE.UnitTests.csproj" t="IncludeRecursive" />
+        <e p="Catalyst.Node.POA.CE.UnitTests.snk" t="Include" />
+        <e p="Config" t="Include">
+          <e p="ComponentsConfigTests.cs" t="Include" />
+          <e p="ConfigCopierTests.cs" t="Include" />
+          <e p="JsonConfiguredModuleTests.cs" t="Include" />
+          <e p="NetworkConfigTests.cs" t="Include" />
+        </e>
+        <e p="Modules" t="Include">
+          <e p="Consensus" t="Include">
+            <e p="Deltas" t="Include">
+              <e p="PoaDeltaProducersProviderTests.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="P2P" t="Include">
+          <e p="PeerHeartbeatCheckerTests.cs" t="Include" />
+          <e p="PoaDiscoveryTests.cs" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="AuthenticationRepositoryTests.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.2" t="Include">
+              <e p="Catalyst.Node.POA.CE.UnitTests.AssemblyInfo.cs" t="Include" />
+              <e p="Catalyst.Node.POA.CE.UnitTests.Program.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Catalyst.Node.POA.CE.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/LICENSE" t="Include" />
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Build/libs/advapi32.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Build/libs/kernel32.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Build/libs/ucrtbase.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Build/libs/vcruntime140.dll" t="Include" />
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Abstractions" t="IncludeRecursive">
+      <e p="Attributes" t="Include">
+        <e p="IAuditable.cs" t="Include" />
+      </e>
+      <e p="Catalyst.Abstractions.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Abstractions.snk" t="Include" />
+      <e p="Cli" t="Include">
+        <e p="CommandTypes" t="Include">
+          <e p="ICommand.cs" t="Include" />
+          <e p="IMessageCommand.cs" t="Include" />
+        </e>
+        <e p="Commands" t="Include">
+          <e p="ICommandContext.cs" t="Include" />
+        </e>
+        <e p="ICatalystCli.cs" t="Include" />
+        <e p="IUserInput.cs" t="Include" />
+        <e p="IUserOutput.cs" t="Include" />
+        <e p="Options" t="Include">
+          <e p="IAddFileOnDfsOptions.cs" t="Include" />
+          <e p="IConnectOptions.cs" t="Include" />
+          <e p="IDisconnectOptions.cs" t="Include" />
+          <e p="IGetFileOptions.cs" t="Include" />
+          <e p="IGetInfoOptions.cs" t="Include" />
+          <e p="IGetMempoolOptions.cs" t="Include" />
+          <e p="IGetPeerInfoOptions.cs" t="Include" />
+          <e p="IGetVersionOptions.cs" t="Include" />
+          <e p="IOptionsBase.cs" t="Include" />
+          <e p="IPeerBlackListingOptions.cs" t="Include" />
+          <e p="IPeerCountOptions.cs" t="Include" />
+          <e p="IPeerListOptions.cs" t="Include" />
+          <e p="IPeerReputationOptions.cs" t="Include" />
+          <e p="IRemovePeerOptions.cs" t="Include" />
+          <e p="ISignOptions.cs" t="Include" />
+          <e p="IVerifyOptions.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Config" t="Include">
+        <e p="IConfigCopier.cs" t="Include" />
+        <e p="IEnumerableMessageType.cs" t="Include" />
+        <e p="IReputationEvents.cs" t="Include" />
+      </e>
+      <e p="Consensus" t="Include">
+        <e p="Cycle" t="Include">
+          <e p="ICycleConfiguration.cs" t="Include" />
+          <e p="ICycleEventsProvider.cs" t="Include" />
+          <e p="ICycleSchedulerProvider.cs" t="Include" />
+          <e p="IPhase.cs" t="Include" />
+          <e p="IPhaseName.cs" t="Include" />
+          <e p="IPhaseStatus.cs" t="Include" />
+          <e p="IPhaseTimings.cs" t="Include" />
+        </e>
+        <e p="Deltas" t="Include">
+          <e p="IDeltaBuilder.cs" t="Include" />
+          <e p="IDeltaCache.cs" t="Include" />
+          <e p="IDeltaCacheChangeTokenProvider.cs" t="Include" />
+          <e p="IDeltaDfsReader.cs" t="Include" />
+          <e p="IDeltaElector.cs" t="Include" />
+          <e p="IDeltaHashProvider.cs" t="Include" />
+          <e p="IDeltaHub.cs" t="Include" />
+          <e p="IDeltaTransactionRetriever.cs" t="Include" />
+          <e p="IDeltaVoter.cs" t="Include" />
+          <e p="IScoredCandidateDelta.cs" t="Include" />
+        </e>
+        <e p="IConsensus.cs" t="Include" />
+        <e p="IDateTimeProvider.cs" t="Include" />
+        <e p="ITransactionComparer.cs" t="Include" />
+      </e>
+      <e p="Contract" t="Include">
+        <e p="IContract.cs" t="Include" />
+      </e>
+      <e p="Cryptography" t="Include">
+        <e p="ICertificateStore.cs" t="Include" />
+        <e p="ICryptoContext.cs" t="Include" />
+        <e p="IDeterministicRandom.cs" t="Include" />
+        <e p="IPasswordManager.cs" t="Include" />
+        <e p="IPasswordReader.cs" t="Include" />
+        <e p="IPasswordRegistry.cs" t="Include" />
+      </e>
+      <e p="Dfs" t="Include">
+        <e p="IDfs.cs" t="Include" />
+        <e p="IDfsGateway.cs" t="Include" />
+        <e p="IIpfsAdapter.cs" t="Include" />
+      </e>
+      <e p="Enumerator" t="Include">
+        <e p="Enumeration.cs" t="Include" />
+        <e p="IEnumeration.cs" t="Include" />
+      </e>
+      <e p="FileSystem" t="Include">
+        <e p="IFileSystem.cs" t="Include" />
+      </e>
+      <e p="FileTransfer" t="Include">
+        <e p="IDownloadFileInformation.cs" t="Include" />
+        <e p="IDownloadFileTransferFactory.cs" t="Include" />
+        <e p="IFileTransferFactory.cs" t="Include" />
+        <e p="IFileTransferInformation.cs" t="Include" />
+        <e p="IUploadFileInformation.cs" t="Include" />
+        <e p="IUploadFileTransferFactory.cs" t="Include" />
+      </e>
+      <e p="ICatalystNode.cs" t="Include" />
+      <e p="IO" t="Include">
+        <e p="EventLoop" t="Include">
+          <e p="IEventLoopGroupFactory.cs" t="Include" />
+          <e p="IEventLoopGroupFactoryConfiguration.cs" t="Include" />
+          <e p="ITcpClientEventLoopGroupFactory.cs" t="Include" />
+          <e p="ITcpServerEventLoopGroupFactory.cs" t="Include" />
+          <e p="IUdpClientEventLoopGroupFactory.cs" t="Include" />
+          <e p="IUdpServerEventLoopGroupFactory.cs" t="Include" />
+        </e>
+        <e p="Events" t="Include">
+          <e p="ISocketClientRegistryEvent.cs" t="Include" />
+          <e p="ITransactionReceivedEvent.cs" t="Include" />
+        </e>
+        <e p="Handlers" t="Include">
+          <e p="IObservableServiceHandler.cs" t="Include" />
+        </e>
+        <e p="Messaging" t="Include">
+          <e p="Correlation" t="Include">
+            <e p="ICacheEvictionEvent.cs" t="Include" />
+            <e p="ICorrelatableMessage.cs" t="Include" />
+            <e p="ICorrelationId.cs" t="Include" />
+            <e p="IMessageCorrelationManager.cs" t="Include" />
+          </e>
+          <e p="Dto" t="Include">
+            <e p="IDtoFactory.cs" t="Include" />
+            <e p="IMessageDto.cs" t="Include" />
+            <e p="IObserverDto.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Observables" t="Include">
+          <e p="ISocketClientRegistryEvent.cs" t="Include" />
+        </e>
+        <e p="Observers" t="Include">
+          <e p="IBroadcastObserver.cs" t="Include" />
+          <e p="IMessageObserver.cs" t="Include" />
+          <e p="IObservableMessageStreamer.cs" t="Include" />
+          <e p="IP2PMessageObserver.cs" t="Include" />
+          <e p="IRequestMessageObserver.cs" t="Include" />
+          <e p="IResponseMessageObserver.cs" t="Include" />
+          <e p="IRpcRequestObserver.cs" t="Include" />
+          <e p="IRpcResponseObserver.cs" t="Include" />
+        </e>
+        <e p="Transport" t="Include">
+          <e p="Bootstrapping" t="Include">
+            <e p="IServerBootstrap.cs" t="Include" />
+          </e>
+          <e p="Channels" t="Include">
+            <e p="IChannelFactory.cs" t="Include" />
+            <e p="IObservableChannel.cs" t="Include" />
+            <e p="ITcpClientChannelFactory.cs" t="Include" />
+            <e p="ITcpServerChannelFactory.cs" t="Include" />
+            <e p="IUdpClientChannelFactory.cs" t="Include" />
+            <e p="IUdpServerChannelFactory.cs" t="Include" />
+          </e>
+          <e p="ISocket.cs" t="Include" />
+          <e p="ISocketClient.cs" t="Include" />
+          <e p="ISocketClientRegistry.cs" t="Include" />
+          <e p="ISocketServer.cs" t="Include" />
+          <e p="ITcpClient.cs" t="Include" />
+          <e p="ITcpServer.cs" t="Include" />
+          <e p="IUdpClient.cs" t="Include" />
+          <e p="IUdpServer.cs" t="Include" />
+        </e>
+      </e>
+      <e p="KeySigner" t="Include">
+        <e p="IKeySigner.cs" t="Include" />
+      </e>
+      <e p="Keystore" t="Include">
+        <e p="IKeyRegistry.cs" t="Include" />
+        <e p="IKeyStoreService.cs" t="Include" />
+        <e p="IKeystore.cs" t="Include" />
+        <e p="ISigningContextProvider.cs" t="Include" />
+      </e>
+      <e p="Ledger" t="Include">
+        <e p="Models" t="Include" />
+        <e p="Repository" t="Include" />
+      </e>
+      <e p="Mempool" t="Include">
+        <e p="Documents" t="Include">
+          <e p="IMempoolDocument.cs" t="Include" />
+        </e>
+        <e p="IMempool.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="IMempoolItem.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="IMempoolRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Network" t="Include">
+        <e p="IDns.cs" t="Include" />
+        <e p="InjectableLookupClient.cs" t="Include" />
+      </e>
+      <e p="P2P" t="Include">
+        <e p="Discovery" t="Include">
+          <e p="IHastingsCareTaker.cs" t="Include" />
+          <e p="IHastingsDiscovery.cs" t="Include" />
+          <e p="IHastingsMemento.cs" t="Include" />
+          <e p="IHastingsOriginator.cs" t="Include" />
+          <e p="INeighbour.cs" t="Include" />
+          <e p="INeighbours.cs" t="Include" />
+          <e p="IPeerDiscovery.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="IPeerClientObservable.cs" t="Include" />
+          <e p="Messaging" t="Include">
+            <e p="Broadcast" t="Include">
+              <e p="IBroadcastManager.cs" t="Include" />
+            </e>
+            <e p="Correlation" t="Include">
+              <e p="IPeerMessageCorrelationManager.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="IPeerClientMessageDto.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="IPeerChallengeResponse.cs" t="Include" />
+        <e p="IPeerChallenger.cs" t="Include" />
+        <e p="IPeerClient.cs" t="Include" />
+        <e p="IPeerHeartbeatChecker.cs" t="Include" />
+        <e p="IPeerIdValidator.cs" t="Include" />
+        <e p="IPeerIdentifier.cs" t="Include" />
+        <e p="IPeerService.cs" t="Include" />
+        <e p="IPeerSettings.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="IPeer.cs" t="Include" />
+        </e>
+        <e p="ReputationSystem" t="Include">
+          <e p="IPeerReputationChange.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Registry" t="Include">
+        <e p="IRegistryBase.cs" t="Include" />
+        <e p="RegistryBase.cs" t="Include" />
+      </e>
+      <e p="Repository" t="Include">
+        <e p="IDocument.cs" t="Include" />
+        <e p="IRepositoryWrapper.cs" t="Include" />
+      </e>
+      <e p="Rpc" t="Include">
+        <e p="Authentication" t="Include">
+          <e p="IAuthCredentials.cs" t="Include" />
+          <e p="IAuthenticationStrategy.cs" t="Include" />
+        </e>
+        <e p="INodeRpcClient.cs" t="Include" />
+        <e p="INodeRpcClientFactory.cs" t="Include" />
+        <e p="IO" t="Include">
+          <e p="Messaging" t="Include">
+            <e p="Correlation" t="Include">
+              <e p="IRpcMessageCorrelationManager.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="IRPCClientMessageDto.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="IRpcNode.cs" t="Include" />
+        <e p="IRpcNodeConfig.cs" t="Include" />
+        <e p="IRpcNodesSettings.cs" t="Include" />
+        <e p="IRpcServer.cs" t="Include" />
+        <e p="IRpcServerSettings.cs" t="Include" />
+      </e>
+      <e p="Types" t="Include">
+        <e p="AccountTypes.cs" t="Include" />
+        <e p="FileTransferResponseCodeTypes.cs" t="Include" />
+        <e p="KeyRegistryTypes.cs" t="Include" />
+        <e p="MessageTypes.cs" t="Include" />
+        <e p="ModuleTypes.cs" t="Include" />
+        <e p="NeighbourStateTypes.cs" t="Include" />
+        <e p="NetworkTypes.cs" t="Include" />
+        <e p="PasswordRegistryTypes.cs" t="Include" />
+        <e p="PeerMessageTypes.cs" t="Include" />
+        <e p="ReputationEventType.cs" t="Include" />
+        <e p="RpcMessages.cs" t="Include" />
+      </e>
+      <e p="Util" t="Include">
+        <e p="IAddressHelper.cs" t="Include" />
+        <e p="IBigDecimal.cs" t="Include" />
+        <e p="ICancellationTokenProvider.cs" t="Include" />
+        <e p="IChangeTokenProvider.cs" t="Include" />
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Abstractions.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Core" t="IncludeRecursive">
+      <e p="Api" t="Include">
+        <e p="ApiModule.cs" t="Include" />
+      </e>
+      <e p="Catalyst.Core.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Core.snk" t="Include" />
+      <e p="Cli" t="Include">
+        <e p="ConsoleUserInput.cs" t="Include" />
+        <e p="ConsoleUserOutput.cs" t="Include" />
+      </e>
+      <e p="Config" t="Include">
+        <e p="ConfigCopier.cs" t="Include" />
+        <e p="ConfigValueParser.cs" t="Include" />
+        <e p="Constants.cs" t="Include" />
+      </e>
+      <e p="Consensus" t="Include">
+        <e p="ByFeeTimestampAndHash.cs" t="Include" />
+        <e p="Consensus.cs" t="Include" />
+        <e p="ConsensusModule.cs" t="Include" />
+        <e p="Cycle" t="Include">
+          <e p="CycleConfiguration.cs" t="Include" />
+          <e p="CycleEventsProvider.cs" t="Include" />
+          <e p="CycleSchedulerProvider.cs" t="Include" />
+          <e p="Phase.cs" t="Include" />
+          <e p="PhaseName.cs" t="Include" />
+          <e p="PhaseStatus.cs" t="Include" />
+          <e p="PhaseTimings.cs" t="Include" />
+          <e p="StatefulPhase.cs" t="Include" />
+        </e>
+        <e p="DateTimeProvider.cs" t="Include" />
+        <e p="Deltas" t="Include">
+          <e p="DeltaBuilder.cs" t="Include" />
+          <e p="DeltaCache.cs" t="Include" />
+          <e p="DeltaCacheChangeTokenProvider.cs" t="Include" />
+          <e p="DeltaDfsReader.cs" t="Include" />
+          <e p="DeltaElector.cs" t="Include" />
+          <e p="DeltaHashProvider.cs" t="Include" />
+          <e p="DeltaHub.cs" t="Include" />
+          <e p="DeltaTransactionRetriever.cs" t="Include" />
+          <e p="DeltaVoter.cs" t="Include" />
+          <e p="FavouriteByHashAndVoterComparer.cs" t="Include" />
+          <e p="IDeltaProducersProvider.cs" t="Include" />
+          <e p="ScoredCandidateDelta.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Cryptography" t="Include">
+        <e p="CertificateStore.cs" t="Include" />
+        <e p="ConsolePasswordReader.cs" t="Include" />
+        <e p="CryptoContext.cs" t="Include" />
+        <e p="IsaacRandom.cs" t="Include" />
+        <e p="PasswordManager.cs" t="Include" />
+        <e p="PasswordRegistry.cs" t="Include" />
+      </e>
+      <e p="Dfs" t="Include">
+        <e p="DevDfs.cs" t="Include" />
+        <e p="Dfs.cs" t="Include" />
+        <e p="DfsGateway.cs" t="Include" />
+        <e p="DfsModule.cs" t="Include" />
+        <e p="IpfsAdapter.cs" t="Include" />
+      </e>
+      <e p="Extensions" t="Include">
+        <e p="BigIntegerExtension.cs" t="Include" />
+        <e p="BytesExtensions.cs" t="Include" />
+        <e p="DirectoryInfoExtensions.cs" t="Include" />
+        <e p="EnumerableExtensions.cs" t="Include" />
+        <e p="MultihashExtension.cs" t="Include" />
+        <e p="NeighbourExtensions.cs" t="Include" />
+        <e p="ProtobufExtensions.cs" t="Include" />
+        <e p="RandomElementExtension.cs" t="Include" />
+        <e p="StreamExtensions.cs" t="Include" />
+        <e p="StringExtensions.cs" t="Include" />
+      </e>
+      <e p="FileSystem" t="Include">
+        <e p="FileSystem.cs" t="Include" />
+        <e p="FileSystemModule.cs" t="Include" />
+      </e>
+      <e p="FileTransfer" t="Include">
+        <e p="BaseFileTransferFactory.cs" t="Include" />
+        <e p="BaseFileTransferInformation.cs" t="Include" />
+        <e p="DownloadFileTransferFactory.cs" t="Include" />
+        <e p="DownloadFileTransferInformation.cs" t="Include" />
+        <e p="UploadFileTransferFactory.cs" t="Include" />
+        <e p="UploadFileTransferInformation.cs" t="Include" />
+      </e>
+      <e p="IO" t="Include">
+        <e p="Codecs" t="Include">
+          <e p="AddressedEnvelopeToIMessageEncoder.cs" t="Include" />
+        </e>
+        <e p="EventLoop" t="Include">
+          <e p="BaseLoopGroupFactory.cs" t="Include" />
+          <e p="EventLoopGroupFactoryConfiguration.cs" t="Include" />
+          <e p="TcpClientEventLoopGroupFactory.cs" t="Include" />
+          <e p="TcpServerEventLoopGroupFactory.cs" t="Include" />
+          <e p="UdpClientEventLoopGroupFactory.cs" t="Include" />
+          <e p="UdpServerEventLoopGroupFactory.cs" t="Include" />
+        </e>
+        <e p="Events" t="Include">
+          <e p="SocketClientRegistryClientAdded.cs" t="Include" />
+          <e p="SocketClientRegistryClientRemoved.cs" t="Include" />
+          <e p="SocketClientRegistryEvent.cs" t="Include" />
+          <e p="TransactionReceivedEvent.cs" t="Include" />
+        </e>
+        <e p="Handlers" t="Include">
+          <e p="AuthenticationHandler.cs" t="Include" />
+          <e p="BroadcastCleanupHandler.cs" t="Include" />
+          <e p="BroadcastHandler.cs" t="Include" />
+          <e p="CorrelatableHandler.cs" t="Include" />
+          <e p="CorrelationHandler.cs" t="Include" />
+          <e p="FlushPipelineHandler.cs" t="Include" />
+          <e p="InboundChannelHandlerBase.cs" t="Include" />
+          <e p="ObservableServiceHandler.cs" t="Include" />
+          <e p="OutboundChannelHandlerBase.cs" t="Include" />
+          <e p="PeerIdValidationHandler.cs" t="Include" />
+          <e p="ProtocolMessageSignHandler.cs" t="Include" />
+          <e p="ProtocolMessageVerifyHandler.cs" t="Include" />
+        </e>
+        <e p="Messaging" t="Include">
+          <e p="Correlation" t="Include">
+            <e p="CorrelatableMessage.cs" t="Include" />
+            <e p="CorrelationId.cs" t="Include" />
+            <e p="MessageCorrelationManagerBase.cs" t="Include" />
+            <e p="MessageEvictionEvent.cs" t="Include" />
+          </e>
+          <e p="Dto" t="Include">
+            <e p="BaseMessageDto.cs" t="Include" />
+            <e p="MessageDto.cs" t="Include" />
+            <e p="ObserverDto.cs" t="Include" />
+            <e p="SignedMessageDto.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Observers" t="Include">
+          <e p="BroadcastObserverBase.cs" t="Include" />
+          <e p="MessageObserverBase.cs" t="Include" />
+          <e p="RequestObserverBase.cs" t="Include" />
+          <e p="ResponseObserverBase.cs" t="Include" />
+        </e>
+        <e p="Transport" t="Include">
+          <e p="Bootstrapping" t="Include">
+            <e p="Bootstrap.cs" t="Include" />
+            <e p="ServerBootstrap.cs" t="Include" />
+          </e>
+          <e p="Channels" t="Include">
+            <e p="ChannelInitializerBase.cs" t="Include" />
+            <e p="ClientChannelInitializerBase.cs" t="Include" />
+            <e p="ObservableChannel.cs" t="Include" />
+            <e p="ServerChannelInitializerBase.cs" t="Include" />
+            <e p="TcpClientChannelFactory.cs" t="Include" />
+            <e p="TcpServerChannelFactory.cs" t="Include" />
+            <e p="UdpChannelFactoryBase.cs" t="Include" />
+            <e p="UdpClientChannelFactory.cs" t="Include" />
+            <e p="UdpServerChannelFactory.cs" t="Include" />
+          </e>
+          <e p="ClientBase.cs" t="Include" />
+          <e p="SocketBase.cs" t="Include" />
+          <e p="SocketClientRegistry.cs" t="Include" />
+          <e p="TcpClient.cs" t="Include" />
+          <e p="TcpServer.cs" t="Include" />
+          <e p="UdpClient.cs" t="Include" />
+          <e p="UdpServer.cs" t="Include" />
+        </e>
+      </e>
+      <e p="JsonConfiguredModule.cs" t="Include" />
+      <e p="Kernel" t="Include">
+        <e p="Kernel.cs" t="Include" />
+      </e>
+      <e p="KeySigner" t="Include">
+        <e p="KeySigner.cs" t="Include" />
+        <e p="KeySignerModule.cs" t="Include" />
+      </e>
+      <e p="Keystore" t="Include">
+        <e p="KeyRegistry.cs" t="Include" />
+        <e p="KeyStoreServiceWrapped.cs" t="Include" />
+        <e p="KeystoreModule.cs" t="Include" />
+        <e p="LocalKeyStore.cs" t="Include" />
+        <e p="SigningContextProvider.cs" t="Include" />
+      </e>
+      <e p="Ledger" t="Include">
+        <e p="Controllers" t="Include">
+          <e p="LedgerController.cs" t="Include" />
+        </e>
+        <e p="ILedger.cs" t="Include" />
+        <e p="Ledger.cs" t="Include" />
+        <e p="LedgerModule.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="Account.cs" t="Include" />
+          <e p="IAccount.cs" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="AccountRepository.cs" t="Include" />
+          <e p="IAccountRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Mempool" t="Include">
+        <e p="Controllers" t="Include">
+          <e p="MempoolController.cs" t="Include" />
+        </e>
+        <e p="Documents" t="Include">
+          <e p="MempoolDocument.cs" t="Include" />
+        </e>
+        <e p="Mempool.cs" t="Include" />
+        <e p="MempoolModule.cs" t="Include" />
+        <e p="Models" t="Include">
+          <e p="MempoolItem.cs" t="Include" />
+        </e>
+        <e p="Repositories" t="Include">
+          <e p="MempoolDocumentRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Network" t="Include">
+        <e p="DevDnsClient.cs" t="Include" />
+        <e p="DevDnsQueryResponse.cs" t="Include" />
+        <e p="DnsClient.cs" t="Include" />
+        <e p="EndpointBuilder.cs" t="Include" />
+        <e p="InjectableLookupClient.cs" t="Include" />
+        <e p="Ip.cs" t="Include" />
+      </e>
+      <e p="P2P" t="Include">
+        <e p="Controllers" t="Include">
+          <e p="PeerController.cs" t="Include" />
+        </e>
+        <e p="Discovery" t="Include">
+          <e p="Hastings" t="Include">
+            <e p="HastingsCareTaker.cs" t="Include" />
+            <e p="HastingsDiscovery.cs" t="Include" />
+            <e p="HastingsMemento.cs" t="Include" />
+            <e p="HastingsOriginator.cs" t="Include" />
+          </e>
+          <e p="Neighbour.cs" t="Include" />
+          <e p="Neighbours.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="Messaging" t="Include">
+            <e p="Broadcast" t="Include">
+              <e p="BroadcastManager.cs" t="Include" />
+              <e p="BroadcastMessage.cs" t="Include" />
+            </e>
+            <e p="Correlation" t="Include">
+              <e p="PeerMessageCorrelationManager.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="PeerClientMessageDto.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Observers" t="Include">
+            <e p="CandidateDeltaObserver.cs" t="Include" />
+            <e p="DeltaDfsHashObserver.cs" t="Include" />
+            <e p="FavouriteDeltaObserver.cs" t="Include" />
+            <e p="GetNeighbourRequestObserver.cs" t="Include" />
+            <e p="GetNeighbourResponseObserver.cs" t="Include" />
+            <e p="PingRequestObserver.cs" t="Include" />
+            <e p="PingResponseObserver.cs" t="Include" />
+            <e p="TransactionBroadcastObserver.cs" t="Include" />
+          </e>
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="PeerClientChannelFactory.cs" t="Include" />
+              <e p="PeerServerChannelFactory.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Models" t="Include">
+          <e p="Peer.cs" t="Include" />
+        </e>
+        <e p="P2PModule.cs" t="Include" />
+        <e p="PeerChallenger.cs" t="Include" />
+        <e p="PeerChallengerResponse.cs" t="Include" />
+        <e p="PeerClient.cs" t="Include" />
+        <e p="PeerIdValidator.cs" t="Include" />
+        <e p="PeerIdentifier.cs" t="Include" />
+        <e p="PeerService.cs" t="Include" />
+        <e p="PeerSettings.cs" t="Include" />
+        <e p="Repository" t="Include">
+          <e p="IPeerRepository.cs" t="Include" />
+          <e p="PeerRepository.cs" t="Include" />
+        </e>
+        <e p="ReputationSystem" t="Include">
+          <e p="IReputationManager.cs" t="Include" />
+          <e p="ReputationChange.cs" t="Include" />
+          <e p="ReputationManager.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Repository" t="Include">
+        <e p="Attributes" t="Include">
+          <e p="AuditableAttribute.cs" t="Include" />
+        </e>
+        <e p="CosmosDbRepository.cs" t="Include" />
+        <e p="FileSystemAwareXmlRepository.cs" t="Include" />
+        <e p="MongoDbRepository.cs" t="Include" />
+        <e p="RepositoryWrapper.cs" t="Include" />
+      </e>
+      <e p="Rpc" t="Include">
+        <e p="Authentication" t="Include">
+          <e p="Models" t="Include">
+            <e p="AuthCredentials.cs" t="Include" />
+          </e>
+          <e p="NoAuthenticationStrategy.cs" t="Include" />
+          <e p="Repository" t="Include">
+            <e p="AuthCredentialRepository.cs" t="Include" />
+            <e p="IAuthCredentialRepository.cs" t="Include" />
+          </e>
+          <e p="RepositoryAuthenticationStrategy.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="Exceptions" t="Include">
+            <e p="ResponseHandlerDoesNotExistException.cs" t="Include" />
+          </e>
+          <e p="Messaging" t="Include">
+            <e p="Correlation" t="Include">
+              <e p="RpcMessageCorrelationManager.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="RPCClientMessageDto.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Observers" t="Include">
+            <e p="AddFileToDfsRequestObserver.cs" t="Include" />
+            <e p="AddFileToDfsResponseObserver.cs" t="Include" />
+            <e p="BroadcastRawTransactionRequestObserver.cs" t="Include" />
+            <e p="BroadcastRawTransactionResponseObserver.cs" t="Include" />
+            <e p="ChangeDataFolderRequestObserver.cs" t="Include" />
+            <e p="ChangeDataFolderResponseObserver.cs" t="Include" />
+            <e p="GetDeltaRequestObserver.cs" t="Include" />
+            <e p="GetDeltaResponseObserver.cs" t="Include" />
+            <e p="GetFileFromDfsRequestObserver.cs" t="Include" />
+            <e p="GetFileFromDfsResponseObserver.cs" t="Include" />
+            <e p="GetInfoRequestObserver.cs" t="Include" />
+            <e p="GetInfoResponseObserver.cs" t="Include" />
+            <e p="GetMempoolRequestObserver.cs" t="Include" />
+            <e p="GetMempoolResponseObserver.cs" t="Include" />
+            <e p="GetPeerInfoRequestObserver.cs" t="Include" />
+            <e p="GetPeerInfoResponseObserver.cs" t="Include" />
+            <e p="GetVersionRequestObserver.cs" t="Include" />
+            <e p="GetVersionResponseObserver.cs" t="Include" />
+            <e p="PeerBlackListingRequestObserver.cs" t="Include" />
+            <e p="PeerBlackListingResponseObserver.cs" t="Include" />
+            <e p="PeerCountRequestObserver.cs" t="Include" />
+            <e p="PeerCountResponseObserver.cs" t="Include" />
+            <e p="PeerListRequestObserver.cs" t="Include" />
+            <e p="PeerListResponseObserver.cs" t="Include" />
+            <e p="PeerReputationRequestObserver.cs" t="Include" />
+            <e p="PeerReputationResponseObserver.cs" t="Include" />
+            <e p="RemovePeerRequestObserver.cs" t="Include" />
+            <e p="RemovePeerResponseObserver.cs" t="Include" />
+            <e p="SignMessageRequestObserver.cs" t="Include" />
+            <e p="SignMessageResponseObserver.cs" t="Include" />
+            <e p="TransferFileBytesRequestObserver.cs" t="Include" />
+            <e p="TransferFileBytesResponseObserver.cs" t="Include" />
+            <e p="VerifyMessageRequestObserver.cs" t="Include" />
+            <e p="VerifyMessageResponseObserver.cs" t="Include" />
+          </e>
+          <e p="RpcResponseObserver.cs" t="Include" />
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="RpcClientChannelFactory.cs" t="Include" />
+              <e p="RpcServerChannelFactory.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="RpcClient.cs" t="Include" />
+        <e p="RpcClientFactory.cs" t="Include" />
+        <e p="RpcClientSettings.cs" t="Include" />
+        <e p="RpcModule.cs" t="Include" />
+        <e p="RpcServer.cs" t="Include" />
+        <e p="RpcServerSettings.cs" t="Include" />
+      </e>
+      <e p="Util" t="Include">
+        <e p="AddressHelper.cs" t="Include" />
+        <e p="BigDecimal.cs" t="Include" />
+        <e p="BsonProtoObjectConverter.cs" t="Include" />
+        <e p="BsonSerializationProviders.cs" t="Include" />
+        <e p="ByteUtil.cs" t="Include" />
+        <e p="CancellationTokenProvider.cs" t="Include" />
+        <e p="CommandFormatHelper.cs" t="Include" />
+        <e p="DateTimeUtil.cs" t="Include" />
+        <e p="IpAddressConverter.cs" t="Include" />
+        <e p="IpEndpointConverter.cs" t="Include" />
+        <e p="JsonConverterProviders.cs" t="Include" />
+        <e p="JsonProtoObjectConverter.cs" t="Include" />
+        <e p="KeyUtil.cs" t="Include" />
+        <e p="NodeUtil.cs" t="Include" />
+        <e p="NullObjects.cs" t="Include" />
+        <e p="TtlChangeTokenProvider.cs" t="Include" />
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Core.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Core.IntegrationTests" t="IncludeRecursive">
+      <e p="Catalyst.Core.IntegrationTests.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Core.IntegrationTests.snk" t="Include" />
+      <e p="Config" t="Include">
+        <e p="AuthCredentials.xml" t="Include" />
+        <e p="Modules" t="Include">
+          <e p="consensus.json" t="Include" />
+          <e p="dfs.json" t="Include" />
+          <e p="dfshttp.json" t="Include" />
+          <e p="keysigner.json" t="Include" />
+          <e p="ledger.json" t="Include" />
+          <e p="mempool.inmemory.json" t="Include" />
+          <e p="mempool.json" t="Include" />
+          <e p="moduleWithRepository.inmemory.json" t="Include" />
+          <e p="moduleWithRepository.xml.json" t="Include" />
+        </e>
+        <e p="addfile_test.json" t="Include" />
+        <e p="components.json" t="Include" />
+        <e p="devnet.json" t="Include" />
+        <e p="mainnet.json" t="Include" />
+        <e p="messageHandlers.json" t="Include" />
+        <e p="nodes.json" t="Include" />
+        <e p="poa.nodes.json" t="Include" />
+        <e p="serilog.json" t="Include" />
+        <e p="testnet.json" t="Include" />
+      </e>
+      <e p="Dfs" t="Include">
+        <e p="DfsHttpTests.cs" t="Include" />
+        <e p="DfsTests.cs" t="Include" />
+        <e p="NodeFileTransferIntegrationTests.cs" t="Include" />
+        <e p="NtDfsTests.cs" t="Include" />
+      </e>
+      <e p="KeySigner" t="Include">
+        <e p="KeySignerIntegrationTests.cs" t="Include" />
+      </e>
+      <e p="Mempool" t="Include">
+        <e p="MempoolTests.cs" t="Include" />
+      </e>
+      <e p="Network" t="Include">
+        <e p="DnsIntergrationTests.cs" t="Include" />
+        <e p="IpIntergrationTests.cs" t="Include" />
+      </e>
+      <e p="P2P" t="Include">
+        <e p="Discovery" t="Include">
+          <e p="HastingsCareTakerTests.cs" t="Include" />
+          <e p="HastingsDiscoveryTests.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="PeerClientChannelFactoryTests.cs" t="Include" />
+              <e p="PeerServerChannelFactoryTests.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="PeerSettingsTests.cs" t="Include" />
+        <e p="PeerValidationIntegrationTest.cs" t="Include" />
+        <e p="ReputationSystem" t="Include">
+          <e p="ReputationManagerTests.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Rpc" t="Include">
+        <e p="IO" t="Include">
+          <e p="Observers" t="Include">
+            <e p="GetFileFromDfsObserverHandlerTests.cs" t="Include" />
+            <e p="GetInfoRequestObserverTests.cs" t="Include" />
+            <e p="SignMessageRequestObserverTests.cs" t="Include" />
+            <e p="VerifyMessageRequestObserverTests.cs" t="Include" />
+          </e>
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="RpcClientChannelFactoryTests.cs" t="Include" />
+              <e p="RpcServerChannelFactoryTests.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="TestCatalystNode.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Core.IntegrationTests.AssemblyInfo.cs" t="Include" />
+            <e p="Catalyst.Core.IntegrationTests.Program.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Core.UnitTests" t="IncludeRecursive">
+      <e p="Api" t="Include">
+        <e p="ApiModuleTests.cs" t="Include" />
+      </e>
+      <e p="Catalyst.Core.UnitTests.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Core.UnitTests.snk" t="Include" />
+      <e p="Consensus" t="Include">
+        <e p="ConsensusTests.cs" t="Include" />
+        <e p="Cycle" t="Include">
+          <e p="CycleConfigurationTests.cs" t="Include" />
+          <e p="CycleEventsProviderTests.cs" t="Include" />
+          <e p="CycleSchedulerProviderTests.cs" t="Include" />
+        </e>
+        <e p="DateTimeProviderTests.cs" t="Include" />
+        <e p="Deltas" t="Include">
+          <e p="DeltaBuilderTests.cs" t="Include" />
+          <e p="DeltaCacheTests.cs" t="Include" />
+          <e p="DeltaDfsReaderTests.cs" t="Include" />
+          <e p="DeltaElectorTests.cs" t="Include" />
+          <e p="DeltaHashProviderTests.cs" t="Include" />
+          <e p="DeltaHubTests.cs" t="Include" />
+          <e p="DeltaTransactionRetrieverTests.cs" t="Include" />
+          <e p="DeltaVoterTests.cs" t="Include" />
+          <e p="FavouriteByHashAndVoterComparerTests.cs" t="Include" />
+        </e>
+        <e p="TransactionComparerByFeeTimestampAndHashTests.cs" t="Include" />
+      </e>
+      <e p="Cryptography" t="Include">
+        <e p="CertificateStoreTests.cs" t="Include" />
+        <e p="ConsolePasswordReaderTests.cs" t="Include" />
+        <e p="CryptographyTests.cs" t="Include" />
+        <e p="IsaacRandomTests.cs" t="Include" />
+        <e p="PasswordManagerTests.cs" t="Include" />
+      </e>
+      <e p="Dfs" t="Include">
+        <e p="DfsTests.cs" t="Include" />
+        <e p="IpfsAdapterTests.cs" t="Include" />
+        <e p="NtDfsTests.cs" t="Include" />
+      </e>
+      <e p="Extensions" t="Include">
+        <e p="DirectoryInfoExtensionsTests.cs" t="Include" />
+        <e p="EnumerableExtensionTests.cs" t="Include" />
+        <e p="MultihashExtensionTests.cs" t="Include" />
+        <e p="ProtobufExtensionsTests.cs" t="Include" />
+      </e>
+      <e p="FileTransfer" t="Include">
+        <e p="DownloadFileTransferFactoryTests.cs" t="Include" />
+        <e p="DownloadFileTransferInformationTests.cs" t="Include" />
+        <e p="UploadFileTransferFactoryTests.cs" t="Include" />
+        <e p="UploadFileTransferInformationTests.cs" t="Include" />
+      </e>
+      <e p="IO" t="Include">
+        <e p="Codecs" t="Include">
+          <e p="AddressedEnvelopeToIMessageEncoderTests.cs" t="Include" />
+          <e p="DatagramPacketDecoderTests.cs" t="Include" />
+          <e p="DatagramPacketEncoderTests.cs" t="Include" />
+        </e>
+        <e p="EventLoopGroupFactoryTests.cs" t="Include" />
+        <e p="Events" t="Include">
+          <e p="TransactionReceivedEventTests.cs" t="Include" />
+        </e>
+        <e p="Handlers" t="Include">
+          <e p="CorrelatableHandlerUnitTests.cs" t="Include" />
+          <e p="ObservableServiceHandlerUnitTests.cs" t="Include" />
+          <e p="PeerIdValidationHandlerTests.cs" t="Include" />
+          <e p="ProtocolMessageSignHandlerTests.cs" t="Include" />
+          <e p="ProtocolMessageVerifyHandlerTests.cs" t="Include" />
+        </e>
+        <e p="Messaging" t="Include">
+          <e p="Correlation" t="Include">
+            <e p="CorrelationIdTests.cs" t="Include" />
+            <e p="MessageCorrelationManagerTests.cs" t="Include" />
+          </e>
+          <e p="Dto" t="Include">
+            <e p="MessageDtoTests.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Observers" t="Include">
+          <e p="BroadcastObserverBaseTests.cs" t="Include" />
+          <e p="MessageObserverBaseTests.cs" t="Include" />
+          <e p="RequestObserverBaseTests.cs" t="Include" />
+          <e p="ResponseObserverBaseTests.cs" t="Include" />
+          <e p="TransferFileBytesRequestObserverTests.cs" t="Include" />
+        </e>
+        <e p="Transport" t="Include">
+          <e p="Bootstrapping" t="Include">
+            <e p="BootstrapUnitTests.cs" t="Include" />
+            <e p="ServerBootstrapUnitTests.cs" t="Include" />
+          </e>
+          <e p="Channels" t="Include">
+            <e p="ClientChannelInitializerBaseTests.cs" t="Include" />
+            <e p="ObservableChannelTests.cs" t="Include" />
+            <e p="TcpClientChannelFactoryTests.cs" t="Include" />
+            <e p="TcpServerChannelFactoryTests.cs" t="Include" />
+          </e>
+          <e p="ClientBaseUnitTests.cs" t="Include" />
+          <e p="SocketBaseUnitTests.cs" t="Include" />
+          <e p="SocketClientRegistryTests.cs" t="Include" />
+          <e p="TcpClientUnitTests.cs" t="Include" />
+          <e p="TcpServerUnitTests.cs" t="Include" />
+        </e>
+      </e>
+      <e p="KeySigner" t="Include">
+        <e p="KeySignerTests.cs" t="Include" />
+      </e>
+      <e p="Keystore" t="Include">
+        <e p="LocalKeyStoreTests.cs" t="Include" />
+      </e>
+      <e p="Ledger" t="Include">
+        <e p="LedgerTests.cs" t="Include" />
+      </e>
+      <e p="LicenseHeaderTests.cs" t="Include" />
+      <e p="Mempool" t="Include">
+        <e p="MempoolTests.cs" t="Include" />
+      </e>
+      <e p="ModuleNamesTests.cs" t="Include" />
+      <e p="Network" t="Include">
+        <e p="DnsUnitTests.cs" t="Include" />
+      </e>
+      <e p="P2P" t="Include">
+        <e p="Discovery" t="Include">
+          <e p="DiscoveryTestBuilder.cs" t="Include" />
+          <e p="HastingsCareTakerTests.cs" t="Include" />
+          <e p="HastingsDiscoveryTests.cs" t="Include" />
+          <e p="HastingsMementoTests.cs" t="Include" />
+          <e p="HastingsOriginatorTests.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="Messaging" t="Include">
+            <e p="Broadcast" t="Include">
+              <e p="BroadcastCleanupHandlerTests.cs" t="Include" />
+              <e p="BroadcastHandlerTests.cs" t="Include" />
+              <e p="BroadcastManagerTests.cs" t="Include" />
+            </e>
+            <e p="Correlation" t="Include">
+              <e p="PeerMessageCorrelationManagerTests.cs" t="Include" />
+            </e>
+            <e p="Dto" t="Include">
+              <e p="PeerClientMessageDtoTests.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Observers" t="Include">
+            <e p="AddFileToDfsRequestObserverTests.cs" t="Include" />
+            <e p="CandidateDeltaObserverTests.cs" t="Include" />
+            <e p="DeltaDfsHashObserverTests.cs" t="Include" />
+            <e p="FavouriteDeltaObserverTests.cs" t="Include" />
+            <e p="GetDeltaRequestObserverTests.cs" t="Include" />
+            <e p="GetNeighbourRequestObserverTests.cs" t="Include" />
+            <e p="GetNeighbourResponseObserverTests.cs" t="Include" />
+            <e p="PingRequestObserverTests.cs" t="Include" />
+            <e p="PingResponseObserverTests.cs" t="Include" />
+          </e>
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="PeerClientChannelFactoryTests.cs" t="Include" />
+              <e p="PeerServerChannelFactoryTests.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="PeerIdValidatorTests.cs" t="Include" />
+        <e p="PeerServiceTests.cs" t="Include" />
+        <e p="PeerTests.cs" t="Include" />
+        <e p="ReputationSystem" t="Include">
+          <e p="ReputationManagerTests.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Registry" t="Include">
+        <e p="KeyRegistryTests.cs" t="Include" />
+        <e p="PasswordRegistryTests.cs" t="Include" />
+      </e>
+      <e p="Repository" t="Include">
+        <e p="FileSystemAwareXmlRepositoryTests.cs" t="Include" />
+      </e>
+      <e p="Rpc" t="Include">
+        <e p="Authentication" t="Include">
+          <e p="AuthenticationHandlerTests.cs" t="Include" />
+        </e>
+        <e p="IO" t="Include">
+          <e p="Exceptions" t="Include">
+            <e p="ResponseHandlerDoesNotExistExceptionUnitTests.cs" t="Include" />
+          </e>
+          <e p="Messaging" t="Include">
+            <e p="Correlation" t="Include">
+              <e p="RpcMessageCorrelationManagerCacheTests.cs" t="Include" />
+              <e p="RpcMessageCorrelationManagerTests.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Observers" t="Include">
+            <e p="AddFileToDfsResponseObserverTests.cs" t="Include" />
+            <e p="BroadcastRawTransactionRequestObserverTests.cs" t="Include" />
+            <e p="GetFileFromDfsRequestObserverTests.cs" t="Include" />
+            <e p="GetFileFromDfsResponseObserverTests.cs" t="Include" />
+            <e p="GetMempoolRequestObserverTests.cs" t="Include" />
+            <e p="GetMempoolResponseObserverTests.cs" t="Include" />
+            <e p="GetPeerInfoRequestObserverTests.cs" t="Include" />
+            <e p="GetVersionRequestObserverTests.cs" t="Include" />
+            <e p="GetVersionResponseObserverTests.cs" t="Include" />
+            <e p="PeerBlackListingRequestObserverTests.cs" t="Include" />
+            <e p="PeerCountRequestObserverTests.cs" t="Include" />
+            <e p="PeerListRequestObserverTests.cs" t="Include" />
+            <e p="PeerReputationRequestObserverTests.cs" t="Include" />
+            <e p="RemovePeerRequestObserverTests.cs" t="Include" />
+            <e p="RemovePeerResponseObserverTests.cs" t="Include" />
+            <e p="SignMessageRequestObserverTests.cs" t="Include" />
+            <e p="SignMessageResponseObserverTests.cs" t="Include" />
+            <e p="VerifyMessageRequestObserverTests.cs" t="Include" />
+          </e>
+          <e p="Transport" t="Include">
+            <e p="Channels" t="Include">
+              <e p="RpcClientChannelFactoryTests.cs" t="Include" />
+              <e p="RpcServerChannelFactoryTests.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="NodeRpcClientFactoryTests.cs" t="Include" />
+        <e p="NodeRpcClientTests.cs" t="Include" />
+        <e p="NodeRpcServerTests.cs" t="Include" />
+        <e p="RpcResponseObserverTests.cs" t="Include" />
+        <e p="RpcServerSettingsTests.cs" t="Include" />
+      </e>
+      <e p="Shell" t="Include">
+        <e p="ConsoleUserOutputTests.cs" t="Include" />
+      </e>
+      <e p="Utils" t="Include">
+        <e p="BigDecimalTests.cs" t="Include" />
+        <e p="ByteListComparerTests.cs" t="Include" />
+        <e p="ByteUtilTests.cs" t="Include" />
+        <e p="CancellationTokenProviderTests.cs" t="Include" />
+        <e p="DateTimeUtilTests.cs" t="Include" />
+        <e p="IpAddressConverterTests.cs" t="Include" />
+        <e p="KeyUtilTest.cs" t="Include" />
+        <e p="TtlChangeTokenProviderTests.cs" t="Include" />
+      </e>
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Core.UnitTests.AssemblyInfo.cs" t="Include" />
+            <e p="Catalyst.Core.UnitTests.Program.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Kvm" t="IncludeRecursive">
+      <e p="Catalyst.Kvm.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Kvm.snk" t="Include" />
+      <e p="CatalystGenesisSpec.cs" t="Include" />
+      <e p="CatalystSpecProvider.cs" t="Include" />
+      <e p="CatalystUnit.cs" t="Include" />
+      <e p="CatalystVirtualMachine.cs" t="Include" />
+      <e p="KvmIntExtensions.cs" t="Include" />
+      <e p="RangeProofPrecompile.cs" t="Include" />
+      <e p="StateUpdateHashProvider.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Kvm.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Kvm.IntegrationTests" t="IncludeRecursive">
+      <e p="Catalyst.Kvm.IntegrationTests.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Kvm.IntegrationTests.snk" t="Include" />
+      <e p="CatalystVirtualMachineTests.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Kvm.IntegrationTests.AssemblyInfo.cs" t="Include" />
+            <e p="Catalyst.Kvm.IntegrationTests.Program.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.Kvm.UnitTests" t="IncludeRecursive">
+      <e p="Catalyst.Kvm.UnitTests.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.Kvm.UnitTests.snk" t="Include" />
+      <e p="CatalystVirtualMachineTests.cs" t="Include" />
+      <e p="RangeProofPrecompileTests.cs" t="Include" />
+      <e p="StateHashProviderTests.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.Kvm.UnitTests.AssemblyInfo.cs" t="Include" />
+            <e p="Catalyst.Kvm.UnitTests.Program.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/src/Catalyst.TestUtils" t="IncludeRecursive">
+      <e p="AccountHelper.cs" t="Include" />
+      <e p="CacheHelper.cs" t="Include" />
+      <e p="Catalyst.TestUtils.csproj" t="IncludeRecursive" />
+      <e p="Catalyst.TestUtils.snk" t="Include" />
+      <e p="ConfigFileBasedTest.cs" t="Include" />
+      <e p="ContainerProvider.cs" t="Include" />
+      <e p="DeltaHelper.cs" t="Include" />
+      <e p="DiscoveryHelper.cs" t="Include" />
+      <e p="EmbeddedObservableChannel.cs" t="Include" />
+      <e p="FailingRequestObserver.cs" t="Include" />
+      <e p="FileHelper.cs" t="Include" />
+      <e p="FileSystemBasedTest.cs" t="Include" />
+      <e p="FluentAssertionsExtensions.cs" t="Include" />
+      <e p="MessageStreamHelper.cs" t="Include" />
+      <e p="MockQueryResponse.cs" t="Include" />
+      <e p="ObservableHelpers.cs" t="Include" />
+      <e p="PeerIdHelper.cs" t="Include" />
+      <e p="PeerIdentifierHelper.cs" t="Include" />
+      <e p="PeerSettingsHelper.cs" t="Include" />
+      <e p="ProtocolMessageObserver.cs" t="Include" />
+      <e p="ScoredCandidateDeltaHelper.cs" t="Include" />
+      <e p="SelfAwareTestBase.cs" t="Include" />
+      <e p="SocketPortHelper.cs" t="Include" />
+      <e p="StringHelper.cs" t="Include" />
+      <e p="SubstituteResults.cs" t="Include" />
+      <e p="TaskHelper.cs" t="Include" />
+      <e p="TestCertificateStore.cs" t="Include" />
+      <e p="TestClientBase.cs" t="Include" />
+      <e p="TestCycleEventProvider.cs" t="Include" />
+      <e p="TestKeyRegistry.cs" t="Include" />
+      <e p="TestMessageObserver.cs" t="Include" />
+      <e p="TestPasswordReader.cs" t="Include" />
+      <e p="TestRpcResponseObserver.cs" t="Include" />
+      <e p="TestSocketBase.cs" t="Include" />
+      <e p="TestTcpClient.cs" t="Include" />
+      <e p="TestTcpClientChannelFactory.cs" t="Include" />
+      <e p="TestTcpServer.cs" t="Include" />
+      <e p="TestTcpServerChannelFactory.cs" t="Include" />
+      <e p="Traits.cs" t="Include" />
+      <e p="TransactionHelper.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Catalyst.TestUtils.AssemblyInfo.cs" t="Include" />
+            <e p="Catalyst.TestUtils.Program.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Dirichlet/Nethermind.Dirichlet.Numerics" t="IncludeRecursive">
+      <e p="Int128.cs" t="Include" />
+      <e p="Nethermind.Dirichlet.Numerics.csproj" t="IncludeRecursive" />
+      <e p="UInt128.cs" t="Include" />
+      <e p="UInt256.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Dirichlet.Numerics.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.Core" t="IncludeRecursive">
+      <e p="Account.cs" t="Include" />
+      <e p="Address.cs" t="Include" />
+      <e p="AddressComparer.cs" t="Include" />
+      <e p="AssemblyInfo.cs" t="Include" />
+      <e p="Blake2.cs" t="Include" />
+      <e p="Block.cs" t="Include" />
+      <e p="BlockBody.cs" t="Include" />
+      <e p="BlockHeader.cs" t="Include" />
+      <e p="BlockInfo.cs" t="Include" />
+      <e p="Bloom.cs" t="Include" />
+      <e p="ChainId.cs" t="Include" />
+      <e p="ChainLevelInfo.cs" t="Include" />
+      <e p="Crypto" t="Include">
+        <e p="ConsoleUtils.cs" t="Include" />
+        <e p="CryptoRandom.cs" t="Include" />
+        <e p="Ecdsa.cs" t="Include" />
+        <e p="EthereumEcdsa.cs" t="Include" />
+        <e p="ICryptoRandom.cs" t="Include" />
+        <e p="IEcdsa.cs" t="Include" />
+        <e p="IEthereumEcdsa.cs" t="Include" />
+        <e p="Keccak.cs" t="Include" />
+        <e p="Keccak512.cs" t="Include" />
+        <e p="KeccakHash.cs" t="Include" />
+        <e p="NullEthereumEcdsa.cs" t="Include" />
+        <e p="PrivateKey.cs" t="Include" />
+        <e p="PrivateKeyGenerator.cs" t="Include" />
+        <e p="PublicKey.cs" t="Include" />
+        <e p="Ripemd.cs" t="Include" />
+        <e p="Secp256K1Curve.cs" t="Include" />
+        <e p="SecureStringExtensions.cs" t="Include" />
+        <e p="Sha2.cs" t="Include" />
+        <e p="Signature.cs" t="Include" />
+        <e p="ZkSnarks" t="Include">
+          <e p="Bn128.cs" t="Include" />
+          <e p="Bn128Fp.cs" t="Include" />
+          <e p="Bn128Fp2.cs" t="Include" />
+          <e p="Fp.cs" t="Include" />
+          <e p="Fp12.cs" t="Include" />
+          <e p="Fp2.cs" t="Include" />
+          <e p="Fp6.cs" t="Include" />
+          <e p="IField.cs" t="Include" />
+          <e p="PairingCheck.cs" t="Include" />
+          <e p="Parameters.cs" t="Include" />
+          <e p="QuadraticExtension.cs" t="Include" />
+        </e>
+      </e>
+      <e p="DoNotUseInSecuredContext.cs" t="Include" />
+      <e p="Encoding" t="Include">
+        <e p="AccountDecoder.cs" t="Include" />
+        <e p="BlockDecoder.cs" t="Include" />
+        <e p="BlockInfoDecoder.cs" t="Include" />
+        <e p="ChainLevelDecoder.cs" t="Include" />
+        <e p="HeaderDecoder.cs" t="Include" />
+        <e p="IRlpDecoder.cs" t="Include" />
+        <e p="LogEntryDecoder.cs" t="Include" />
+        <e p="ReceiptDecoder.cs" t="Include" />
+        <e p="Rlp.cs" t="Include" />
+        <e p="RlpBehaviors.cs" t="Include" />
+        <e p="RlpException.cs" t="Include" />
+        <e p="RlpStream.cs" t="Include" />
+        <e p="TransactionDecoder.cs" t="Include" />
+      </e>
+      <e p="Extensions" t="Include">
+        <e p="BigIntegerExtensions.cs" t="Include" />
+        <e p="BlockExtensions.cs" t="Include" />
+        <e p="ByteArrayExtensions.cs" t="Include" />
+        <e p="Bytes.cs" t="Include" />
+        <e p="Int64Extensions.cs" t="Include" />
+        <e p="IntExtensions.cs" t="Include" />
+        <e p="KeyValuePairExtensions.cs" t="Include" />
+        <e p="ShortExtensions.cs" t="Include" />
+        <e p="StringExtensions.cs" t="Include" />
+        <e p="UInt64Extensions.cs" t="Include" />
+      </e>
+      <e p="FullTransaction.cs" t="Include" />
+      <e p="ICache.cs" t="Include" />
+      <e p="IJsonSerializer.cs" t="Include" />
+      <e p="IPerfService.cs" t="Include" />
+      <e p="IPrivateKeyGenerator.cs" t="Include" />
+      <e p="ITimestamp.cs" t="Include" />
+      <e p="Json" t="Include">
+        <e p="AddressConverter.cs" t="Include" />
+        <e p="BigIntegerConverter.cs" t="Include" />
+        <e p="BloomConverter.cs" t="Include" />
+        <e p="ByteArray32Converter.cs" t="Include" />
+        <e p="ByteArrayConverter.cs" t="Include" />
+        <e p="EthereumJsonSerializer.cs" t="Include" />
+        <e p="KeccakConverter.cs" t="Include" />
+        <e p="LongConverter.cs" t="Include" />
+        <e p="NullableBigIntegerConverter.cs" t="Include" />
+        <e p="NullableLongConvertercs.cs" t="Include" />
+        <e p="NullableUInt256Converter.cs" t="Include" />
+        <e p="NumberConversion.cs" t="Include" />
+        <e p="PublicKeyConverter.cs" t="Include" />
+        <e p="UInt256Converter.cs" t="Include" />
+        <e p="UnforgivingJsonSerializer.cs" t="Include" />
+      </e>
+      <e p="KnownHashes.cs" t="Include" />
+      <e p="LogEntry.cs" t="Include" />
+      <e p="LruCache.cs" t="Include" />
+      <e p="Model" t="Include">
+        <e p="Result.cs" t="Include" />
+        <e p="ResultType.cs" t="Include" />
+      </e>
+      <e p="Nethermind.Core.csproj" t="IncludeRecursive" />
+      <e p="NetworkNode.cs" t="Include" />
+      <e p="PerfService.cs" t="Include" />
+      <e p="RequiresSecurityReviewAttribute.cs" t="Include" />
+      <e p="SealEngineType.cs" t="Include" />
+      <e p="SignatureDecoder.cs" t="Include" />
+      <e p="Specs" t="Include">
+        <e p="ChainSpecStyle" t="Include">
+          <e p="AuRaParameters.cs" t="Include" />
+          <e p="ChainParameters.cs" t="Include" />
+          <e p="ChainSpec.cs" t="Include" />
+          <e p="ChainSpecAllocation.cs" t="Include" />
+          <e p="ChainSpecBasedSpecProvider.cs" t="Include" />
+          <e p="ChainSpecLoader.cs" t="Include" />
+          <e p="ChainSpecLoaderExtensions.cs" t="Include" />
+          <e p="CliqueParameters.cs" t="Include" />
+          <e p="EthashParameters.cs" t="Include" />
+          <e p="IChainSpecLoader.cs" t="Include" />
+          <e p="Json" t="Include">
+            <e p="ChainSpecAuRaSealJson.cs" t="Include" />
+            <e p="ChainSpecEthereumSealJson.cs" t="Include" />
+            <e p="ChainSpecGenesisJson.cs" t="Include" />
+            <e p="ChainSpecJson.cs" t="Include" />
+            <e p="ChainSpecParamsJson.cs" t="Include" />
+            <e p="ChainSpecSealJson.cs" t="Include" />
+          </e>
+        </e>
+        <e p="CustomSpecProvider.cs" t="Include" />
+        <e p="Forks" t="Include">
+          <e p="0_Olympic.cs" t="Include" />
+          <e p="1_Frontier.cs" t="Include" />
+          <e p="2_Homestead.cs" t="Include" />
+          <e p="3_Dao.cs" t="Include" />
+          <e p="4_TangerineWhistle.cs" t="Include" />
+          <e p="5_SpuriousDragon.cs" t="Include" />
+          <e p="6_Byzantium.cs" t="Include" />
+          <e p="7_Constantinople.cs" t="Include" />
+          <e p="8_ConstantinopleFix.cs" t="Include" />
+          <e p="9_Istanbul.cs" t="Include" />
+        </e>
+        <e p="FrontierSpecProvider.cs" t="Include" />
+        <e p="GenesisFileStyle" t="Include">
+          <e p="GenesisFileConfigCliqueJson.cs" t="Include" />
+          <e p="GenesisFileLoader.cs" t="Include" />
+          <e p="Json" t="Include">
+            <e p="AllocationJson.cs" t="Include" />
+            <e p="GenesisFileConfigJson.cs" t="Include" />
+            <e p="GenesisFileJson.cs" t="Include" />
+          </e>
+        </e>
+        <e p="GoerliSpecProvider.cs" t="Include" />
+        <e p="IReleaseSpec.cs" t="Include" />
+        <e p="ISpecProvider.cs" t="Include" />
+        <e p="LatestRelease.cs" t="Include" />
+        <e p="MainNetSpecProvider.cs" t="Include" />
+        <e p="MordenSpecProvider.cs" t="Include" />
+        <e p="OlympicSpecProvider.cs" t="Include" />
+        <e p="ReleaseSpec.cs" t="Include" />
+        <e p="RinkebySpecProvider.cs" t="Include" />
+        <e p="RopstenSpecProvider.cs" t="Include" />
+        <e p="SingleReleaseSpecProvider.cs" t="Include" />
+      </e>
+      <e p="Timestamp.cs" t="Include" />
+      <e p="TodoAttribute.cs" t="Include" />
+      <e p="Transaction.cs" t="Include" />
+      <e p="TransactionReceipt.cs" t="Include" />
+      <e p="Unit.cs" t="Include" />
+      <e p="Version.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Core.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.Evm" t="IncludeRecursive">
+      <e p="CodeDepositHandler.cs" t="Include" />
+      <e p="CodeInfo.cs" t="Include" />
+      <e p="EvmAccessViolationException.cs" t="Include" />
+      <e p="EvmException.cs" t="Include" />
+      <e p="EvmPooledMemory.cs" t="Include" />
+      <e p="EvmStackOverflowException.cs" t="Include" />
+      <e p="EvmStackUnderflowException.cs" t="Include" />
+      <e p="EvmState.cs" t="Include" />
+      <e p="ExecutionEnvironment.cs" t="Include" />
+      <e p="ExecutionType.cs" t="Include" />
+      <e p="GasCostOf.cs" t="Include" />
+      <e p="IEvmMemory.cs" t="Include" />
+      <e p="IStateUpdateHashProvider.cs" t="Include" />
+      <e p="ITransactionProcessor.cs" t="Include" />
+      <e p="IVirtualMachine.cs" t="Include" />
+      <e p="Instruction.cs" t="Include" />
+      <e p="IntrinsicGasCalculator.cs" t="Include" />
+      <e p="InvalidJumpDestinationException.cs" t="Include" />
+      <e p="Metrics.cs" t="Include" />
+      <e p="Nethermind.Evm.csproj" t="IncludeRecursive" />
+      <e p="OutOfGasException.cs" t="Include" />
+      <e p="PrecompileExecutionFailureException.cs" t="Include" />
+      <e p="Precompiles" t="Include">
+        <e p="AddressExtensions.cs" t="Include" />
+        <e p="Blake2BPrecompiledContract.cs" t="Include" />
+        <e p="Bn128AddPrecompiledContract.cs" t="Include" />
+        <e p="Bn128MulPrecompiledContract.cs" t="Include" />
+        <e p="Bn128PairingPrecompiledContract.cs" t="Include" />
+        <e p="ECRecoverPrecompiledContract.cs" t="Include" />
+        <e p="IPrecompiledContract.cs" t="Include" />
+        <e p="IdentityPrecompiledContract.cs" t="Include" />
+        <e p="ModExpPrecompiledContract.cs" t="Include" />
+        <e p="Ripemd160PrecompiledContract.cs" t="Include" />
+        <e p="Sha256PrecompiledContract.cs" t="Include" />
+      </e>
+      <e p="RefundOf.cs" t="Include" />
+      <e p="StateUpdate.cs" t="Include" />
+      <e p="StatusCode.cs" t="Include" />
+      <e p="Tracing" t="Include">
+        <e p="BlockReceiptsTracer.cs" t="Include" />
+        <e p="BlockTracerBase.cs" t="Include" />
+        <e p="CallOutputTracer.cs" t="Include" />
+        <e p="GethLikeBlockTracer.cs" t="Include" />
+        <e p="GethLikeTxTrace.cs" t="Include" />
+        <e p="GethLikeTxTracer.cs" t="Include" />
+        <e p="GethTxTraceEntry.cs" t="Include" />
+        <e p="IBlockTracer.cs" t="Include" />
+        <e p="ITxTracer.cs" t="Include" />
+        <e p="NullBlockTracer.cs" t="Include" />
+        <e p="NullTxTracer.cs" t="Include" />
+        <e p="ParityAccountStateChange.cs" t="Include" />
+        <e p="ParityAction.cs" t="Include" />
+        <e p="ParityLikeBlockTracer.cs" t="Include" />
+        <e p="ParityLikeTxTrace.cs" t="Include" />
+        <e p="ParityLikeTxTracer.cs" t="Include" />
+        <e p="ParityMemoryChangeTrace.cs" t="Include" />
+        <e p="ParityResult.cs" t="Include" />
+        <e p="ParityStateChange.cs" t="Include" />
+        <e p="ParityStorageChangeTrace.cs" t="Include" />
+        <e p="ParityTraceDecoder.cs" t="Include" />
+        <e p="ParityTraceTypes.cs" t="Include" />
+        <e p="ParityVmOperationTrace.cs" t="Include" />
+        <e p="ParityVmTrace.cs" t="Include" />
+        <e p="TraceOptions.cs" t="Include" />
+      </e>
+      <e p="TransactionCollisionException.cs" t="Include" />
+      <e p="TransactionProcessor.cs" t="Include" />
+      <e p="TransactionSubstate.cs" t="Include" />
+      <e p="VirtualMachine.cs" t="Include" />
+      <e p="VmBlockHeaderExtensions.cs" t="Include" />
+      <e p="VmParams.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Evm.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.HashLib" t="IncludeRecursive">
+      <e p="Crypto" t="Include">
+        <e p="BuildIn" t="Include">
+          <e p="MD5CryptoServiceProvider.cs" t="Include" />
+          <e p="RIPEMD160Managed .cs" t="Include" />
+          <e p="SHA256Cng.cs" t="Include" />
+          <e p="SHA256CryptoServiceProvider.cs" t="Include" />
+          <e p="SHA256Managed.cs" t="Include" />
+        </e>
+        <e p="MD5.cs" t="Include" />
+        <e p="MDBase.cs" t="Include" />
+        <e p="RIPEMD.cs" t="Include" />
+        <e p="RIPEMD160.cs" t="Include" />
+        <e p="SHA256.cs" t="Include" />
+        <e p="SHA256Base.cs" t="Include" />
+        <e p="SHA3" t="Include">
+          <e p="Blake.cs" t="Include" />
+          <e p="KeccakBase.cs" t="Include" />
+        </e>
+        <e p="SHA384.cs" t="Include" />
+        <e p="SHA512.cs" t="Include" />
+        <e p="SHA512Base.cs" t="Include" />
+      </e>
+      <e p="Extensions" t="Include">
+        <e p="ArrayExtensions.cs" t="Include" />
+        <e p="Bits.cs" t="Include" />
+        <e p="Converters.cs" t="Include" />
+        <e p="TypeExtensions.cs" t="Include" />
+      </e>
+      <e p="HMACBuildInAdapter.cs" t="Include" />
+      <e p="HMACNotBuildInAdapter.cs" t="Include" />
+      <e p="Hash.cs" t="Include" />
+      <e p="HashAlgorithmWrapper.cs" t="Include" />
+      <e p="HashBuffer.cs" t="Include" />
+      <e p="HashCryptoBuildIn.cs" t="Include" />
+      <e p="HashCryptoNotBuildIn.cs" t="Include" />
+      <e p="HashFactory.cs" t="Include" />
+      <e p="HashResult.cs" t="Include" />
+      <e p="HashSize.cs" t="Include" />
+      <e p="IHash.cs" t="Include" />
+      <e p="IHashInfo.cs" t="Include" />
+      <e p="LICENSE.md" t="Include" />
+      <e p="MultipleTransformsNonBlock.cs" t="Include" />
+      <e p="Nethermind.HashLib.csproj" t="IncludeRecursive" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.HashLib.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.Logging" t="IncludeRecursive">
+      <e p="AssemblyInfo.cs" t="Include" />
+      <e p="ConsoleAsyncLogger.cs" t="Include" />
+      <e p="ILogManager.cs" t="Include" />
+      <e p="ILogger.cs" t="Include" />
+      <e p="LimboLogs.cs" t="Include" />
+      <e p="LimboNoErrorLogger.cs" t="Include" />
+      <e p="LimboTraceLogger.cs" t="Include" />
+      <e p="LogLevel.cs" t="Include" />
+      <e p="NLogLogger.cs" t="Include" />
+      <e p="NLogManager.cs" t="Include" />
+      <e p="Nethermind.Logging.csproj" t="IncludeRecursive" />
+      <e p="NoErrorLimboLogs.cs" t="Include" />
+      <e p="NullLogManager.cs" t="Include" />
+      <e p="NullLogger.cs" t="Include" />
+      <e p="OneLoggerLogManager.cs" t="Include" />
+      <e p="PathUtils.cs" t="Include" />
+      <e p="SimpleConsoleLogger.cs" t="Include" />
+      <e p="StackTraceUtils.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Logging.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.Secp256k1" t="IncludeRecursive">
+      <e p="External" t="Include">
+        <e p="Mac" t="Include">
+          <e p="libsecp256k1.dylib" t="Include" />
+        </e>
+        <e p="Posix" t="Include">
+          <e p="libsecp256k1.so" t="Include" />
+        </e>
+        <e p="Win64" t="Include">
+          <e p="secp256k1.dll" t="Include" />
+        </e>
+      </e>
+      <e p="Nethermind.Secp256k1.csproj" t="IncludeRecursive" />
+      <e p="Proxy.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Secp256k1.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+    <e p="$PROJECT_DIR$/../submodules/Catalyst.Node/submodules/nethermind/src/Nethermind/Nethermind.Store" t="IncludeRecursive">
+      <e p="DbExtensions.cs" t="Include" />
+      <e p="DbNames.cs" t="Include" />
+      <e p="HexPrefix.cs" t="Include" />
+      <e p="IDb.cs" t="Include" />
+      <e p="IDbProvider.cs" t="Include" />
+      <e p="IFullDb.cs" t="Include" />
+      <e p="ISnapshotableDb.cs" t="Include" />
+      <e p="IStateProvider.cs" t="Include" />
+      <e p="IStateReader.cs" t="Include" />
+      <e p="IStateTracer.cs" t="Include" />
+      <e p="IStorageProvider.cs" t="Include" />
+      <e p="IStorageTracer.cs" t="Include" />
+      <e p="ITreeVisitor.cs" t="Include" />
+      <e p="InsufficientBalanceException.cs" t="Include" />
+      <e p="MemDb.cs" t="Include" />
+      <e p="MemDbProvider.cs" t="Include" />
+      <e p="Metrics.cs" t="Include" />
+      <e p="Nethermind.Store.csproj" t="IncludeRecursive" />
+      <e p="Nethermind.Store.csproj.DotSettings" t="Include" />
+      <e p="NibbleExtensions.cs" t="Include" />
+      <e p="Nibbles.cs" t="Include" />
+      <e p="NodeType.cs" t="Include" />
+      <e p="NullDb.cs" t="Include" />
+      <e p="PatriciaTree.cs" t="Include" />
+      <e p="ReadOnlyDb.cs" t="Include" />
+      <e p="ReadOnlyDbProvider.cs" t="Include" />
+      <e p="SecurePatriciaTree.cs" t="Include" />
+      <e p="StateDb.cs" t="Include" />
+      <e p="StateException.cs" t="Include" />
+      <e p="StateProvider.cs" t="Include" />
+      <e p="StateReader.cs" t="Include" />
+      <e p="StateTree.cs" t="Include" />
+      <e p="StorageAddress.cs" t="Include" />
+      <e p="StorageProvider.cs" t="Include" />
+      <e p="StorageTree.cs" t="Include" />
+      <e p="TreeDumper.cs" t="Include" />
+      <e p="TreeNodeFactory.cs" t="Include" />
+      <e p="TrieNode.cs" t="Include" />
+      <e p="TrieStats.cs" t="Include" />
+      <e p="TrieStatsCollector.cs" t="Include" />
+      <e p="bin" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive">
+        <e p="Debug" t="Include">
+          <e p="netcoreapp2.2" t="Include">
+            <e p="Nethermind.Store.AssemblyInfo.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+    </e>
+  </component>
+</project>

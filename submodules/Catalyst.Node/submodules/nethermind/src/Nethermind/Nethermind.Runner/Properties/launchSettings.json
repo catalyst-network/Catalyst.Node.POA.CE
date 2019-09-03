@@ -1,0 +1,37 @@
+{
+  "profiles": {
+    "Ropsten": {
+      "commandName": "Project",
+      "commandLineArgs": "--config configs\\ropsten.cfg --baseDbPath C:\\nethermind_db",
+      "environmentVariables": {
+        " ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "MainNet": {
+      "commandName": "Project",
+      "commandLineArgs": "--config configs\\mainnet.cfg --baseDbPath D:\\mainnet_fast --SyncConfig.FastSync true",
+      "environmentVariables": {
+        " ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Rinkeby": {
+      "commandName": "Project",
+      "commandLineArgs": "--config rinkeby --baseDbPath D:\\rinkeby_fast --SyncConfig.FastSync true",
+      "environmentVariables": {
+        " ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Goerli": {
+      "commandName": "Project",
+      "commandLineArgs": "--config configs\\goerli_archive.cfg --baseDbPath C:\\ --InitConfig.JsonRpcEnabled true"
+    },
+    "Sokol": {
+      "commandName": "Project",
+      "commandLineArgs": "--InitConfig.JsonRpcEnabled true --config configs\\sokol.cfg --baseDbPath C:\\nethermind_db"
+    },
+    "Poacore": {
+      "commandName": "Project",
+      "commandLineArgs": "--InitConfig.JsonRpcEnabled true --config configs\\poacore.cfg --baseDbPath C:\\nethermind_db"
+    }
+  }
+}

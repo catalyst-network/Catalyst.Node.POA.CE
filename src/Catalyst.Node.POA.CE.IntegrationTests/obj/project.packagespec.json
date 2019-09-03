@@ -1,0 +1,100 @@
+﻿{
+  "version": "0.0.1",
+  "restore": {
+    "projectUniqueName": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE.IntegrationTests/Catalyst.Node.POA.CE.IntegrationTests.csproj",
+    "projectName": "Catalyst.Node.POA.CE.IntegrationTests",
+    "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE.IntegrationTests/Catalyst.Node.POA.CE.IntegrationTests.csproj",
+    "outputPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE.IntegrationTests/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.2"
+    ],
+    "sources": {
+      "https://api.nuget.org/v3/index.json": {}
+    },
+    "frameworks": {
+      "netcoreapp2.2": {
+        "projectReferences": {
+          "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Cli/Catalyst.Cli.csproj": {
+            "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Cli/Catalyst.Cli.csproj"
+          },
+          "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE.UnitTests/Catalyst.Node.POA.CE.UnitTests.csproj": {
+            "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE.UnitTests/Catalyst.Node.POA.CE.UnitTests.csproj"
+          },
+          "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE/Catalyst.Node.POA.CE.csproj": {
+            "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/src/Catalyst.Node.POA.CE/Catalyst.Node.POA.CE.csproj"
+          },
+          "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/submodules/Catalyst.Node/src/Catalyst.Core.UnitTests/Catalyst.Core.UnitTests.csproj": {
+            "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/submodules/Catalyst.Node/src/Catalyst.Core.UnitTests/Catalyst.Core.UnitTests.csproj"
+          },
+          "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/submodules/Catalyst.Node/src/Catalyst.TestUtils/Catalyst.TestUtils.csproj": {
+            "projectPath": "/home/nsh/RiderProjects/Catalyst.Node.POA.CE/submodules/Catalyst.Node/src/Catalyst.TestUtils/Catalyst.TestUtils.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.2": {
+      "dependencies": {
+        "Catalyst.Protocol": {
+          "target": "Package",
+          "version": "[0.0.1.11355-beta, )"
+        },
+        "FluentAssertions": {
+          "target": "Package",
+          "version": "[5.9.0, )"
+        },
+        "Microsoft.AspNetCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.0, )",
+          "autoReferenced": true
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.2.1, )",
+          "autoReferenced": true
+        },
+        "NSubstitute": {
+          "target": "Package",
+          "version": "[4.2.0, )"
+        },
+        "Serilog.Sinks.XUnit": {
+          "target": "Package",
+          "version": "[1.0.8, )"
+        },
+        "xunit.assert": {
+          "target": "Package",
+          "version": "[2.4.1, )"
+        },
+        "xunit.core": {
+          "target": "Package",
+          "version": "[2.4.1, )"
+        },
+        "xunit.runner.reporters": {
+          "target": "Package",
+          "version": "[2.4.1, )"
+        },
+        "xunit.runner.visualstudio": {
+          "target": "Package",
+          "version": "[2.4.1, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}
