@@ -28,6 +28,7 @@ using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Kernel;
+using Catalyst.Core.P2P;
 using Catalyst.Core.Util;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
@@ -74,6 +75,7 @@ namespace Catalyst.Node.POA.CE
         /// <returns></returns>
         private static void CustomBootLogic(Kernel kernel)
         {   
+            kernel.ContainerBuilder.RegisterModule(new P2PModule());
             kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
             kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
 
