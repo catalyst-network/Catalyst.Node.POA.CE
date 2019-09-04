@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <Title>James Kirby (nshcore@protonmail.com)</Title>
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>Catalyst.Modules.POA.Consensus.snk</AssemblyOriginatorKeyFile>
+        <PublicSign>true</PublicSign>
+    </PropertyGroup>
+    <PropertyGroup>
+        <RootNamespace>Catalyst.Modules.POA.Consensus</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core\Catalyst.Core.csproj" />
+    </ItemGroup>
+</Project>

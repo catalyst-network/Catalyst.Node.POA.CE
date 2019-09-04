@@ -225,7 +225,7 @@
             ]
         },
         {
-            "type": "Catalyst.Node.POA.CE.P2P.PoaDiscovery, Catalyst.Node.POA.CE",
+            "type": "Catalyst.Modules.POA.P2P.Discovery.PoaDiscovery, Catalyst.Modules.POA.P2P",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.P2P.Discovery.IPeerDiscovery, Catalyst.Abstractions"
@@ -269,10 +269,10 @@
             "instanceScope": "singleinstance"
         },
         {
-            "type": "Catalyst.Node.POA.CE.P2P.PeerHeartbeatChecker, Catalyst.Node.POA.CE",
+            "type": "Catalyst.Modules.POA.P2P.Discovery.PeerHeartbeatChecker, Catalyst.Modules.POA.P2P",
             "services": [
                 {
-                    "type": "Catalyst.Abstractions.P2P.IPeerHeartbeatChecker, Catalyst.Abstractions"
+                    "type": "Catalyst.Abstractions.P2P.Discovery.IHealthChecker, Catalyst.Abstractions"
                 }
             ],
             "parameters": {

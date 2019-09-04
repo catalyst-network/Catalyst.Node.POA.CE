@@ -37,7 +37,7 @@
             "instanceScope": "singleinstance"
         },
         {
-            "type": "Catalyst.Node.POA.CE.Consensus.Deltas.PoaDeltaProducersProvider, Catalyst.Node.POA.CE",
+            "type": "Catalyst.Modules.POA.Consensus.Deltas.PoaDeltaProducersProvider, Catalyst.Modules.POA.Consensus",
             "services": [
                 {
                     "type": "Catalyst.Core.Consensus.Deltas.IDeltaProducersProvider, Catalyst.Core"

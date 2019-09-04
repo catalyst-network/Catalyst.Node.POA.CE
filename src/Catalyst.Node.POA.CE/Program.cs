@@ -26,7 +26,7 @@ using System.Diagnostics;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Kernel;
 using Catalyst.Protocol.Common;
-using McMaster.Extensions.CommandLineUtils;
+using CommandLine;
 
 namespace Catalyst.Node.POA.CE
 {
