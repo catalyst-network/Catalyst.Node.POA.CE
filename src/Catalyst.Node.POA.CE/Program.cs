@@ -23,8 +23,14 @@
 
 using System;
 using System.Diagnostics;
+using System.Threading;
+using Autofac;
+using Catalyst.Abstractions;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Kernel;
+using Catalyst.Core.Util;
+using Catalyst.Modules.POA.Consensus;
+using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Common;
 using CommandLine;
 
@@ -64,17 +70,19 @@ namespace Catalyst.Node.POA.CE
         ///     For ref what passing custom boot logic looks like, this is the same as Kernel.StartNode()
         /// </summary>
         /// <param name="args"></param>
+        /// <param name="kernel"></param>
         /// <returns></returns>
+        private static void CustomBootLogic(Kernel kernel)
+        {   
+            kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
+            kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
 
-        // private static void CustomBootLogic(Kernel kernel)
-        // {
-        //     using (var instance = kernel.ContainerBuilder.Build().BeginLifetimeScope(MethodBase.GetCurrentMethod().DeclaringType.AssemblyQualifiedName))
-        //     {
-        //         instance.Resolve<ICatalystNode>()
-        //            .RunAsync(kernel.CancellationTokenProvider.CancellationTokenSource.Token)
-        //            .Wait(kernel.CancellationTokenProvider.CancellationTokenSource.Token);
-        //     }
-        // }
+            kernel.StartContainer();
+            BsonSerializationProviders.Init();
+            kernel._instance.Resolve<ICatalystNode>()
+                .RunAsync(new CancellationToken())
+                .Wait();
+        }
         public static int Main(string[] args)
         {
             // Parse the arguments.
@@ -93,17 +101,17 @@ namespace Catalyst.Node.POA.CE
             try
             {
                 Kernel
-                   .WithDataDirectory()
-                   .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
-                   .WithComponentsConfigFile()
-                   .WithSerilogConfigFile()
-                   .WithConfigCopier()
-                   .WithPersistenceConfiguration()
-                   .BuildKernel(options.OverwriteConfig)
-                   .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
-                   .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
-                   .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
-                   .StartNode();
+                    .WithDataDirectory()
+                    .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
+                    .WithComponentsConfigFile()
+                    .WithSerilogConfigFile()
+                    .WithConfigCopier()
+                    .WithPersistenceConfiguration()
+                    .BuildKernel(options.OverwriteConfig)
+                    .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
+                    .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
+                    .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
+                    .StartCustom(CustomBootLogic);
 
                 // .StartCustom(CustomBootLogic);
                 

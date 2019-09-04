@@ -36,15 +36,15 @@
             ],
             "instanceScope": "singleinstance"
         },
-        {
-            "type": "Catalyst.Modules.POA.Consensus.Deltas.PoaDeltaProducersProvider, Catalyst.Modules.POA.Consensus",
-            "services": [
-                {
-                    "type": "Catalyst.Core.Consensus.Deltas.IDeltaProducersProvider, Catalyst.Core"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
+//        {
+//            "type": "Catalyst.Modules.POA.Consensus.Deltas.PoaDeltaProducersProvider, Catalyst.Modules.POA.Consensus",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Core.Consensus.Deltas.IDeltaProducersProvider, Catalyst.Core"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
         {
             "type": "Catalyst.Core.Consensus.Deltas.DeltaHub",
             "services": [

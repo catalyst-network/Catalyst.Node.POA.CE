@@ -224,14 +224,14 @@
                 }
             ]
         },
-        {
-            "type": "Catalyst.Modules.POA.P2P.Discovery.PoaDiscovery, Catalyst.Modules.POA.P2P",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.P2P.Discovery.IPeerDiscovery, Catalyst.Abstractions"
-                }
-            ]
-        },
+//        {
+//            "type": "Catalyst.Modules.POA.P2P.Discovery.PoaDiscovery, Catalyst.Modules.POA.P2P",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.P2P.Discovery.IPeerDiscovery, Catalyst.Abstractions"
+//                }
+//            ]
+//        },
         {
             "type": "Catalyst.Core.Network.DevDnsClient, Catalyst.Core",
             "services": [
@@ -268,18 +268,18 @@
             },
             "instanceScope": "singleinstance"
         },
-        {
-            "type": "Catalyst.Modules.POA.P2P.Discovery.PeerHeartbeatChecker, Catalyst.Modules.POA.P2P",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.P2P.Discovery.IHealthChecker, Catalyst.Abstractions"
-                }
-            ],
-            "parameters": {
-                "checkHeartbeatIntervalSeconds": 10,
-                "maxNonResponsiveCounter": 3
-            }
-        },
+//        {
+//            "type": "Catalyst.Modules.POA.P2P.Discovery.PeerHeartbeatChecker, Catalyst.Modules.POA.P2P",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.P2P.Discovery.IHealthChecker, Catalyst.Abstractions"
+//                }
+//            ],
+//            "parameters": {
+//                "checkHeartbeatIntervalSeconds": 10,
+//                "maxNonResponsiveCounter": 3
+//            }
+//        },
         {
             "type": "Catalyst.Core.Cryptography.CertificateStore, Catalyst.Core",
             "services": [
@@ -322,7 +322,7 @@
                 }
             ],
             "parameters": {
-                "configDataDir": "Data_Directory"
+                "configDataDir": "/Users/nsh/.catalyst"
             }
         },
         {
