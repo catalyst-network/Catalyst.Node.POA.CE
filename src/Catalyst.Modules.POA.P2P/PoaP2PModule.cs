@@ -29,7 +29,8 @@ namespace Catalyst.Modules.POA.P2P
                 c.Resolve<IPeerRepository>(),
                 c.Resolve<IFileSystem>(),
                 c.Resolve<ILogger>()
-            )).As<IPeerDiscovery>();
+            )).As<IPeerDiscovery>()
+                .SingleInstance();
             
             builder.Register(c => new PeerHeartbeatChecker(
                 c.Resolve<ILogger>(),
@@ -37,7 +38,8 @@ namespace Catalyst.Modules.POA.P2P
                 c.Resolve<IPeerChallenger>(),
                 10,
                 1000
-            )).As<IHealthChecker>();
+            )).As<IHealthChecker>()
+                .SingleInstance();
         }
     }
 }
