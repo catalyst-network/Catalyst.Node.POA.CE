@@ -1,41 +1,41 @@
 {
   "defaultAssembly": "Catalyst.Core",
     "components": [
-        {
-            "type": "Catalyst.Core.Consensus.Consensus",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.IConsensus, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaBuilder",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaBuilder, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.TransactionComparerByFeeTimestampAndHash",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.ITransactionComparer, Catalyst.Abstractions"
-                }
-            ]
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaTransactionRetriever",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaTransactionRetriever, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Consensus",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.IConsensus, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaBuilder",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaBuilder, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.TransactionComparerByFeeTimestampAndHash",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.ITransactionComparer, Catalyst.Abstractions"
+//                }
+//            ]
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaTransactionRetriever",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaTransactionRetriever, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
 //        {
 //            "type": "Catalyst.Modules.POA.Consensus.Deltas.PoaDeltaProducersProvider, Catalyst.Modules.POA.Consensus",
 //            "services": [
@@ -45,54 +45,54 @@
 //            ],
 //            "instanceScope": "singleinstance"
 //        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaHub",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaHub, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaVoter",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaVoter, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaElector",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaElector, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaHashProvider",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaHashProvider, Catalyst.Abstractions"
-                }
-            ],
-            "parameters": {
-                "capacity": 10000
-            },
-            "instanceScope": "singleinstance"
-        },
-        {
-            "type": "Catalyst.Core.Consensus.Deltas.DeltaCache",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaCache, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaHub",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaHub, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaVoter",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaVoter, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaElector",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaElector, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaHashProvider",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaHashProvider, Catalyst.Abstractions"
+//                }
+//            ],
+//            "parameters": {
+//                "capacity": 10000
+//            },
+//            "instanceScope": "singleinstance"
+//        },
+//        {
+//            "type": "Catalyst.Core.Consensus.Deltas.DeltaCache",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Consensus.Deltas.IDeltaCache, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        },
         {
             "type": "Catalyst.Core.Consensus.Deltas.DeltaDfsReader",
             "services": [
