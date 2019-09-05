@@ -62,6 +62,7 @@ ProjectSection(SolutionItems) = preProject
 	..\GUIDELINES.md = ..\GUIDELINES.md
 	..\LICENSE = ..\LICENSE
 	..\SECURITY.md = ..\SECURITY.md
+	..\scripts\run-node.sh = ..\scripts\run-node.sh
 EndProjectSection
 EndProject
 Global
