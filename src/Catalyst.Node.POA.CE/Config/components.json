@@ -213,7 +213,7 @@
                 }
             ],
             "parameters": {
-                "configDataDir": "/Users/nsh/.catalyst"
+                "configDataDir": "/home/nsh/.catalyst"
             }
         },
         {
@@ -282,12 +282,12 @@
                 "configFilePath": "Config/Modules/dfs.json"
             }
         },
-        {
-            "type": "Catalyst.Core.Consensus.ConsensusModule, Catalyst.Core",
-            "parameters": {
-                "configFilePath": "Config/Modules/consensus.json"
-            }
-        },
+//        {
+//            "type": "Catalyst.Core.Consensus.ConsensusModule, Catalyst.Core",
+//            "parameters": {
+//                "configFilePath": "Config/Modules/consensus.json"
+//            }
+//        },
         {
             "type": "Catalyst.Core.JsonConfiguredModule, Catalyst.Core",
             "parameters": {
