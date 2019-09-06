@@ -65,6 +65,23 @@ ProjectSection(SolutionItems) = preProject
 	..\scripts\run-node.sh = ..\scripts\run-node.sh
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Protocol", "..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj", "{F8847400-418A-470A-9E27-988990451481}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Protocol.UnitTests", "..\submodules\Catalyst.Node\src\Catalyst.Protocol.UnitTests\Catalyst.Protocol.UnitTests.csproj", "{D98AAB5A-1C29-497E-B04F-63170B40FAC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protocol-protobuffs", "protocol-protobuffs", "{C995454E-C608-4224-88FC-F8255B247157}"
+ProjectSection(SolutionItems) = preProject
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\README.md = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\README.md
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\LICENSE = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\LICENSE
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\COPYING = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\COPYING
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Common.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Common.proto
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Deltas.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Deltas.proto
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\DfsMarketplace.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\DfsMarketplace.proto
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\IPPN.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\IPPN.proto
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Rpc.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Rpc.proto
+	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Transaction.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Transaction.proto
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -163,6 +180,14 @@ Global
 		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8847400-418A-470A-9E27-988990451481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8847400-418A-470A-9E27-988990451481}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8847400-418A-470A-9E27-988990451481}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8847400-418A-470A-9E27-988990451481}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D98AAB5A-1C29-497E-B04F-63170B40FAC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D98AAB5A-1C29-497E-B04F-63170B40FAC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D98AAB5A-1C29-497E-B04F-63170B40FAC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D98AAB5A-1C29-497E-B04F-63170B40FAC8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0A03361F-A4A3-4267-978A-F0C55EA6D1A0} = {31CBF8EE-F057-4903-BD38-4DA20B39833F}
@@ -181,5 +206,7 @@ Global
 		{94976265-3C58-4617-B68B-E7F02B25B27B} = {647A8E80-674D-454F-AAE9-3C321AAA4969}
 		{647A8E80-674D-454F-AAE9-3C321AAA4969} = {31CBF8EE-F057-4903-BD38-4DA20B39833F}
 		{6201E2B9-4425-4B4F-A17C-853F3D75600C} = {647A8E80-674D-454F-AAE9-3C321AAA4969}
+		{F8847400-418A-470A-9E27-988990451481} = {31CBF8EE-F057-4903-BD38-4DA20B39833F}
+		{D98AAB5A-1C29-497E-B04F-63170B40FAC8} = {31CBF8EE-F057-4903-BD38-4DA20B39833F}
 	EndGlobalSection
 EndGlobal

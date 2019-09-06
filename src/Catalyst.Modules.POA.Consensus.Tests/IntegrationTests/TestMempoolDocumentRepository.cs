@@ -29,6 +29,7 @@ using Catalyst.Core.Mempool.Documents;
 using Catalyst.Core.Repository;
 using Catalyst.Protocol.Transaction;
 using Catalyst.TestUtils;
+using Google.Protobuf;
 using SharpRepository.Repository;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
@@ -37,8 +38,8 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
     {
         internal TestMempoolDocumentRepository(IRepository<MempoolDocument, string> repository) : base(repository) { }
 
-        public bool TryReadItem(TransactionSignature key) { throw new NotImplementedException(); }
-        public MempoolDocument ReadItem(TransactionSignature key) { throw new NotImplementedException(); }
+        public bool TryReadItem(ByteString key) { throw new NotImplementedException(); }
+        public MempoolDocument ReadItem(ByteString key) { throw new NotImplementedException(); }
         public bool DeleteItem(params string[] transactionSignatures) { throw new NotImplementedException(); }
         public bool CreateItem(TransactionBroadcast transactionBroadcast) { throw new NotImplementedException(); }
 
