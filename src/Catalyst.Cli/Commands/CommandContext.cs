@@ -57,7 +57,7 @@ namespace Catalyst.Cli.Commands
             _logger = logger;
             _rpcNodeConfigs = RpcClientSettings.BuildRpcNodeSettingList(config);
 
-            SocketClientRegistry = new SocketClientRegistry<INodeRpcClient>();
+            SocketClientRegistry = new SocketClientRegistry<IRpcClient>();
             PeerIdentifier = Core.P2P.PeerIdentifier.BuildPeerIdFromConfig(config, userOutput, keyRegistry);
             NodeRpcClientFactory = nodeRpcClientFactory;
             CertificateStore = certificateStore;
@@ -72,10 +72,10 @@ namespace Catalyst.Cli.Commands
 
         public IUserOutput UserOutput { get; }
         
-        public ISocketClientRegistry<INodeRpcClient> SocketClientRegistry { get; }
+        public ISocketClientRegistry<IRpcClient> SocketClientRegistry { get; }
 
         /// <inheritdoc cref="GetConnectedNode" />
-        public INodeRpcClient GetConnectedNode(string nodeId)
+        public IRpcClient GetConnectedNode(string nodeId)
         {
             Guard.Argument(nodeId, nameof(nodeId)).NotNull().NotEmpty().Compatible<string>();
             var nodeConfig = _rpcNodeConfigs.SingleOrDefault(node => node.NodeId.Equals(nodeId));
@@ -107,9 +107,9 @@ namespace Catalyst.Cli.Commands
             return null;
         }
 
-        public bool IsSocketChannelActive(INodeRpcClient node)
+        public bool IsSocketChannelActive(IRpcClient node)
         {
-            Guard.Argument(node, nameof(node)).Compatible<INodeRpcClient>();
+            Guard.Argument(node, nameof(node)).Compatible<IRpcClient>();
             try
             {
                 Guard.Argument(node.Channel.Active, nameof(node.Channel.Active)).True();

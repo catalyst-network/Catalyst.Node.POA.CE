@@ -44,22 +44,22 @@
                 }
             ]
         },
-        {
-            "type": "Catalyst.Core.Keystore.LocalKeyStore, Catalyst.Core",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Keystore.IKeyStore, Catalyst.Abstractions"
-                }
-            ]
-        },
-        {
-            "type": "Catalyst.Core.Keystore.KeyStoreServiceWrapped, Catalyst.Core",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Keystore.IKeyStoreService, Catalyst.Abstractions"
-                }
-            ]
-        },
+//        {
+//            "type": "Catalyst.Core.Keystore.LocalKeyStore, Catalyst.Core",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Keystore.IKeyStore, Catalyst.Abstractions"
+//                }
+//            ]
+//        },
+//        {
+//            "type": "Catalyst.Core.Keystore.KeyStoreServiceWrapped, Catalyst.Core",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Keystore.IKeyStoreService, Catalyst.Abstractions"
+//                }
+//            ]
+//        },
         {
             "type": "Catalyst.Core.Util.AddressHelper, Catalyst.Core",
             "services": [
@@ -84,14 +84,14 @@
                 }
             ]
         },
-        {
-            "type": "Catalyst.Core.Keystore.KeyRegistry, Catalyst.Core",
-            "services": [
-                {
-                    "type": "Catalyst.Abstractions.Keystore.IKeyRegistry, Catalyst.Abstractions"
-                }
-            ],
-            "instanceScope": "singleinstance"
-        }
+//        {
+//            "type": "Catalyst.Core.Keystore.KeyRegistry, Catalyst.Core",
+//            "services": [
+//                {
+//                    "type": "Catalyst.Abstractions.Keystore.IKeyRegistry, Catalyst.Abstractions"
+//                }
+//            ],
+//            "instanceScope": "singleinstance"
+//        }
     ]
 }
