@@ -30,14 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Cli.Tests", "Catal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nethermind.Dirichlet.Numerics", "..\submodules\Catalyst.Node\submodules\nethermind\src\Dirichlet\Nethermind.Dirichlet.Numerics\Nethermind.Dirichlet.Numerics.csproj", "{6201E2B9-4425-4B4F-A17C-853F3D75600C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Modules.POA.P2P", "Catalyst.Modules.POA.P2P\Catalyst.Modules.POA.P2P.csproj", "{5DB2BC53-FB86-41EC-9E33-467959B69E9D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Modules.POA.P2P.Tests", "Catalyst.Modules.POA.P2P.Tests\Catalyst.Modules.POA.P2P.Tests.csproj", "{51B330F7-F102-4AAF-AD8F-B240F0EEB566}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Modules.POA.Consensus", "Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj", "{16ECCB81-C1AF-42A3-91E2-1FDE95309E5F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Modules.POA.Consensus.Tests", "Catalyst.Modules.POA.Consensus.Tests\Catalyst.Modules.POA.Consensus.Tests.csproj", "{E3B45EFD-F634-4B36-86FD-1448FB2924BB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{7D13EA5F-6C87-402C-AAEF-82A3C8C66D9A}"
 ProjectSection(SolutionItems) = preProject
 	..\README.md = ..\README.md
@@ -143,22 +135,6 @@ Global
 		{6201E2B9-4425-4B4F-A17C-853F3D75600C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6201E2B9-4425-4B4F-A17C-853F3D75600C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6201E2B9-4425-4B4F-A17C-853F3D75600C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5DB2BC53-FB86-41EC-9E33-467959B69E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5DB2BC53-FB86-41EC-9E33-467959B69E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5DB2BC53-FB86-41EC-9E33-467959B69E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5DB2BC53-FB86-41EC-9E33-467959B69E9D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{51B330F7-F102-4AAF-AD8F-B240F0EEB566}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{51B330F7-F102-4AAF-AD8F-B240F0EEB566}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{51B330F7-F102-4AAF-AD8F-B240F0EEB566}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{51B330F7-F102-4AAF-AD8F-B240F0EEB566}.Release|Any CPU.Build.0 = Release|Any CPU
-		{16ECCB81-C1AF-42A3-91E2-1FDE95309E5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{16ECCB81-C1AF-42A3-91E2-1FDE95309E5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{16ECCB81-C1AF-42A3-91E2-1FDE95309E5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{16ECCB81-C1AF-42A3-91E2-1FDE95309E5F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E3B45EFD-F634-4B36-86FD-1448FB2924BB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F8847400-418A-470A-9E27-988990451481}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F8847400-418A-470A-9E27-988990451481}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8847400-418A-470A-9E27-988990451481}.Release|Any CPU.ActiveCfg = Release|Any CPU
