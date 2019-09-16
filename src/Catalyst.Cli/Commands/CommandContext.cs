@@ -31,9 +31,10 @@ using Catalyst.Abstractions.IO.Transport;
 using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
-using Catalyst.Core.IO.Transport;
-using Catalyst.Core.Network;
-using Catalyst.Core.Rpc;
+using Catalyst.Core.Lib.IO.Transport;
+using Catalyst.Core.Lib.Network;
+using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Modules.Rpc.Client;
 using Dawn;
 using Microsoft.Extensions.Configuration;
 using Serilog;
@@ -42,7 +43,7 @@ namespace Catalyst.Cli.Commands
 {
     public class CommandContext : ICommandContext
     {
-        private readonly IList<IRpcNodeConfig> _rpcNodeConfigs;
+        private readonly IList<IRpcClientConfig> _rpcNodeConfigs;
         private readonly ILogger _logger;
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace Catalyst.Cli.Commands
         public CommandContext(IConfigurationRoot config,
             ILogger logger,
             IUserOutput userOutput,
-            INodeRpcClientFactory nodeRpcClientFactory,
+            IRpcClientFactory rpcClientFactory,
             ICertificateStore certificateStore,
             IKeyRegistry keyRegistry)
         {
@@ -58,15 +59,15 @@ namespace Catalyst.Cli.Commands
             _rpcNodeConfigs = RpcClientSettings.BuildRpcNodeSettingList(config);
 
             SocketClientRegistry = new SocketClientRegistry<IRpcClient>();
-            PeerIdentifier = Core.P2P.PeerIdentifier.BuildPeerIdFromConfig(config, userOutput, keyRegistry);
-            NodeRpcClientFactory = nodeRpcClientFactory;
+            PeerIdentifier = new PeerIdentifier(_rpcNodeConfigs);
+            RpcClientFactory = rpcClientFactory;
             CertificateStore = certificateStore;
             UserOutput = userOutput;
         }
 
         public IPeerIdentifier PeerIdentifier { get; }
 
-        public INodeRpcClientFactory NodeRpcClientFactory { get; }
+        public IRpcClientFactory RpcClientFactory { get; }
 
         public ICertificateStore CertificateStore { get; }
 
@@ -82,7 +83,7 @@ namespace Catalyst.Cli.Commands
             Guard.Argument(nodeConfig, nameof(nodeConfig)).NotNull();
 
             var registryId = SocketClientRegistry.GenerateClientHashCode(
-                EndpointBuilder.BuildNewEndPoint(nodeConfig.HostAddress, nodeConfig.Port));
+                EndpointBuilder.BuildNewEndPoint(nodeConfig?.HostAddress, nodeConfig.Port));
 
             var nodeRpcClient = SocketClientRegistry.GetClientFromRegistry(registryId);
             Guard.Argument(nodeRpcClient).Require(IsSocketChannelActive(nodeRpcClient));
@@ -91,7 +92,7 @@ namespace Catalyst.Cli.Commands
         }
 
         /// <inheritdoc cref="GetNodeConfig" />
-        public IRpcNodeConfig GetNodeConfig(string nodeId)
+        public IRpcClientConfig GetNodeConfig(string nodeId)
         {
             Guard.Argument(nodeId, nameof(nodeId)).NotNull().NotEmpty().Compatible<string>();
 

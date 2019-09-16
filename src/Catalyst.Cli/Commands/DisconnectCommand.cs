@@ -24,7 +24,7 @@
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
-using Catalyst.Core.Network;
+using Catalyst.Core.Lib.Network;
 using Dawn;
 
 namespace Catalyst.Cli.Commands

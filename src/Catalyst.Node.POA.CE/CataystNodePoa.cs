@@ -32,9 +32,9 @@ using Catalyst.Abstractions.KeySigner;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
-using Catalyst.Core.Ledger;
-using Catalyst.Core.Mempool.Documents;
-using Catalyst.Core.P2P;
+using Catalyst.Core.Lib.Mempool.Documents;
+using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Modules.Ledger;
 using Serilog;
 
 namespace Catalyst.Node.POA.CE

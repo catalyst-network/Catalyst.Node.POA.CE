@@ -29,11 +29,10 @@ using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
-using Catalyst.Core.Extensions;
-using Catalyst.Core.IO.Events;
-using Catalyst.Core.IO.Messaging.Dto;
-using Catalyst.Core.P2P;
-using Catalyst.Protocol;
+using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.IO.Events;
+using Catalyst.Core.Lib.IO.Messaging.Dto;
+using Catalyst.Core.Lib.P2P;
 using Google.Protobuf;
 
 namespace Catalyst.Cli.CommandTypes
@@ -58,7 +57,7 @@ namespace Catalyst.Cli.CommandTypes
         }
 
         protected IPeerIdentifier RecipientPeerIdentifier =>
-            PeerIdentifier.BuildPeerIdFromConfig(CommandContext.GetNodeConfig(Options.Node));
+            new PeerIdentifier(CommandContext.GetNodeConfig(Options.Node));
 
         protected IPeerIdentifier SenderPeerIdentifier => CommandContext.PeerIdentifier;
 

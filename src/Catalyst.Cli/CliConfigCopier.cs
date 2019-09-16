@@ -22,7 +22,7 @@
 #endregion
 
 using System.Collections.Generic;
-using Catalyst.Core.Config;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Common;
 
 namespace Catalyst.Cli
@@ -34,7 +34,6 @@ namespace Catalyst.Cli
             return new[]
             {
                 Constants.ShellNodesConfigFile,
-                Constants.ShellComponentsJsonConfigFile,
                 Constants.SerilogJsonConfigFile,
                 Constants.ShellConfigFile
             };

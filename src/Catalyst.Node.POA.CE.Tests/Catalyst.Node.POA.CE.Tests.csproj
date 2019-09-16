@@ -15,6 +15,9 @@
         <PackageReference Include="SharpRepository.XmlRepository" Version="2.0.1-alpha3" />
     </ItemGroup>
     <ItemGroup>
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Dfs\Catalyst.Core.Modules.Dfs.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Mempool\Catalyst.Core.Modules.Mempool.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.TestUtils\Catalyst.TestUtils.csproj" />
         <ProjectReference Include="..\Catalyst.Node.POA.CE\Catalyst.Node.POA.CE.csproj" />
     </ItemGroup>
 </Project>

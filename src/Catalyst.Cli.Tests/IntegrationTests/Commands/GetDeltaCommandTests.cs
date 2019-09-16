@@ -22,8 +22,8 @@
 #endregion
 
 using System.Text;
-using Catalyst.Core.Config;
-using Catalyst.Core.Extensions;
+using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
 using Xunit;

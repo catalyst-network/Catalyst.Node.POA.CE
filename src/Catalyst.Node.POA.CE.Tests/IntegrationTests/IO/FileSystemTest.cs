@@ -22,13 +22,13 @@
 #endregion
 
 using System.Globalization;
-using Catalyst.Core.Config;
+using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
-using CommonFileSystem = Catalyst.Core.FileSystem.FileSystem;
 
 namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
 {
@@ -40,12 +40,12 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
     [Trait(Traits.TestType, Traits.IntegrationTest)]
     public sealed class FileSystemTest : FileSystemBasedTest
     {
-        private readonly CommonFileSystem _fileSystem;
+        private readonly FileSystem _fileSystem;
         private readonly string _sourceFolder;
 
         public FileSystemTest(ITestOutputHelper output) : base(output)
         {
-            _fileSystem = new CommonFileSystem();
+            _fileSystem = new FileSystem();
 
             _sourceFolder = Setup();
         }
@@ -62,7 +62,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
 
         private bool CheckSavedPath(string path)
         {
-            var fileSystem = new CommonFileSystem();
+            var fileSystem = new FileSystem();
 
             return fileSystem.GetCatalystDataDir().FullName.ToLower(CultureInfo.InvariantCulture).Equals(path.ToLower(CultureInfo.InvariantCulture));
         }
@@ -94,7 +94,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
         {
             _fileSystem.SetCurrentPath(_sourceFolder).Should().BeTrue(); 
 
-            var fileSystem = new CommonFileSystem();
+            var fileSystem = new FileSystem();
 
             CheckSavedPath(_sourceFolder).Should().BeTrue();
 

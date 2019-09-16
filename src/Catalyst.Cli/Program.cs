@@ -23,8 +23,8 @@
 
 using System;
 using System.Diagnostics;
-using Catalyst.Core.Config;
-using Catalyst.Core.Kernel;
+using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.Kernel;
 
 namespace Catalyst.Cli
 {
@@ -51,7 +51,6 @@ namespace Catalyst.Cli
             try
             {
                 Kernel.WithDataDirectory()
-                   .WithComponentsConfigFile(Constants.ShellComponentsJsonConfigFile)
                    .WithSerilogConfigFile()
                    .WithConfigCopier(new CliConfigCopier())
                    .WithConfigurationFile(Constants.ShellNodesConfigFile)

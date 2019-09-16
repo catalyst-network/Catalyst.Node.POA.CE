@@ -27,7 +27,7 @@ using System.Linq;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cryptography;
-using Catalyst.Core.Config;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Xunit;
@@ -52,14 +52,13 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
             _configFilesUsed = new[]
                 {
                     Constants.NetworkConfigFile(network),
-                    Constants.ComponentsJsonConfigFile,
                     Constants.SerilogJsonConfigFile
                 }
                .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
 
             _containerProvider = new ContainerProvider(_configFilesUsed, FileSystem, Output);
 
-            SocketPortHelper.AlterConfigurationToGetUniquePort(_containerProvider.ConfigurationRoot, CurrentTestName);
+            SocketPortHelper.AlterConfigurationToGetUniquePort(_containerProvider.ConfigurationRoot);
 
             _containerProvider.ConfigureContainerBuilder();
 

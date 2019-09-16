@@ -42,7 +42,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
         public void Cannot_Connect_With_Invalid_Config()
         {
             var commandContext = TestCommandHelpers.GenerateCliCommandContext();
-            commandContext.GetNodeConfig(Arg.Any<string>()).Returns((IRpcNodeConfig) null);
+            commandContext.GetNodeConfig(Arg.Any<string>()).Returns((IRpcClientConfig) null);
 
             var commands = new List<ICommand> {new ConnectCommand(commandContext)};
             var console = new CatalystCli(commandContext.UserOutput, commands);

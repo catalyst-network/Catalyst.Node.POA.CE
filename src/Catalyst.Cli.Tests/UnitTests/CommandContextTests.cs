@@ -43,7 +43,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             var configRoot = Substitute.For<IConfigurationRoot>();
             var logger = Substitute.For<ILogger>();
             var userOutput = Substitute.For<IUserOutput>();
-            var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
+            var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
             var keyRegistry = Substitute.For<IKeyRegistry>();
 

@@ -27,10 +27,7 @@ using System.Threading;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Types;
-using Catalyst.Core.Consensus;
-using Catalyst.Core.Kernel;
-using Catalyst.Core.P2P;
-using Catalyst.Core.Util;
+using Catalyst.Core.Lib.Kernel;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Common;
@@ -77,16 +74,14 @@ namespace Catalyst.Node.POA.CE
         private static void CustomBootLogic(Kernel kernel)
         {   
             // core modules
-            kernel.ContainerBuilder.RegisterModule(new P2PModule());
-            kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
 
             // node modules
             kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
             kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
 
             kernel.StartContainer();
-            BsonSerializationProviders.Init();
-            kernel._instance.Resolve<ICatalystNode>()
+//            BsonSerializationProviders.Init();
+            kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
                 .Wait();
         }
@@ -110,7 +105,7 @@ namespace Catalyst.Node.POA.CE
                 Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
-                    .WithComponentsConfigFile()
+//                    .WithComponentsConfigFile()
                     .WithSerilogConfigFile()
                     .WithConfigCopier()
                     .WithPersistenceConfiguration()
