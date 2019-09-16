@@ -26,7 +26,7 @@ using System.IO;
 using System.IO.Abstractions;
 using System.Threading.Tasks;
 using NSubstitute;
-using FileSystem = Catalyst.Core.FileSystem.FileSystem;
+using FileSystem = Catalyst.Core.Lib.FileSystem.FileSystem;
 using IFileSystem = Catalyst.Abstractions.FileSystem.IFileSystem;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests

@@ -24,13 +24,7 @@ namespace Catalyst.Modules.POA.Consensus
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new PoaDeltaProducersProvider(
-                c.Resolve<IPeerRepository>(),
-                c.Resolve<IPeerIdentifier>(),
-                c.Resolve<IMemoryCache>(),
-                c.Resolve<IMultihashAlgorithm>(),
-                c.Resolve<ILogger>()
-            )).As<IDeltaProducersProvider>();
+            builder.RegisterType<PoaDeltaProducersProvider>().As<IDeltaProducersProvider>();
         }
     }
 }

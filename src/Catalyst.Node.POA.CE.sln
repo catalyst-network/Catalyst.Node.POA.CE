@@ -55,19 +55,6 @@ EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Protocol", "..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj", "{F8847400-418A-470A-9E27-988990451481}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "protocol-protobuffs", "protocol-protobuffs", "{C995454E-C608-4224-88FC-F8255B247157}"
-ProjectSection(SolutionItems) = preProject
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\README.md = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\README.md
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\LICENSE = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\LICENSE
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\COPYING = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\COPYING
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Common.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Common.proto
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Deltas.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Deltas.proto
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\DfsMarketplace.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\DfsMarketplace.proto
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\IPPN.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\IPPN.proto
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Rpc.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Rpc.proto
-	..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Transaction.proto = ..\submodules\Catalyst.Node\submodules\protocol-protobuffs\src\Transaction.proto
-EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Core.Lib", "..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj", "{433D58C3-E99F-4864-A660-D7AB1DB66F30}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Catalyst.Core.Modules.Authentication", "..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Authentication\Catalyst.Core.Modules.Authentication.csproj", "{9DBECEF8-7534-4BB8-A89C-F3196FC15FD5}"

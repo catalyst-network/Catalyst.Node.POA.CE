@@ -24,22 +24,8 @@ namespace Catalyst.Modules.POA.P2P
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<PoaPeer>();
-            
-            builder.Register(c => new PoaDiscovery(
-                c.Resolve<IPeerRepository>(),
-                c.Resolve<IFileSystem>(),
-                c.Resolve<ILogger>()
-            )).As<IPeerDiscovery>()
-                .SingleInstance();
-            
-            builder.Register(c => new PeerHeartbeatChecker(
-                c.Resolve<ILogger>(),
-                c.Resolve<IPeerRepository>(),
-                c.Resolve<IPeerChallenger>(),
-                10,
-                1000
-            )).As<IHealthChecker>()
-                .SingleInstance();
+            builder.RegisterType<PoaDiscovery>().As<IPeerDiscovery>().SingleInstance();
+            builder.RegisterType<PeerHeartbeatChecker>().As<IHealthChecker>().SingleInstance();
         }
     }
 }

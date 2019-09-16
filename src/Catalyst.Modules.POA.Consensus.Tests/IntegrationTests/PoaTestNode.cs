@@ -26,6 +26,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Consensus;
@@ -40,13 +41,16 @@ using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Lib.P2P;
 using Catalyst.Core.Lib.P2P.Repository;
+using Catalyst.Core.Modules.Dfs;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Ipfs.Registry;
 using NSubstitute;
+using Serilog;
 using Xunit.Abstractions;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
