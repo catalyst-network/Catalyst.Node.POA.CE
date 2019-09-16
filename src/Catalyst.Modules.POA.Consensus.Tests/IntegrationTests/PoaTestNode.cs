@@ -70,6 +70,7 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
         private readonly IPeerRepository _peerRepository;
         private readonly IRpcServerSettings _rpcSettings;
         private readonly ILifetimeScope _scope;
+        private readonly ContainerProvider _containerProvider;
 
         public PoaTestNode(string name,
             IPrivateKey privateKey,
