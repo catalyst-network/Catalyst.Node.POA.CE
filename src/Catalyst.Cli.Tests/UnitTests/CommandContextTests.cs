@@ -31,7 +31,6 @@ using Catalyst.Cli.Commands;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
-using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests

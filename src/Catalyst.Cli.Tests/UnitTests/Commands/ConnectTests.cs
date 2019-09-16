@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Generic;
 using Catalyst.Abstractions.Cli.CommandTypes;
-using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
 using FluentAssertions;

@@ -20,7 +20,10 @@
         <PackageReference Include="CommandLineParser" Version="2.5.0" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core\Catalyst.Core.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Ledger\Catalyst.Core.Modules.Ledger.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Abstractions\Catalyst.Abstractions.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />

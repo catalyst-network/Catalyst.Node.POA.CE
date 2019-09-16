@@ -27,9 +27,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Catalyst.Abstractions.FileSystem;
 using Catalyst.Abstractions.P2P.Discovery;
-using Catalyst.Core.P2P.Models;
-using Catalyst.Core.P2P.Repository;
-using Catalyst.Core.Util;
+using Catalyst.Core.Lib.P2P.Models;
+using Catalyst.Core.Lib.P2P.Repository;
+using Catalyst.Core.Lib.Util;
 using Newtonsoft.Json;
 using Serilog;
 

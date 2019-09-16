@@ -25,18 +25,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Catalyst.Abstractions.P2P;
-using Catalyst.Core.Extensions;
-using Catalyst.Core.P2P.Models;
-using Catalyst.Core.P2P.Repository;
-using Catalyst.Core.Util;
+using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.P2P.Repository;
+using Catalyst.Core.Lib.Util;
 using Catalyst.Modules.POA.Consensus.Deltas;
 using Catalyst.TestUtils;
-using FluentAssertions;
-using Google.Protobuf;
 using Microsoft.Extensions.Caching.Memory;
 using Multiformats.Hash.Algorithms;
 using NSubstitute;
-using Serilog;
 using Xunit;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.UnitTests.Deltas

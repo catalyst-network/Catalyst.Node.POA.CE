@@ -24,9 +24,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Autofac;
 using Catalyst.Abstractions.Cli;
-using Catalyst.Core.Config;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Xunit;

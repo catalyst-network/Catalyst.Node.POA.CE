@@ -27,7 +27,7 @@ using System.Reactive.Linq;
 using System.Threading.Tasks;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
-using Catalyst.Core.P2P.Repository;
+using Catalyst.Core.Lib.P2P.Repository;
 using Serilog;
 
 namespace Catalyst.Modules.POA.P2P.Discovery
@@ -73,7 +73,7 @@ namespace Catalyst.Modules.POA.P2P.Discovery
                     var result = await _peerChallenger.ChallengePeerAsync(peer.PeerIdentifier).ConfigureAwait(false);
                     var counterValue = _nonResponsivePeerMap.GetOrAdd(peer.DocumentId, 0);
                     _logger.Verbose(
-                        $"Heartbeat result: {result} Peer: {peer.PeerIdentifier} Non-Responsive Counter: {counterValue}");
+                        $"Heartbeat result: {result.ToString()} Peer: {peer.PeerIdentifier} Non-Responsive Counter: {counterValue}");
                     if (!result)
                     {
                         _nonResponsivePeerMap[peer.DocumentId] += 1;

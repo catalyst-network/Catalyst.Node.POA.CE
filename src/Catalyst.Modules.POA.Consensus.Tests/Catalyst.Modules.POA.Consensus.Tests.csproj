@@ -12,7 +12,8 @@
     </PropertyGroup>
     <Import Project="../Common.TestProjects.props" />
     <ItemGroup>
-        <ProjectReference Include="..\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />
-        <ProjectReference Include="..\Catalyst.Node.POA.CE\Catalyst.Node.POA.CE.csproj" />
+      <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
+      <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj" />
+      <ProjectReference Include="..\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />
     </ItemGroup>
 </Project>

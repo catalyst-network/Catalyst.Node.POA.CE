@@ -24,7 +24,7 @@
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
-using Catalyst.Core.Network;
+using Catalyst.Core.Lib.Network;
 using Dawn;
 
 namespace Catalyst.Cli.Commands
@@ -39,7 +39,7 @@ namespace Catalyst.Cli.Commands
             Guard.Argument(nodeConfig, nameof(nodeConfig)).NotNull();
 
             var registryId = CommandContext.SocketClientRegistry.GenerateClientHashCode(
-                EndpointBuilder.BuildNewEndPoint(nodeConfig.HostAddress, nodeConfig.Port));
+                EndpointBuilder.BuildNewEndPoint(nodeConfig.PublicIpAddress, nodeConfig.Port));
 
             var node = CommandContext.SocketClientRegistry.GetClientFromRegistry(registryId);
             Guard.Argument(node, nameof(node)).Require(CommandContext.IsSocketChannelActive(node));

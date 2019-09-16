@@ -23,18 +23,12 @@
 
 using System;
 using System.IO;
-using Autofac;
 using Catalyst.Abstractions.Consensus;
 using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
-using Catalyst.Core.Config;
-using Catalyst.Core.Dfs;
-using Catalyst.Core.Ledger;
-using Catalyst.Core.Mempool;
-using Catalyst.Core.Mempool.Documents;
+using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.TestUtils;
-using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 

@@ -11,6 +11,8 @@
     </PropertyGroup>
     <Import Project="../Common.Projects.props" />
     <ItemGroup>
-      <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core\Catalyst.Core.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Abstractions\Catalyst.Abstractions.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
     </ItemGroup>
 </Project>

@@ -24,7 +24,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Catalyst.Core.Config;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using FluentAssertions;

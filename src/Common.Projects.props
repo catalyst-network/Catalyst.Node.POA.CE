@@ -19,7 +19,7 @@
     <PropertyGroup Condition=" '$(Version)' == '' ">
         <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">0.0.1</VersionPrefix>
         <Version Condition=" '$(VersionSuffix)' != '' ">$(VersionPrefix).$(VersionSuffix)</Version>
-        <Version Condition=" '$(Version)' == '' ">$(VersionPrefix)</Version>
+        <Version Condition=" '$(Version)' == '' ">$(VersionSuffix)</Version>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)'=='Release'">
         <DebugType>none</DebugType>
@@ -29,9 +29,7 @@
     <ItemGroup>
         <None Include="$(MSBuildThisFileDirectory)../LICENSE" PackagePath="" Pack="true" />
     </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Catalyst.Protocol" Version="0.0.1.11355-beta" />
-    </ItemGroup>
+
     <ItemGroup>
         <PackageReference Include="Serilog" Version="2.8.0" />
     </ItemGroup>

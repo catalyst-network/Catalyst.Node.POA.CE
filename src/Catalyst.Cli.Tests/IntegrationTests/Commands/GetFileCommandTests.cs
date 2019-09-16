@@ -27,7 +27,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions.FileTransfer;
-using Catalyst.Core.IO.Messaging.Correlation;
+using Catalyst.Core.Lib.IO.Messaging.Correlation;
 using Catalyst.Protocol.Rpc.Node;
 using Catalyst.TestUtils;
 using FluentAssertions;

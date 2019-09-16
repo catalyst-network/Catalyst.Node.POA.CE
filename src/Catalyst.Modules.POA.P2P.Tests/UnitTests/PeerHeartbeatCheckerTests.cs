@@ -23,17 +23,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
-using Catalyst.Core.P2P;
-using Catalyst.Core.P2P.Models;
-using Catalyst.Core.P2P.Repository;
+using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Modules.POA.P2P.Discovery;
 using Catalyst.TestUtils;
 using NSubstitute;
-using Serilog;
 using Xunit;
 
 namespace Catalyst.Modules.POA.P2P.Tests.UnitTests

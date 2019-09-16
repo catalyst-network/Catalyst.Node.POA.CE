@@ -28,12 +28,10 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Keystore;
-using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
-using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests

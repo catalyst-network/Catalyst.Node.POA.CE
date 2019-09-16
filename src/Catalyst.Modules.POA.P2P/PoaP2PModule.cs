@@ -13,7 +13,7 @@ using Autofac;
 using Catalyst.Abstractions.FileSystem;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
-using Catalyst.Core.P2P.Repository;
+using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Modules.POA.P2P.Discovery;
 using Serilog;
 

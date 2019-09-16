@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
-using Catalyst.Core.Network;
+using Catalyst.Core.Lib.Network;
 using FluentAssertions;
 using Microsoft.Reactive.Testing;
 using Xunit;

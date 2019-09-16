@@ -10,7 +10,13 @@
         <RootNamespace>Catalyst.Modules.POA.P2P.Tests</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Catalyst.Modules.POA.P2P\Catalyst.Modules.POA.P2P.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Abstractions\Catalyst.Abstractions.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />
+        <ProjectReference Include="..\Catalyst.Modules.POA.P2P\Catalyst.Modules.POA.P2P.csproj" />
     </ItemGroup>
     <Import Project="../Common.TestProjects.props" />
 </Project>

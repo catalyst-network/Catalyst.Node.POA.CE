@@ -11,8 +11,8 @@
 
 using Autofac;
 using Catalyst.Abstractions.P2P;
-using Catalyst.Core.Consensus.Deltas;
-using Catalyst.Core.P2P.Repository;
+using Catalyst.Core.Lib.P2P.Repository;
+using Catalyst.Core.Modules.Consensus.Deltas;
 using Catalyst.Modules.POA.Consensus.Deltas;
 using Microsoft.Extensions.Caching.Memory;
 using Multiformats.Hash.Algorithms;

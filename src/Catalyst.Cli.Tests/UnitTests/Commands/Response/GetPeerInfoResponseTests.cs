@@ -23,7 +23,7 @@
 
 using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
-using Catalyst.Protocol;
+using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Common;
 using Catalyst.Protocol.Rpc.Node;
 using Microsoft.Reactive.Testing;

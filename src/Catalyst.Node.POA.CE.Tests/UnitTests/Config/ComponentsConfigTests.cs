@@ -32,18 +32,15 @@ using Catalyst.Abstractions.IO.Observers;
 using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Types;
-using Catalyst.Core.Config;
-using Catalyst.Core.Consensus.IO.Observers;
-using Catalyst.Core.IO.Events;
-using Catalyst.Core.P2P.IO.Observers;
-using Catalyst.Core.Util;
-using Catalyst.Protocol.Interfaces.Validators;
-using Catalyst.Protocol.Validators;
+using Catalyst.Abstractions.Validators;
+using Catalyst.Core.Lib.IO.Events;
+using Catalyst.Core.Lib.P2P.IO.Observers;
+using Catalyst.Core.Lib.Util;
+using Catalyst.Core.Lib.Validators;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
-using Serilog;
 using Xunit;
 
 namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config

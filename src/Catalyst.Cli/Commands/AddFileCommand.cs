@@ -28,9 +28,9 @@ using Catalyst.Abstractions.FileTransfer;
 using Catalyst.Abstractions.Types;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
-using Catalyst.Core.Extensions;
-using Catalyst.Core.FileTransfer;
-using Catalyst.Core.IO.Messaging.Dto;
+using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.FileTransfer;
+using Catalyst.Core.Lib.IO.Messaging.Dto;
 using Catalyst.Protocol.Rpc.Node;
 
 namespace Catalyst.Cli.Commands
