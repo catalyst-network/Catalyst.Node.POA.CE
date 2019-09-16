@@ -26,12 +26,35 @@ using System.Diagnostics;
 using System.Threading;
 using Autofac;
 using Catalyst.Abstractions;
+using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.Consensus.Cycle;
+using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.Network;
+using Catalyst.Abstractions.P2P;
+using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Types;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Lib.Kernel;
+using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.P2P.Discovery;
+using Catalyst.Core.Modules.Authentication;
+using Catalyst.Core.Modules.Consensus;
+using Catalyst.Core.Modules.Consensus.Cycle;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Ledger;
+using Catalyst.Core.Modules.Mempool;
+using Catalyst.Core.Modules.P2P.Discovery.Hastings;
+using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Common;
 using CommandLine;
+using DnsClient;
 
 namespace Catalyst.Node.POA.CE
 {
@@ -72,8 +95,36 @@ namespace Catalyst.Node.POA.CE
         /// <param name="kernel"></param>
         /// <returns></returns>
         private static void CustomBootLogic(Kernel kernel)
-        {   
+        {
             // core modules
+            Kernel.ContainerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
+
+            Kernel.ContainerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+            Kernel.ContainerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            Kernel.ContainerBuilder.RegisterType<HastingsDiscovery>().As<IPeerDiscovery>();
+            Kernel.ContainerBuilder.RegisterType<Core.Lib.Network.DnsClient>().As<IDns>();
+            Kernel.ContainerBuilder.RegisterType<LookupClient>().As<ILookupClient>().UsingConstructor();
+            Kernel.ContainerBuilder.RegisterType<PeerIdValidator>().As<IPeerIdValidator>();
+            Kernel.ContainerBuilder.RegisterType<Neighbours>().As<INeighbours>();
+            Kernel.ContainerBuilder.RegisterType<IsaacRandomFactory>().As<IDeterministicRandomFactory>();
+            Kernel.ContainerBuilder.RegisterType<CycleConfiguration>().As<ICycleConfiguration>();
+            Kernel.ContainerBuilder.RegisterType<LedgerSynchroniser>().As<ILedgerSynchroniser>();
+
+            // core modules
+            Kernel.ContainerBuilder.RegisterModule(new CoreLibProvider());
+            Kernel.ContainerBuilder.RegisterModule(new MempoolModule());
+            Kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
+            Kernel.ContainerBuilder.RegisterModule(new LedgerModule());
+            Kernel.ContainerBuilder.RegisterModule(new DiscoveryHastingModule());
+            Kernel.ContainerBuilder.RegisterModule(new RpcServerModule());
+            Kernel.ContainerBuilder.RegisterModule(new BulletProofsModule());
+            Kernel.ContainerBuilder.RegisterModule(new KeystoreModule());
+            Kernel.ContainerBuilder.RegisterModule(new KeySignerModule());
+            Kernel.ContainerBuilder.RegisterModule(new RpcServerModule());
+            Kernel.ContainerBuilder.RegisterModule(new DfsModule());
+            Kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
+            Kernel.ContainerBuilder.RegisterModule(new BulletProofsModule());
+            Kernel.ContainerBuilder.RegisterModule(new AuthenticationModule());
 
             // node modules
             kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
