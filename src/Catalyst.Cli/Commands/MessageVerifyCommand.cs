@@ -38,10 +38,9 @@ namespace Catalyst.Cli.Commands
         {
             return new VerifyMessageRequest
             {
-                Message =
-                    RLP.EncodeElement(option.Message.Trim('\"').ToBytesForRLPEncoding()).ToByteString(),
-                PublicKey = option.Address.PublicKeyToProtobuf(),
-                Signature = option.Signature.ToBytesForRLPEncoding().ToByteString()
+                Message = option.Message.Trim('\"').ToUtf8ByteString(),
+                PublicKey = option.Address.ToUtf8ByteString(),
+                Signature = option.Signature.ToUtf8ByteString()
             };
         }
     }

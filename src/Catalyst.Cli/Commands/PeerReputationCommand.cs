@@ -24,6 +24,7 @@
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
+using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 
 namespace Catalyst.Cli.Commands
@@ -36,8 +37,8 @@ namespace Catalyst.Cli.Commands
         {
             return new GetPeerReputationRequest
             {
-                PublicKey = option.PublicKey.PublicKeyToProtobuf(),
-                Ip = option.IpAddress.IpAddressToProtobuf()
+                PublicKey = option.PublicKey.ToUtf8ByteString(),
+                Ip = option.IpAddress.ToUtf8ByteString()
             };
         }
     }

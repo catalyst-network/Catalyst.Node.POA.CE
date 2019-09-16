@@ -40,24 +40,27 @@ using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Abstractions.Types;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.Mempool;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Ipfs.Registry;
 using NSubstitute;
 using Serilog;
+using SharpRepository.InMemoryRepository;
 using Xunit.Abstractions;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
 {
     public class PoaTestNode : ICatalystNode, IDisposable
     {
-        private readonly ContainerProvider _containerProvider;
         private readonly DevDfs _dfs;
         private readonly IMempool<MempoolDocument> _mempool;
         private readonly ICatalystNode _node;
@@ -91,21 +94,16 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
 
             _mempool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()), Substitute.For<ILogger>());
             _peerRepository = Substitute.For<IPeerRepository>();
-            var peersInRepo = knownPeerIds.Select(p => new Peer {PeerIdentifier = p}).ToList();
+            var peersInRepo = knownPeerIds.Select(p => new Peer
+            {
+                PeerIdentifier = p
+            }).ToList();
             _peerRepository.AsQueryable().Returns(peersInRepo.AsQueryable());
             _peerRepository.GetAll().Returns(peersInRepo);
             _peerRepository.Get(Arg.Any<string>()).Returns(ci =>
             {
                 return peersInRepo.First(p => p.DocumentId.Equals((string) ci[0]));
             });
-
-            _containerProvider = new ContainerProvider(new[]
-                {
-                    Constants.NetworkConfigFile(Network.Devnet),
-                    Constants.ComponentsJsonConfigFile,
-                    Constants.SerilogJsonConfigFile
-                }
-               .Select(f => Path.Combine(Constants.ConfigSubFolder, f)), parentTestFileSystem, output);
 
             _containerProvider.ConfigureContainerBuilder(true, true);
             OverrideContainerBuilderRegistrations();

@@ -24,6 +24,7 @@
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
+using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Google.Protobuf;
 
@@ -37,10 +38,10 @@ namespace Catalyst.Cli.Commands
         {
             return new RemovePeerRequest
             {
-                PeerIp = option.Ip.IpAddressToProtobuf(),
+                PeerIp = option.Ip.ToUtf8ByteString(),
                 PublicKey = string.IsNullOrEmpty(option.PublicKey)
                     ? ByteString.Empty
-                    : option.PublicKey.PublicKeyToProtobuf()
+                    : option.PublicKey.ToUtf8ByteString()
             };
         }
     }

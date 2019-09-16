@@ -23,6 +23,7 @@
 
 using System;
 using System.Diagnostics;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Kernel;
 
 namespace Catalyst.Cli

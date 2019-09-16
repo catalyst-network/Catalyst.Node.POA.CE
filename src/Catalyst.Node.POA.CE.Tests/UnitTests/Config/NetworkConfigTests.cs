@@ -24,8 +24,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using Autofac;
 using Autofac.Configuration;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.P2P;
 using Catalyst.Protocol.Common;
 using FluentAssertions;

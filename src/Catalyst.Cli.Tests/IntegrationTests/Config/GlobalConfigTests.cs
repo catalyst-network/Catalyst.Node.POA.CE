@@ -24,7 +24,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Autofac;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Xunit;
@@ -47,7 +49,6 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
             var configFilesUsed = new[]
                 {
                     Constants.NetworkConfigFile(network),
-                    Constants.ShellComponentsJsonConfigFile,
                     Constants.SerilogJsonConfigFile,
                     Constants.ShellNodesConfigFile,
                     Constants.ShellConfigFile

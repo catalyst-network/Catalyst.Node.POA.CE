@@ -34,6 +34,7 @@ using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.IO.Messaging.Dto;
 using Catalyst.Abstractions.IO.Transport;
 using Catalyst.Abstractions.Rpc;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Transport;
 using Catalyst.Protocol.Common;
@@ -54,12 +55,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
         public static ICommandContext GenerateCliFullCommandContext()
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
+            var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
 
             var commandContext = Substitute.For<ICommandContext>();
             commandContext.UserOutput.Returns(userOutput);
-            commandContext.NodeRpcClientFactory.Returns(nodeRpcClientFactory);
+            commandContext.RpcClientFactory.Returns(nodeRpcClientFactory);
             commandContext.CertificateStore.Returns(certificateStore);
 
             commandContext.PeerIdentifier.Returns(
@@ -76,12 +77,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
         public static ICommandContext GenerateCliCommandContext()
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
+            var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
 
             var commandContext = Substitute.For<ICommandContext>();
             commandContext.UserOutput.Returns(userOutput);
-            commandContext.NodeRpcClientFactory.Returns(nodeRpcClientFactory);
+            commandContext.RpcClientFactory.Returns(nodeRpcClientFactory);
             commandContext.CertificateStore.Returns(certificateStore);
 
             var hashingAlgorithm = Constants.HashAlgorithm;
@@ -92,9 +93,9 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             return commandContext;
         }
 
-        public static IRpcNodeConfig MockRpcNodeConfig(ICommandContext commandContext)
+        public static IRpcClientConfig MockRpcNodeConfig(ICommandContext commandContext)
         {
-            var rpcNodeConfig = Substitute.For<IRpcNodeConfig>();
+            var rpcNodeConfig = Substitute.For<IRpcClientConfig>();
             rpcNodeConfig.NodeId = "test";
             rpcNodeConfig.HostAddress = IPAddress.Any;
             rpcNodeConfig.PublicKey = "9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G";
@@ -103,12 +104,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             return rpcNodeConfig;
         }
 
-        public static INodeRpcClientFactory MockNodeRpcClientFactory(ICommandContext commandContext,
+        public static IRpcClientFactory MockNodeRpcClientFactory(ICommandContext commandContext,
             IRpcClient rpcClient)
         {
-            commandContext.NodeRpcClientFactory.GetClient(Arg.Any<X509Certificate2>(), Arg.Any<IRpcNodeConfig>())
+            commandContext.RpcClientFactory.GetClient(Arg.Any<X509Certificate2>(), Arg.Any<IRpcClientConfig>())
                .Returns(rpcClient);
-            return commandContext.NodeRpcClientFactory;
+            return commandContext.RpcClientFactory;
         }
 
         public static IRpcClient MockNodeRpcClient()

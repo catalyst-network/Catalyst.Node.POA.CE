@@ -29,9 +29,11 @@ using Autofac;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.IO.Messaging.Dto;
 using Catalyst.Abstractions.Rpc;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
+using DotNetty.Transport.Channels;
 using FluentAssertions;
 using Google.Protobuf;
 using NSubstitute;
@@ -43,7 +45,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
     /// This test is the base to all other tests.  If the Cli cannot connect to a node then all other commands
     /// will fail
     /// </summary>
-    public abstract class CliCommandTestsBase : ConfigFileBasedTest
+    public abstract class CliCommandTestsBase : FileSystemBasedTest
     {
         private protected static readonly string ServerNodeName = "node1";
         private protected static readonly string NodeArgumentPrefix = "-n";
@@ -53,7 +55,6 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 
         protected CliCommandTestsBase(ITestOutputHelper output) : base(output, new[]
         {
-            Path.Combine(Constants.ConfigSubFolder, Constants.ShellComponentsJsonConfigFile),
             Path.Combine(Constants.ConfigSubFolder, Constants.ShellNodesConfigFile),
             Path.Combine(Constants.ConfigSubFolder, Constants.ShellConfigFile)
         })
@@ -88,12 +89,12 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
             RpcClient.Channel.Returns(channel);
             RpcClient.Channel.RemoteAddress.Returns(new IPEndPoint(IPAddress.Loopback, IPEndPoint.MaxPort));
 
-            var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
+            var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             nodeRpcClientFactory
-               .GetClient(Arg.Any<X509Certificate2>(), Arg.Is<IRpcNodeConfig>(c => c.NodeId == ServerNodeName))
+               .GetClient(Arg.Any<X509Certificate2>(), Arg.Is<IRpcClientConfig>(c => c.NodeId == ServerNodeName))
                .Returns(RpcClient);
 
-            ContainerProvider.ContainerBuilder.RegisterInstance(nodeRpcClientFactory).As<INodeRpcClientFactory>();
+            ContainerProvider.ContainerBuilder.RegisterInstance(nodeRpcClientFactory).As<IRpcClientFactory>();
         }
 
         protected T AssertSentMessageAndGetMessageContent<T>() where T : IMessage<T>

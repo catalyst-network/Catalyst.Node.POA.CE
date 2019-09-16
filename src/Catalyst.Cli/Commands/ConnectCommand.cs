@@ -52,7 +52,7 @@ namespace Catalyst.Cli.Commands
             }
 
             var clientHashCode = CommandContext.SocketClientRegistry.GenerateClientHashCode(
-                EndpointBuilder.BuildNewEndPoint(rpcNodeConfigs.PublicIpAddress, rpcNodeConfigs.Port));
+                EndpointBuilder.BuildNewEndPoint(rpcNodeConfigs.HostAddress, rpcNodeConfigs.Port));
 
             CommandContext.SocketClientRegistry.AddClientToRegistry(clientHashCode, nodeRpcClient);
             CommandContext.UserOutput.WriteLine($"Connected to Node {nodeRpcClient.Channel.RemoteAddress}");

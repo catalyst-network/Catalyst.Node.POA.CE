@@ -28,10 +28,12 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Keystore;
+using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests
@@ -43,7 +45,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             var configRoot = Substitute.For<IConfigurationRoot>();
             var logger = Substitute.For<ILogger>();
             var userOutput = Substitute.For<IUserOutput>();
-            var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
+            var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
             var keyRegistry = Substitute.For<IKeyRegistry>();
 

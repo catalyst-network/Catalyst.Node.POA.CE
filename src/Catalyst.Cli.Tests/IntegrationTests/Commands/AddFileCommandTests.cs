@@ -29,6 +29,7 @@ using Autofac;
 using Catalyst.Abstractions.FileTransfer;
 using Catalyst.Core.Lib.IO.Messaging.Correlation;
 using Catalyst.Protocol.Rpc.Node;
+using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;

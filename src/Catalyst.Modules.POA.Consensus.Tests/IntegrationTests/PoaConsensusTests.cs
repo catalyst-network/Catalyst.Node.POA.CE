@@ -27,10 +27,13 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Modules.Consensus.Cycle;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
@@ -38,7 +41,7 @@ using Xunit.Abstractions;
 
 namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
 {
-    public sealed class PoaConsensusTests : ConfigFileBasedTest
+    public sealed class PoaConsensusTests : FileSystemBasedTest
     {
         private readonly CancellationTokenSource _endOfTestCancellationSource;
         private readonly ILifetimeScope _scope;

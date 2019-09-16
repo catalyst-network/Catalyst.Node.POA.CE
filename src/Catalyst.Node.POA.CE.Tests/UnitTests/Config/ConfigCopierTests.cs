@@ -45,7 +45,6 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
                 Add(Constants.NetworkConfigFile(Network.Testnet), Network.Testnet);
                 Add(Constants.NetworkConfigFile(Network.Devnet), Network.Devnet);
                 Add(Constants.SerilogJsonConfigFile, Network.Devnet);
-                Add(Constants.ComponentsJsonConfigFile, Network.Devnet);
                 Add(Constants.MessageHandlersConfigFile, Network.Devnet);
             }
         }
@@ -73,16 +72,13 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             existingFileInfo.Create();
             existingFileInfo.Refresh();
 
-            var modulesDirectory =
-                new DirectoryInfo(Path.Combine(currentDirectory.FullName, Constants.ModulesSubFolder));
-
             currentDirectory.Exists.Should().BeTrue("otherwise the test is not relevant");
             existingFileInfo.Exists.Should().BeTrue("otherwise the test is not relevant");
 
             new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network).ToList();
-            var configFiles = EnumerateConfigFiles(currentDirectory, modulesDirectory);
+            var configFiles = EnumerateConfigFiles(currentDirectory);
 
             configFiles.Should().BeEquivalentTo(expectedFileList);
 
@@ -90,13 +86,10 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
                 "the bogus file should not have been overwritten");
         }
 
-        private static IEnumerable<string> EnumerateConfigFiles(DirectoryInfo currentDirectory,
-            DirectoryInfo modulesDirectory)
+        private static IEnumerable<string> EnumerateConfigFiles(DirectoryInfo currentDirectory)
         {
             var filesOnDisk = currentDirectory.EnumerateFiles()
-               .Select(f => f.Name)
-               .Concat(modulesDirectory.EnumerateFiles()
-                   .Select(f => Path.Combine(Constants.ModulesSubFolder, f.Name)));
+               .Select(f => f.Name);
             return filesOnDisk;
         }
 
@@ -105,7 +98,6 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             var requiredConfigFiles = new[]
             {
                 Constants.NetworkConfigFile(network),
-                Constants.ComponentsJsonConfigFile,
                 Constants.SerilogJsonConfigFile,
                 Constants.MessageHandlersConfigFile,
                 Constants.RpcAuthenticationCredentialsFile
@@ -120,14 +112,11 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             var currentDirectory = FileSystem.GetCatalystDataDir();
             currentDirectory.Exists.Should().BeFalse("otherwise the test is not relevant");
 
-            var modulesDirectory =
-                new DirectoryInfo(Path.Combine(currentDirectory.FullName, Constants.ModulesSubFolder));
-
             var network = Network.Devnet;
             new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network);
-            var configFiles = EnumerateConfigFiles(currentDirectory, modulesDirectory);
+            var configFiles = EnumerateConfigFiles(currentDirectory);
             configFiles.Should().BeEquivalentTo(expectedFileList);
         }
 

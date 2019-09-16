@@ -14,6 +14,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
       <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Dfs\Catalyst.Core.Modules.Dfs.csproj" />
+      <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Mempool\Catalyst.Core.Modules.Mempool.csproj" />
       <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Protocol\Catalyst.Protocol.csproj" />
       <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.TestUtils\Catalyst.TestUtils.csproj" />
       <ProjectReference Include="..\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />

@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using Catalyst.Abstractions.Cli.CommandTypes;
+using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
 using FluentAssertions;
@@ -41,7 +42,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
         public void Cannot_Connect_With_Invalid_Config()
         {
             var commandContext = TestCommandHelpers.GenerateCliCommandContext();
-            commandContext.GetNodeConfig(Arg.Any<string>()).Returns((IRpcNodeConfig) null);
+            commandContext.GetNodeConfig(Arg.Any<string>()).Returns((IRpcClientConfig) null);
 
             var commands = new List<ICommand> {new ConnectCommand(commandContext)};
             var console = new CatalystCli(commandContext.UserOutput, commands);

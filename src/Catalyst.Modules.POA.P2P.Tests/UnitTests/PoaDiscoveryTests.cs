@@ -21,13 +21,18 @@
 
 #endregion
 
+using System.Threading.Tasks;
 using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.FileSystem;
+using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Modules.POA.P2P.Discovery;
 using Catalyst.TestUtils;
 using Multiformats.Base;
 using Multiformats.Hash.Algorithms;
+using Newtonsoft.Json;
 using NSubstitute;
+using Serilog;
 using Xunit;
 using Xunit.Abstractions;
 
