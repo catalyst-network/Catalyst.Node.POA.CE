@@ -106,31 +106,31 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
         }
 
         public static INodeRpcClientFactory MockNodeRpcClientFactory(ICommandContext commandContext,
-            INodeRpcClient nodeRpcClient)
+            IRpcClient rpcClient)
         {
             commandContext.NodeRpcClientFactory.GetClient(Arg.Any<X509Certificate2>(), Arg.Any<IRpcNodeConfig>())
-               .Returns(nodeRpcClient);
+               .Returns(rpcClient);
             return commandContext.NodeRpcClientFactory;
         }
 
-        public static INodeRpcClient MockNodeRpcClient()
+        public static IRpcClient MockNodeRpcClient()
         {
-            var nodeRpcClient = Substitute.For<INodeRpcClient>();
+            var nodeRpcClient = Substitute.For<IRpcClient>();
             nodeRpcClient.Channel.Active.Returns(true);
             nodeRpcClient.Channel.RemoteAddress.Returns(new IPEndPoint(IPAddress.Loopback, IPEndPoint.MaxPort));
             return nodeRpcClient;
         }
 
-        public static void MockActiveConnection(ICommandContext commandContext, INodeRpcClient nodeRpcClient)
+        public static void MockActiveConnection(ICommandContext commandContext, IRpcClient rpcClient)
         {
-            commandContext.IsSocketChannelActive(Arg.Any<INodeRpcClient>()).Returns(true);
-            commandContext.GetConnectedNode(Arg.Any<string>()).Returns(nodeRpcClient);
+            commandContext.IsSocketChannelActive(Arg.Any<IRpcClient>()).Returns(true);
+            commandContext.GetConnectedNode(Arg.Any<string>()).Returns(rpcClient);
         }
 
-        public static ISocketClientRegistry<INodeRpcClient> AddClientSocketRegistry(ICommandContext commandContext,
+        public static ISocketClientRegistry<IRpcClient> AddClientSocketRegistry(ICommandContext commandContext,
             IScheduler testScheduler)
         {
-            commandContext.SocketClientRegistry.Returns(new SocketClientRegistry<INodeRpcClient>(testScheduler));
+            commandContext.SocketClientRegistry.Returns(new SocketClientRegistry<IRpcClient>(testScheduler));
             return commandContext.SocketClientRegistry;
         }
 
@@ -147,16 +147,16 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
         public static ICommandContext GenerateCliResponseCommandContext(IScheduler testScheduler)
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var clientSocketRegistry = new SocketClientRegistry<INodeRpcClient>(testScheduler);
+            var clientSocketRegistry = new SocketClientRegistry<IRpcClient>(testScheduler);
             var commandContext = Substitute.For<ICommandContext>();
             commandContext.SocketClientRegistry.Returns(clientSocketRegistry);
             commandContext.UserOutput.Returns(userOutput);
             return commandContext;
         }
 
-        private static INodeRpcClient GenerateRpcResponseOnSubscription<T>(T response) where T : IMessage<T>
+        private static IRpcClient GenerateRpcResponseOnSubscription<T>(T response) where T : IMessage<T>
         {
-            var socket = Substitute.For<INodeRpcClient>();
+            var socket = Substitute.For<IRpcClient>();
             socket.Channel.Active.Returns(true);
             socket.SubscribeToResponse(Arg.Invoke(response));
             return socket;
@@ -168,12 +168,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             commandContext.SocketClientRegistry.AddClientToRegistry(1111111111, nodeRpcClient);
         }
 
-        public static T GetRequest<T>(INodeRpcClient connectedNode) where T : IMessage<T>
+        public static T GetRequest<T>(IRpcClient connected) where T : IMessage<T>
         {
-            connectedNode.Received(1).SendMessage(Arg.Any<IMessageDto<ProtocolMessage>>());
+            connected.Received(1).SendMessage(Arg.Any<IMessageDto<ProtocolMessage>>());
 
-            var sentMessageDto = (IMessageDto<ProtocolMessage>) connectedNode.ReceivedCalls()
-               .Single(c => c.GetMethodInfo().Name == nameof(INodeRpcClient.SendMessage))
+            var sentMessageDto = (IMessageDto<ProtocolMessage>) connected.ReceivedCalls()
+               .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
                .GetArguments()[0];
 
             return sentMessageDto.Content.FromProtocolMessage<T>();

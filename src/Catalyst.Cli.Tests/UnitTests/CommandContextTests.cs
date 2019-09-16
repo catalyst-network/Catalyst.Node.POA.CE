@@ -96,7 +96,7 @@ namespace Catalyst.Cli.Tests.UnitTests
         [Fact]
         public void IsSocketChannelActive_Should_Return_False_On_Inactive_Channel()
         {
-            var rpcClient = Substitute.For<INodeRpcClient>();
+            var rpcClient = Substitute.For<IRpcClient>();
             rpcClient.Channel.Active.Returns(false);
 
             _commandContext.IsSocketChannelActive(rpcClient).Should().BeFalse();
@@ -105,7 +105,7 @@ namespace Catalyst.Cli.Tests.UnitTests
         [Fact]
         public void IsSocketChannelActive_Should_Return_True_On_Active_Channel()
         {
-            var rpcClient = Substitute.For<INodeRpcClient>();
+            var rpcClient = Substitute.For<IRpcClient>();
             rpcClient.Channel.Active.Returns(true);
 
             _commandContext.IsSocketChannelActive(rpcClient).Should().BeTrue();

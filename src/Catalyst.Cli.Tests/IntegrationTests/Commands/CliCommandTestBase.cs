@@ -49,7 +49,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
     {
         private protected static readonly string ServerNodeName = "node1";
         private protected static readonly string NodeArgumentPrefix = "-n";
-        protected INodeRpcClient NodeRpcClient;
+        protected IRpcClient RpcClient;
         protected ILifetimeScope Scope;
         protected ICatalystCli Shell;
 
@@ -86,27 +86,27 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
             var channel = Substitute.For<IChannel>();
             channel.Active.Returns(true);
 
-            NodeRpcClient = Substitute.For<INodeRpcClient>();
-            NodeRpcClient.Channel.Returns(channel);
-            NodeRpcClient.Channel.RemoteAddress.Returns(new IPEndPoint(IPAddress.Loopback, IPEndPoint.MaxPort));
+            RpcClient = Substitute.For<IRpcClient>();
+            RpcClient.Channel.Returns(channel);
+            RpcClient.Channel.RemoteAddress.Returns(new IPEndPoint(IPAddress.Loopback, IPEndPoint.MaxPort));
 
             var nodeRpcClientFactory = Substitute.For<INodeRpcClientFactory>();
             nodeRpcClientFactory
                .GetClient(Arg.Any<X509Certificate2>(), Arg.Is<IRpcNodeConfig>(c => c.NodeId == ServerNodeName))
-               .Returns(NodeRpcClient);
+               .Returns(RpcClient);
 
             ContainerProvider.ContainerBuilder.RegisterInstance(nodeRpcClientFactory).As<INodeRpcClientFactory>();
         }
 
         protected T AssertSentMessageAndGetMessageContent<T>() where T : IMessage<T>
         {
-            NodeRpcClient.Received(1).SendMessage(Arg.Is<IMessageDto<ProtocolMessage>>(x =>
+            RpcClient.Received(1).SendMessage(Arg.Is<IMessageDto<ProtocolMessage>>(x =>
                 x.Content != null &&
                 x.Content.GetType().IsAssignableTo<ProtocolMessage>() &&
                 x.Content.FromProtocolMessage<T>() != null
             ));
-            var sentMessageDto = (IMessageDto<ProtocolMessage>) NodeRpcClient.ReceivedCalls()
-               .Single(c => c.GetMethodInfo().Name == nameof(INodeRpcClient.SendMessage))
+            var sentMessageDto = (IMessageDto<ProtocolMessage>) RpcClient.ReceivedCalls()
+               .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
                .GetArguments()[0];
             var requestSent = sentMessageDto.Content.FromProtocolMessage<T>();
             return requestSent;

@@ -67,7 +67,7 @@ namespace Catalyst.Cli.CommandTypes
             Dispose(true);
         }
 
-        public INodeRpcClient Target => CommandContext.GetConnectedNode(Options.Node);
+        public IRpcClient Target => CommandContext.GetConnectedNode(Options.Node);
 
         public virtual void SendMessage(TOption options)
         {

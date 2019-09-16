@@ -10,14 +10,6 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Ledger.Models.Account",
-            "services": [
-                {
-                    "type": "Catalyst.Core.Ledger.Models.IAccount, Catalyst.Core"
-                }
-            ]
-        },
-        {
             "type": "SharpRepository.InMemoryRepository.InMemoryRepository`2[[Catalyst.Core.Ledger.Models.Account, Catalyst.Core], [System.String, mscorlib]], SharpRepository.InMemoryRepository",
             "services": [
                 {
