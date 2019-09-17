@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 /**
 * Copyright (c) 2019 Catalyst Network
@@ -21,24 +21,17 @@
 
 #endregion
 
-using System.Collections.Generic;
-using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
-
-namespace Catalyst.Cli
+namespace Catalyst.Node.POA.CE
 {
-    internal sealed class CliConfigCopier : ConfigCopier
+    public static class PoaConstants
     {
-        protected override IEnumerable<string> RequiredConfigFiles(Network network, string overrideNetworkFile = null)
-        {
-            return new[]
-            {
-                CliConstants.ShellNodesConfigFile,
-                Constants.SerilogJsonConfigFile,
-                CliConstants.ShellConfigFile,
-                CliConstants.RpcResponseHandlersConfigFile,
-                CliConstants.CliCommandsConfigFile
-            };
-        }
+        // <summary> RPC message handlers </summary>
+        public static string RpcMessageHandlerConfigFile => "p2p.message.handlers.json";
+
+        // <summary> P2P message handlers </summary>
+        public static string P2PMessageHandlerConfigFile => "rpc.message.handlers.json";
+
+        /// <summary>The allowed RPC node operators default XML configuration.</summary>
+        public static string RpcAuthenticationCredentialsFile => "AuthCredentials.xml";
     }
 }

@@ -54,6 +54,7 @@ using Catalyst.Core.Modules.P2P.Discovery.Hastings;
 using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
+using Catalyst.Node.POA.CE.Config;
 using Catalyst.Protocol.Common;
 using CommandLine;
 using DnsClient;
@@ -64,20 +65,20 @@ namespace Catalyst.Node.POA.CE
     {
         [Option("ipfs-password", HelpText = "The password for IPFS.  Defaults to prompting for the password.")]
         public string IpfsPassword { get; set; }
-        
+
         [Option("ssl-cert-password", HelpText = "The password for ssl cert.  Defaults to prompting for the password.")]
         public string SslCertPassword { get; set; }
-        
+
         [Option("node-password", HelpText = "The password for the node.  Defaults to prompting for the password.")]
         public string NodePassword { get; set; }
-        
+
         [Option('o', "overwrite-config", HelpText = "Overwrite the data directory configs.")]
         public bool OverwriteConfig { get; set; }
 
         [Option("network-file", HelpText = "The name of the network file")]
         public string OverrideNetworkFile { get; set; }
     }
-    
+
     internal static class Program
     {
         private static readonly Kernel Kernel;
@@ -93,7 +94,6 @@ namespace Catalyst.Node.POA.CE
         /// <summary>
         ///     For ref what passing custom boot logic looks like, this is the same as Kernel.StartNode()
         /// </summary>
-        /// <param name="args"></param>
         /// <param name="kernel"></param>
         /// <returns></returns>
         private static void CustomBootLogic(Kernel kernel)
@@ -124,7 +124,6 @@ namespace Catalyst.Node.POA.CE
             kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
 
             kernel.StartContainer();
-//            BsonSerializationProviders.Init();
             kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
                 .Wait();
@@ -138,21 +137,21 @@ namespace Catalyst.Node.POA.CE
 
             return Environment.ExitCode;
         }
-        
+
         private static void Run(Options options)
         {
             Kernel.Logger.Information("Catalyst.Node started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
-            
+
             try
             {
                 Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
-                    .WithConfigurationFile(Constants.P2PMessageHandlerConfigFile)
-                    .WithConfigurationFile(Constants.RpcMessageHandlerConfigFile)
+                    .WithConfigurationFile(PoaConstants.P2PMessageHandlerConfigFile)
+                    .WithConfigurationFile(PoaConstants.RpcMessageHandlerConfigFile)
                     .WithSerilogConfigFile()
-                    .WithConfigCopier()
+                    .WithConfigCopier(new PoaConfigCopier())
                     .WithPersistenceConfiguration()
                     .BuildKernel(options.OverwriteConfig)
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
@@ -160,8 +159,6 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
                     .StartCustom(CustomBootLogic);
 
-                // .StartCustom(CustomBootLogic);
-                
                 Environment.ExitCode = 0;
             }
             catch (Exception e)

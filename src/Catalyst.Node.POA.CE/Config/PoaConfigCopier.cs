@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 /**
 * Copyright (c) 2019 Catalyst Network
@@ -25,19 +25,18 @@ using System.Collections.Generic;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Common;
 
-namespace Catalyst.Cli
+namespace Catalyst.Node.POA.CE.Config
 {
-    internal sealed class CliConfigCopier : ConfigCopier
+    public sealed class PoaConfigCopier : ConfigCopier
     {
         protected override IEnumerable<string> RequiredConfigFiles(Network network, string overrideNetworkFile = null)
         {
-            return new[]
+            return new List<string>
             {
-                CliConstants.ShellNodesConfigFile,
-                Constants.SerilogJsonConfigFile,
-                CliConstants.ShellConfigFile,
-                CliConstants.RpcResponseHandlersConfigFile,
-                CliConstants.CliCommandsConfigFile
+                PoaConstants.P2PMessageHandlerConfigFile,
+                PoaConstants.RpcAuthenticationCredentialsFile,
+                PoaConstants.RpcMessageHandlerConfigFile,
+                Constants.NetworkConfigFile(network, overrideNetworkFile)
             };
         }
     }

@@ -1,0 +1,141 @@
+{
+    "defaultAssembly": "Catalyst.Cli",
+    "components": [
+        {
+            "type": "Catalyst.Cli.Commands.AddFileCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetPeerInfoCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.ConnectCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.DisconnectCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetFileCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetInfoCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetMempoolCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetVersionCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.MessageSignCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.MessageVerifyCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.PeerBlackListingCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.PeerCountCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.PeerListCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.PeerRemoveCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.PeerReputationCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.GetDeltaCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        },
+        {
+            "type": "Catalyst.Cli.Commands.ChangeDataFolderCommand",
+            "services": [
+                {
+                    "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+                }
+            ]
+        }
+    ]
+}

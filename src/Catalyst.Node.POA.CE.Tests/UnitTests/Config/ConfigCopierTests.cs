@@ -45,8 +45,6 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
                 Add(Constants.NetworkConfigFile(Network.Testnet), Network.Testnet);
                 Add(Constants.NetworkConfigFile(Network.Devnet), Network.Devnet);
                 Add(Constants.SerilogJsonConfigFile, Network.Devnet);
-                Add(Constants.P2PMessageHandlerConfigFile, Network.Devnet);
-                Add(Constants.RpcMessageHandlerConfigFile, Network.Devnet);
             }
         }
 
@@ -76,7 +74,7 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             currentDirectory.Exists.Should().BeTrue("otherwise the test is not relevant");
             existingFileInfo.Exists.Should().BeTrue("otherwise the test is not relevant");
 
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network).ToList();
             var configFiles = EnumerateConfigFiles(currentDirectory);
@@ -94,15 +92,12 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             return filesOnDisk;
         }
 
-        private IEnumerable<string> GetExpectedFileList(Network network)
+        private static IEnumerable<string> GetExpectedFileList(Network network)
         {
             var requiredConfigFiles = new[]
             {
                 Constants.NetworkConfigFile(network),
-                Constants.SerilogJsonConfigFile,
-                Constants.RpcMessageHandlerConfigFile,
-                Constants.P2PMessageHandlerConfigFile,
-                Constants.RpcAuthenticationCredentialsFile
+                Constants.SerilogJsonConfigFile
             };
             return requiredConfigFiles;
         }
@@ -115,7 +110,7 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             currentDirectory.Exists.Should().BeFalse("otherwise the test is not relevant");
 
             var network = Network.Devnet;
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network);
             var configFiles = EnumerateConfigFiles(currentDirectory);
@@ -129,8 +124,16 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             var currentDirectory = FileSystem.GetCatalystDataDir();
             FileSystem.WriteTextFileToCddAsync(overrideFile,
                 File.ReadAllText(Path.Combine(Constants.ConfigSubFolder, Constants.NetworkConfigFile(Network.Devnet))));
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, Network.Devnet, null, true, overrideFile);
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, Network.Devnet, null, true, overrideFile);
             File.Exists(Path.Combine(currentDirectory.FullName, overrideFile)).Should().BeTrue();
+        }
+
+        internal class TestConfigCopier : ConfigCopier
+        {
+            protected override IEnumerable<string> RequiredConfigFiles(Network network, string overrideNetworkFile = null)
+            {
+                return new List<string>(GetExpectedFileList(network));
+            }
         }
     }
 }
