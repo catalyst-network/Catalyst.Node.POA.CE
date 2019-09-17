@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cryptography;
@@ -34,6 +35,7 @@ using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.IO.Transport;
 using Catalyst.Core.Lib.Network;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.Util;
 using Catalyst.Core.Modules.Rpc.Client;
 using Dawn;
 using Microsoft.Extensions.Configuration;
@@ -59,7 +61,7 @@ namespace Catalyst.Cli.Commands
             _rpcNodeConfigs = RpcClientSettings.BuildRpcNodeSettingList(config);
 
             SocketClientRegistry = new SocketClientRegistry<IRpcClient>();
-            PeerIdentifier = new PeerIdentifier(_rpcNodeConfigs);
+            PeerIdentifier = GetPeerIdentifierFromCliConfig(config);
             RpcClientFactory = rpcClientFactory;
             CertificateStore = certificateStore;
             UserOutput = userOutput;
@@ -122,6 +124,15 @@ namespace Catalyst.Cli.Commands
                 _logger.Debug(e.Message);
                 return false;
             }
+        }
+
+        private IPeerIdentifier GetPeerIdentifierFromCliConfig(IConfigurationRoot configRoot)
+        {
+            var cliSettings = configRoot.GetSection("CatalystCliConfig");
+            var publicKey = cliSettings.GetSection("PublicKey").Value.KeyToBytes();
+            var ipAddress = IPAddress.Parse(cliSettings.GetSection("BindAddress").Value);
+            var port = int.Parse(configRoot.GetSection("Port").Value);
+            return new PeerIdentifier(publicKey, ipAddress, port);
         }
     }
 }

@@ -33,6 +33,7 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Events;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.Util;
 using Google.Protobuf;
 
 namespace Catalyst.Cli.CommandTypes
@@ -56,8 +57,14 @@ namespace Catalyst.Cli.CommandTypes
                .OfType<SocketClientRegistryClientRemoved>().Subscribe(SocketClientRegistryClientRemovedOnNext);
         }
 
-        protected IPeerIdentifier RecipientPeerIdentifier =>
-            new PeerIdentifier(CommandContext.GetNodeConfig(Options.Node));
+        protected IPeerIdentifier RecipientPeerIdentifier
+        {
+            get
+            {
+                var peerIdentifier = CommandContext.GetNodeConfig(Options.Node);
+                return new PeerIdentifier(peerIdentifier.PublicKey.KeyToBytes(), peerIdentifier.HostAddress, peerIdentifier.Port);
+            }
+        }
 
         protected IPeerIdentifier SenderPeerIdentifier => CommandContext.PeerIdentifier;
 

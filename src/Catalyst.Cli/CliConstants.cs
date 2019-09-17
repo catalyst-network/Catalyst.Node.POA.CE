@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 /**
 * Copyright (c) 2019 Catalyst Network
@@ -21,22 +21,14 @@
 
 #endregion
 
-using System.Collections.Generic;
-using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
-
 namespace Catalyst.Cli
 {
-    internal sealed class CliConfigCopier : ConfigCopier
+    public static class CliConstants
     {
-        protected override IEnumerable<string> RequiredConfigFiles(Network network, string overrideNetworkFile = null)
-        {
-            return new[]
-            {
-                CliConstants.ShellNodesConfigFile,
-                Constants.SerilogJsonConfigFile,
-                CliConstants.ShellConfigFile
-            };
-        }
+        // <summary> Config file with nodes for use in rpc client </summary>
+        public static string ShellConfigFile => "shell.config.json";
+
+        // <summary> Config file with nodes for use in rpc client </summary>
+        public static string ShellNodesConfigFile => "nodes.json";
     }
 }
