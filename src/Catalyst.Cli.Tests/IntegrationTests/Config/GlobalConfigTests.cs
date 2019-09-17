@@ -50,8 +50,8 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
                 {
                     Constants.NetworkConfigFile(network),
                     Constants.SerilogJsonConfigFile,
-                    CliConstants.ShellNodesConfigFile,
-                    CliConstants.ShellConfigFile
+                    Constants.ShellNodesConfigFile,
+                    Constants.ShellConfigFile
                 }
                .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
 

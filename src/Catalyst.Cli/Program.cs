@@ -53,8 +53,8 @@ namespace Catalyst.Cli
                 Kernel.WithDataDirectory()
                    .WithSerilogConfigFile()
                    .WithConfigCopier(new CliConfigCopier())
-                   .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
-                   .WithConfigurationFile(CliConstants.ShellConfigFile)
+                   .WithConfigurationFile(Constants.ShellNodesConfigFile)
+                   .WithConfigurationFile(Constants.ShellConfigFile)
                    .BuildKernel()
                    .StartCli();
 

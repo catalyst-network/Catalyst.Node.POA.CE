@@ -33,9 +33,9 @@ namespace Catalyst.Cli
         {
             return new[]
             {
-                CliConstants.ShellNodesConfigFile,
+                Constants.ShellNodesConfigFile,
                 Constants.SerilogJsonConfigFile,
-                CliConstants.ShellConfigFile
+                Constants.ShellConfigFile
             };
         }
     }

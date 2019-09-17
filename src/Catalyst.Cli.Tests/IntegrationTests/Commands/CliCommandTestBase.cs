@@ -55,8 +55,8 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 
         protected CliCommandTestsBase(ITestOutputHelper output) : base(output, new[]
         {
-            Path.Combine(Constants.ConfigSubFolder, CliConstants.ShellNodesConfigFile),
-            Path.Combine(Constants.ConfigSubFolder, CliConstants.ShellConfigFile)
+            Path.Combine(Constants.ConfigSubFolder, Constants.ShellNodesConfigFile),
+            Path.Combine(Constants.ConfigSubFolder, Constants.ShellConfigFile)
         })
         {
             ContainerProvider.ConfigureContainerBuilder();
