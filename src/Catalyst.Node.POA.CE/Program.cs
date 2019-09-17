@@ -107,7 +107,6 @@ namespace Catalyst.Node.POA.CE
             Kernel.ContainerBuilder.RegisterType<PeerIdValidator>().As<IPeerIdValidator>();
             Kernel.ContainerBuilder.RegisterType<Neighbours>().As<INeighbours>();
             Kernel.ContainerBuilder.RegisterType<IsaacRandomFactory>().As<IDeterministicRandomFactory>();
-            Kernel.ContainerBuilder.RegisterType<CycleConfiguration>().As<ICycleConfiguration>();
             Kernel.ContainerBuilder.RegisterType<LedgerSynchroniser>().As<ILedgerSynchroniser>();
 
             // core modules
