@@ -45,7 +45,8 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
                 Add(Constants.NetworkConfigFile(Network.Testnet), Network.Testnet);
                 Add(Constants.NetworkConfigFile(Network.Devnet), Network.Devnet);
                 Add(Constants.SerilogJsonConfigFile, Network.Devnet);
-                Add(Constants.MessageHandlersConfigFile, Network.Devnet);
+                Add(Constants.P2PMessageHandlerConfigFile, Network.Devnet);
+                Add(Constants.RpcMessageHandlerConfigFile, Network.Devnet);
             }
         }
 
@@ -99,7 +100,8 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             {
                 Constants.NetworkConfigFile(network),
                 Constants.SerilogJsonConfigFile,
-                Constants.MessageHandlersConfigFile,
+                Constants.RpcMessageHandlerConfigFile,
+                Constants.P2PMessageHandlerConfigFile,
                 Constants.RpcAuthenticationCredentialsFile
             };
             return requiredConfigFiles;

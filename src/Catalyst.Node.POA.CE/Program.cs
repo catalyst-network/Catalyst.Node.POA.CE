@@ -29,12 +29,14 @@ using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Consensus.Cycle;
 using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.IO.Observers;
 using Catalyst.Abstractions.Network;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Lib.Kernel;
 using Catalyst.Core.Lib.P2P;
@@ -98,16 +100,8 @@ namespace Catalyst.Node.POA.CE
         {
             // core modules
             Kernel.ContainerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
-
             Kernel.ContainerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             Kernel.ContainerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-            Kernel.ContainerBuilder.RegisterType<HastingsDiscovery>().As<IPeerDiscovery>();
-            Kernel.ContainerBuilder.RegisterType<Core.Lib.Network.DnsClient>().As<IDns>();
-            Kernel.ContainerBuilder.RegisterType<LookupClient>().As<ILookupClient>().UsingConstructor();
-            Kernel.ContainerBuilder.RegisterType<PeerIdValidator>().As<IPeerIdValidator>();
-            Kernel.ContainerBuilder.RegisterType<Neighbours>().As<INeighbours>();
-            Kernel.ContainerBuilder.RegisterType<IsaacRandomFactory>().As<IDeterministicRandomFactory>();
-            Kernel.ContainerBuilder.RegisterType<LedgerSynchroniser>().As<ILedgerSynchroniser>();
 
             // core modules
             Kernel.ContainerBuilder.RegisterModule(new CoreLibProvider());
@@ -155,7 +149,8 @@ namespace Catalyst.Node.POA.CE
                 Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
-//                    .WithComponentsConfigFile()
+                    .WithConfigurationFile(Constants.P2PMessageHandlerConfigFile)
+                    .WithConfigurationFile(Constants.RpcMessageHandlerConfigFile)
                     .WithSerilogConfigFile()
                     .WithConfigCopier()
                     .WithPersistenceConfiguration()
