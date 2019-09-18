@@ -131,7 +131,7 @@ namespace Catalyst.Cli.Commands
             var cliSettings = configRoot.GetSection("CatalystCliConfig");
             var publicKey = cliSettings.GetSection("PublicKey").Value.KeyToBytes();
             var ipAddress = IPAddress.Parse(cliSettings.GetSection("BindAddress").Value);
-            var port = int.Parse(configRoot.GetSection("Port").Value);
+            var port = int.Parse(cliSettings.GetSection("Port").Value);
             return new PeerIdentifier(publicKey, ipAddress, port);
         }
     }

@@ -2,7 +2,7 @@
     "defaultAssembly": "Catalyst.Core.Modules.Rpc.Client",
     "components": [
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetInfoResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetInfoResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -10,7 +10,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.BroadcastRawTransactionResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.BroadcastRawTransactionResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -18,7 +18,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetPeerInfoResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetPeerInfoResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetMempoolResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetMempoolResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -34,7 +34,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetVersionResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetVersionResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -42,7 +42,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.VerifyMessageResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.VerifyMessageResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -50,7 +50,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.AddFileToDfsResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.AddFileToDfsResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -58,7 +58,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetDeltaResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetDeltaResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -66,7 +66,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.TransferFileBytesResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.TransferFileBytesResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -74,7 +74,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.PeerListResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.PeerListResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -82,7 +82,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.PeerCountResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.PeerCountResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -90,7 +90,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.RemovePeerResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.RemovePeerResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -98,7 +98,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.GetFileFromDfsResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.GetFileFromDfsResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
@@ -106,7 +106,7 @@
             ]
         },
         {
-            "type": "Catalyst.Core.Rpc.IO.Observers.ChangeDataFolderResponseObserver, Catalyst.Core.Modules.Rpc.Client",
+            "type": "Catalyst.Core.Modules.Rpc.Client.IO.Observers.ChangeDataFolderResponseObserver, Catalyst.Core.Modules.Rpc.Client",
             "services": [
                 {
                     "type": "Catalyst.Abstractions.IO.Observers.IRpcResponseObserver, Catalyst.Abstractions"
