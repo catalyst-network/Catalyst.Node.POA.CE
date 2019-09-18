@@ -55,7 +55,7 @@ schedules:
 steps:
   - task: InstallSSHKey@0
     inputs:
-      knownHostsEntry: 'github.com:22 SSH-2.0-babeld-dae25663'
+      knownHostsEntry: 'ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts'
       sshPublicKey: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrLDdJA3U1bx1dmLIulqY078VUr3i4ofPxEokCGdchsDirDAKK4nQVnkaenYMbTndcE+/3+RDEAzy4h75Y3CU8J5FoSjOjKzOi/IPl6Ssj9IKtOVBt8YP+qUHsVnEvm+m9ITAJfqQY9ctKH/0CdBxopMfRHR2BHYbMtGjNtTRO5JZ6rEpbFU8jAYLYBZd0HMBnjpKOACPhRl1Ql3eRwrpEwtW9WHc2GzO4G4nbTvtd2jiT07B/kaCyr27p8K1+waftZ/5aPE0Ou5e41d1knbE7djoA2d218nLQe4DK+5LZJNrGHmJIMwLfXV71e0zeCdaLV8/GypbUZDJ+tJQLPTDx nsh@shenron'
       sshKeySecureFile: 'id_rsa'
 
