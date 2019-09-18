@@ -21,6 +21,7 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -88,6 +89,7 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
         private static IEnumerable<string> EnumerateConfigFiles(DirectoryInfo currentDirectory)
         {
             var filesOnDisk = currentDirectory.EnumerateFiles()
+                .Where(f => f.Extension.Equals(".json", StringComparison.CurrentCultureIgnoreCase))
                .Select(f => f.Name);
             return filesOnDisk;
         }
