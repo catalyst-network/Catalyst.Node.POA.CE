@@ -23,7 +23,6 @@
 
 using System.Globalization;
 using Catalyst.Core.Lib.FileSystem;
-using Catalyst.Node.POA.CE.Config;
 using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using FluentAssertions;

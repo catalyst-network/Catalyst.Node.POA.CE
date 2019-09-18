@@ -54,7 +54,6 @@ using Catalyst.Core.Modules.P2P.Discovery.Hastings;
 using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
-using Catalyst.Node.POA.CE.Config;
 using Catalyst.Protocol.Network;
 using CommandLine;
 using DnsClient;

@@ -2,7 +2,7 @@
   "defaultAssembly": "Catalyst.Cli",
   "components": [
     {
-      "type": "Catalyst.Cli.Commands.AddFileCommand, Catalyst.Cli",
+      "type": "Catalyst.Cli.Commands.AddFileCommand",
       "services": [
         {
           "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"

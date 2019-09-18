@@ -25,7 +25,7 @@ using System.Collections.Generic;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Protocol.Network;
 
-namespace Catalyst.Node.POA.CE.Config
+namespace Catalyst.Node.POA.CE
 {
     public sealed class PoaConfigCopier : ConfigCopier
     {
@@ -36,6 +36,7 @@ namespace Catalyst.Node.POA.CE.Config
                 PoaConstants.P2PMessageHandlerConfigFile,
                 PoaConstants.RpcAuthenticationCredentialsFile,
                 PoaConstants.RpcMessageHandlerConfigFile,
+                Constants.SerilogJsonConfigFile,
                 Constants.NetworkConfigFile(network, overrideNetworkFile)
             };
         }
