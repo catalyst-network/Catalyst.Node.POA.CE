@@ -64,8 +64,6 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
             Path.Combine(Constants.ConfigSubFolder, CliConstants.ShellConfigFile),
         })
         {
-            ContainerProvider.ConfigureContainerBuilder();
-            
             ConfigureModules();
 
             ConfigureNodeClient();
