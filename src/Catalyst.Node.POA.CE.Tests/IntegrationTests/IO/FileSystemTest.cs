@@ -62,9 +62,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
 
         private bool CheckSavedPath(string path)
         {
-            var fileSystem = new FileSystem();
-
-            return fileSystem.GetCatalystDataDir().FullName.ToLower(CultureInfo.InvariantCulture).Equals(path.ToLower(CultureInfo.InvariantCulture));
+            return _fileSystem.GetCatalystDataDir().FullName.ToLower(CultureInfo.InvariantCulture).Equals(path.ToLower(CultureInfo.InvariantCulture));
         }
 
         [Theory]
@@ -88,7 +86,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
             CheckSavedPath(_sourceFolder).Should().BeTrue();
         }
 
-        [Fact]
+        [Fact(Skip = "TODO: Data directory logic has been remove")]
         [Trait(Traits.TestType, Traits.IntegrationTest)]
         public void Save_Data_Directory_Several_Times_New_Instance_Must_Load_With_New_Data_Directory()
         {
