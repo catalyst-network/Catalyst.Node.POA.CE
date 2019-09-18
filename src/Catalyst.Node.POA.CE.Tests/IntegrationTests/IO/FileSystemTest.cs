@@ -86,7 +86,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
             CheckSavedPath(_sourceFolder).Should().BeTrue();
         }
 
-        [Fact(Skip = "TODO: Data directory logic has been remove")]
+        [Fact(Skip = "TODO: Data directory logic has been removed")]
         [Trait(Traits.TestType, Traits.IntegrationTest)]
         public void Save_Data_Directory_Several_Times_New_Instance_Must_Load_With_New_Data_Directory()
         {

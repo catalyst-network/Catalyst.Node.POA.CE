@@ -26,7 +26,15 @@ using System.IO;
 using System.Linq;
 using Autofac;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.Cli.Commands;
+using Catalyst.Cli.Commands;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Rpc.Client;
 using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using Xunit;
@@ -59,6 +67,18 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
 
             using (var containerProvider = new ContainerProvider(configFilesUsed, FileSystem, Output))
             {
+                var containerBuilder = containerProvider.ContainerBuilder;
+                containerBuilder.RegisterModule(new CoreLibProvider());
+                containerBuilder.RegisterModule(new KeystoreModule());
+                containerBuilder.RegisterModule(new KeySignerModule());
+                containerBuilder.RegisterModule(new BulletProofsModule());
+                containerBuilder.RegisterModule(new RpcClientModule());
+
+                containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+                containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
+                containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+                containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
+
                 containerProvider.ConfigureContainerBuilder();
 
                 using (var scope = containerProvider.Container.BeginLifetimeScope(CurrentTestName + network))

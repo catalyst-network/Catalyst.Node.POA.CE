@@ -26,6 +26,8 @@ using System.Diagnostics;
 using System.IO;
 using Autofac;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.Cli.Commands;
+using Catalyst.Cli.Commands;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
@@ -106,6 +108,7 @@ namespace Catalyst.Cli
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
             
             kernel.StartContainer();
 
