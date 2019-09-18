@@ -55,7 +55,7 @@ using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Catalyst.Node.POA.CE.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using CommandLine;
 using DnsClient;
 
@@ -147,7 +147,7 @@ namespace Catalyst.Node.POA.CE
             {
                 Kernel
                     .WithDataDirectory()
-                    .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
+                    .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
                     .WithConfigurationFile(PoaConstants.P2PMessageHandlerConfigFile)
                     .WithConfigurationFile(PoaConstants.RpcMessageHandlerConfigFile)
                     .WithSerilogConfigFile()

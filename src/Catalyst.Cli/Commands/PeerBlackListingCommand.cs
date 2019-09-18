@@ -29,13 +29,13 @@ using Catalyst.Protocol.Rpc.Node;
 
 namespace Catalyst.Cli.Commands
 {
-    public sealed class PeerBlackListingCommand : BaseMessageCommand<SetPeerBlackListRequest, SetPeerBlackListResponse, PeerBlackListingOptions>
+    public sealed class PeerBlackListingCommand : BaseMessageCommand<SetPeerBlacklistRequest, SetPeerBlacklistResponse, PeerBlackListingOptions>
     {
         public PeerBlackListingCommand(ICommandContext commandContext) : base(commandContext) { }
 
-        protected override SetPeerBlackListRequest GetMessage(PeerBlackListingOptions option)
+        protected override SetPeerBlacklistRequest GetMessage(PeerBlackListingOptions option)
         {
-            return new SetPeerBlackListRequest
+            return new SetPeerBlacklistRequest
             {
                 PublicKey = option.PublicKey.ToUtf8ByteString(),
                 Ip = option.IpAddress.ToUtf8ByteString(),

@@ -22,10 +22,9 @@
 #endregion
 
 using System.Globalization;
-using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Node.POA.CE.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
@@ -55,7 +54,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
         {
             var currentDirectory = FileSystem.GetCatalystDataDir();
 
-            var network = Network.Devnet;
+            var network = NetworkType.Devnet;
             new PoaConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             return currentDirectory.FullName;

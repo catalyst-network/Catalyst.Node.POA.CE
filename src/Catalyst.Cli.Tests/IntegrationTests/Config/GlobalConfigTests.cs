@@ -27,7 +27,7 @@ using System.Linq;
 using Autofac;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using Xunit;
 using Xunit.Abstractions;
@@ -37,14 +37,14 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
     public sealed class GlobalConfigTests : FileSystemBasedTest
     {
         public static readonly List<object[]> Networks = 
-            new List<Network> {Network.Devnet, Network.Mainnet, Network.Testnet}.Select(n => new object[] {n}).ToList();
+            new List<NetworkType> {NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}.Select(n => new object[] {n}).ToList();
 
         public GlobalConfigTests(ITestOutputHelper output) : base(output) { }
 
         [Theory]
         [MemberData(nameof(Networks))]
         [Trait(Traits.TestType, Traits.IntegrationTest)]
-        public void Registering_All_Configs_Should_Allow_Resolving_ICatalystCli(Network network)
+        public void Registering_All_Configs_Should_Allow_Resolving_ICatalystCli(NetworkType network)
         {
             var configFilesUsed = new[]
                 {

@@ -28,7 +28,7 @@ using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using Xunit;
 using Xunit.Abstractions;
@@ -38,7 +38,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
     public class GlobalConfigTests : FileSystemBasedTest
     {
         public static readonly List<object[]> Networks = 
-            new List<Network> {Network.Devnet, Network.Mainnet, Network.Testnet}.Select(n => new object[] {n}).ToList();
+            new List<NetworkType> { NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}.Select(n => new object[] {n}).ToList();
 
         private IEnumerable<string> _configFilesUsed;
         private ContainerProvider _containerProvider;
@@ -47,7 +47,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
 
         [Theory]
         [MemberData(nameof(Networks))]
-        public void Registering_All_Configs_Should_Allow_Resolving_CatalystNode(Network network)
+        public void Registering_All_Configs_Should_Allow_Resolving_CatalystNode(NetworkType network)
         {
             _configFilesUsed = new[]
                 {

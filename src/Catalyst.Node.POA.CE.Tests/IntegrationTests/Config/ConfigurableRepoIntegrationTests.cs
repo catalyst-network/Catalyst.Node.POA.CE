@@ -21,16 +21,12 @@
 
 #endregion
 
-using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Core.Lib.IO.Messaging.Correlation;
-using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using FluentAssertions;
-using Newtonsoft.Json;
-using Xunit;
 using Xunit.Abstractions;
 
 namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config

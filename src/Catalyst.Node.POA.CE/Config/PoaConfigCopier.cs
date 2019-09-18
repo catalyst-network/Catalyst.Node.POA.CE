@@ -23,13 +23,13 @@
 
 using System.Collections.Generic;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 
 namespace Catalyst.Node.POA.CE.Config
 {
     public sealed class PoaConfigCopier : ConfigCopier
     {
-        protected override IEnumerable<string> RequiredConfigFiles(Network network, string overrideNetworkFile = null)
+        protected override IEnumerable<string> RequiredConfigFiles(NetworkType network, string overrideNetworkFile = null)
         {
             return new List<string>
             {
