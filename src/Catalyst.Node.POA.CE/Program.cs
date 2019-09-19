@@ -22,6 +22,7 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Autofac;
@@ -52,6 +53,7 @@ using Catalyst.Core.Modules.Ledger;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.P2P.Discovery.Hastings;
 using Catalyst.Core.Modules.Rpc.Server;
+using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Network;
@@ -117,6 +119,7 @@ namespace Catalyst.Node.POA.CE
             Kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
             Kernel.ContainerBuilder.RegisterModule(new BulletProofsModule());
             Kernel.ContainerBuilder.RegisterModule(new AuthenticationModule());
+            Kernel.ContainerBuilder.RegisterModule(new ApiModule("http://*:5005", new List<string> { "Catalyst.Core.Modules.Web3" }));
 
             // node modules
             kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
