@@ -1,0 +1,141 @@
+{
+  "defaultAssembly": "Catalyst.Cli",
+  "components": [
+    {
+      "type": "Catalyst.Cli.Commands.AddFileCommand",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetPeerInfoCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.ConnectCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.DisconnectCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetFileCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetInfoCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetMempoolCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetVersionCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.MessageSignCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.MessageVerifyCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.PeerBlackListingCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.PeerCountCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.PeerListCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.PeerRemoveCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.PeerReputationCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.GetDeltaCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    },
+    {
+      "type": "Catalyst.Cli.Commands.ChangeDataFolderCommand, Catalyst.Cli",
+      "services": [
+        {
+          "type": "Catalyst.Abstractions.Cli.CommandTypes.ICommand, Catalyst.Abstractions"
+        }
+      ]
+    }
+  ]
+}

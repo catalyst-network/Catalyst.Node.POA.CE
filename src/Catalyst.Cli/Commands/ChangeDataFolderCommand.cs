@@ -36,7 +36,7 @@ namespace Catalyst.Cli.Commands
         {
             return new SetPeerDataFolderRequest
             {
-                Datafolder = option.DataFolder
+                DataFolder = option.DataFolder
             };
         }
 

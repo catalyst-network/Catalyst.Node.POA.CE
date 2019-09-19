@@ -17,6 +17,5 @@
     <ItemGroup>
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.TestUtils\Catalyst.TestUtils.csproj" />
         <ProjectReference Include="..\Catalyst.Cli\Catalyst.Cli.csproj" />
-        <ProjectReference Include="..\Catalyst.Node.POA.CE\Catalyst.Node.POA.CE.csproj" />
     </ItemGroup>
 </Project>

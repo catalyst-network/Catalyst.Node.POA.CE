@@ -29,12 +29,14 @@ using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Consensus.Cycle;
 using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.IO.Observers;
 using Catalyst.Abstractions.Network;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Lib.Kernel;
 using Catalyst.Core.Lib.P2P;
@@ -52,7 +54,7 @@ using Catalyst.Core.Modules.P2P.Discovery.Hastings;
 using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using CommandLine;
 using DnsClient;
 
@@ -62,20 +64,20 @@ namespace Catalyst.Node.POA.CE
     {
         [Option("ipfs-password", HelpText = "The password for IPFS.  Defaults to prompting for the password.")]
         public string IpfsPassword { get; set; }
-        
+
         [Option("ssl-cert-password", HelpText = "The password for ssl cert.  Defaults to prompting for the password.")]
         public string SslCertPassword { get; set; }
-        
+
         [Option("node-password", HelpText = "The password for the node.  Defaults to prompting for the password.")]
         public string NodePassword { get; set; }
-        
+
         [Option('o', "overwrite-config", HelpText = "Overwrite the data directory configs.")]
         public bool OverwriteConfig { get; set; }
 
         [Option("network-file", HelpText = "The name of the network file")]
         public string OverrideNetworkFile { get; set; }
     }
-    
+
     internal static class Program
     {
         private static readonly Kernel Kernel;
@@ -91,24 +93,14 @@ namespace Catalyst.Node.POA.CE
         /// <summary>
         ///     For ref what passing custom boot logic looks like, this is the same as Kernel.StartNode()
         /// </summary>
-        /// <param name="args"></param>
         /// <param name="kernel"></param>
         /// <returns></returns>
         private static void CustomBootLogic(Kernel kernel)
         {
             // core modules
             Kernel.ContainerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
-
             Kernel.ContainerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             Kernel.ContainerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-            Kernel.ContainerBuilder.RegisterType<HastingsDiscovery>().As<IPeerDiscovery>();
-            Kernel.ContainerBuilder.RegisterType<Core.Lib.Network.DnsClient>().As<IDns>();
-            Kernel.ContainerBuilder.RegisterType<LookupClient>().As<ILookupClient>().UsingConstructor();
-            Kernel.ContainerBuilder.RegisterType<PeerIdValidator>().As<IPeerIdValidator>();
-            Kernel.ContainerBuilder.RegisterType<Neighbours>().As<INeighbours>();
-            Kernel.ContainerBuilder.RegisterType<IsaacRandomFactory>().As<IDeterministicRandomFactory>();
-            Kernel.ContainerBuilder.RegisterType<CycleConfiguration>().As<ICycleConfiguration>();
-            Kernel.ContainerBuilder.RegisterType<LedgerSynchroniser>().As<ILedgerSynchroniser>();
 
             // core modules
             Kernel.ContainerBuilder.RegisterModule(new CoreLibProvider());
@@ -131,7 +123,6 @@ namespace Catalyst.Node.POA.CE
             kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
 
             kernel.StartContainer();
-//            BsonSerializationProviders.Init();
             kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
                 .Wait();
@@ -145,20 +136,21 @@ namespace Catalyst.Node.POA.CE
 
             return Environment.ExitCode;
         }
-        
+
         private static void Run(Options options)
         {
             Kernel.Logger.Information("Catalyst.Node started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
-            
+
             try
             {
                 Kernel
                     .WithDataDirectory()
-                    .WithNetworksConfigFile(Network.Devnet, options.OverrideNetworkFile)
-//                    .WithComponentsConfigFile()
+                    .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
+                    .WithConfigurationFile(PoaConstants.P2PMessageHandlerConfigFile)
+                    .WithConfigurationFile(PoaConstants.RpcMessageHandlerConfigFile)
                     .WithSerilogConfigFile()
-                    .WithConfigCopier()
+                    .WithConfigCopier(new PoaConfigCopier())
                     .WithPersistenceConfiguration()
                     .BuildKernel(options.OverwriteConfig)
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
@@ -166,8 +158,6 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
                     .StartCustom(CustomBootLogic);
 
-                // .StartCustom(CustomBootLogic);
-                
                 Environment.ExitCode = 0;
             }
             catch (Exception e)

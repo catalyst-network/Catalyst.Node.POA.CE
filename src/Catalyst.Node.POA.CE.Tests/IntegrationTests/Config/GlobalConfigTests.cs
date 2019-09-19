@@ -26,10 +26,24 @@ using System.IO;
 using System.Linq;
 using Autofac;
 using Catalyst.Abstractions;
+using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.P2P.Discovery;
+using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Core.Modules.Authentication;
+using Catalyst.Core.Modules.Consensus;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Ledger;
+using Catalyst.Core.Modules.Mempool;
+using Catalyst.Core.Modules.P2P.Discovery.Hastings;
+using Catalyst.Core.Modules.Rpc.Server;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
+using NSubstitute;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -38,7 +52,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
     public class GlobalConfigTests : FileSystemBasedTest
     {
         public static readonly List<object[]> Networks = 
-            new List<Network> {Network.Devnet, Network.Mainnet, Network.Testnet}.Select(n => new object[] {n}).ToList();
+            new List<NetworkType> { NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}.Select(n => new object[] {n}).ToList();
 
         private IEnumerable<string> _configFilesUsed;
         private ContainerProvider _containerProvider;
@@ -47,7 +61,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
 
         [Theory]
         [MemberData(nameof(Networks))]
-        public void Registering_All_Configs_Should_Allow_Resolving_CatalystNode(Network network)
+        public void Registering_All_Configs_Should_Allow_Resolving_CatalystNode(NetworkType network)
         {
             _configFilesUsed = new[]
                 {
@@ -62,7 +76,20 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
 
             _containerProvider.ConfigureContainerBuilder();
 
-            _containerProvider.ContainerBuilder.RegisterInstance(new TestPasswordReader()).As<IPasswordReader>();
+            var containerBuilder = _containerProvider.ContainerBuilder;
+            containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
+            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            containerBuilder.RegisterInstance(Substitute.For<IPeerDiscovery>()).As<IPeerDiscovery>();
+            containerBuilder.RegisterModule(new KeySignerModule());
+            containerBuilder.RegisterModule(new ConsensusModule());
+            containerBuilder.RegisterModule(new DfsModule());
+            containerBuilder.RegisterModule(new LedgerModule());
+            containerBuilder.RegisterModule(new RpcServerModule());
+            containerBuilder.RegisterModule(new MempoolModule());
+            containerBuilder.RegisterModule(new KeystoreModule());
+            containerBuilder.RegisterModule(new BulletProofsModule());
+            containerBuilder.RegisterModule(new AuthenticationModule());
 
             using (var scope = _containerProvider.Container.BeginLifetimeScope(CurrentTestName + network))
             {

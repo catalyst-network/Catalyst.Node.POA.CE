@@ -1,4 +1,4 @@
-#region LICENSE
+﻿#region LICENSE
 
 /**
 * Copyright (c) 2019 Catalyst Network
@@ -21,25 +21,23 @@
 
 #endregion
 
-using Catalyst.Abstractions.Cli.Commands;
-using Catalyst.Cli.CommandTypes;
-using Catalyst.Cli.Options;
-using Catalyst.Core.Lib.Extensions;
-using Catalyst.Protocol.Rpc.Node;
+using System.Collections.Generic;
+using Catalyst.Core.Lib.Config;
+using Catalyst.Protocol.Network;
 
-namespace Catalyst.Cli.Commands
+namespace Catalyst.Node.POA.CE
 {
-    public sealed class PeerBlackListingCommand : BaseMessageCommand<SetPeerBlacklistRequest, SetPeerBlacklistResponse, PeerBlackListingOptions>
+    public sealed class PoaConfigCopier : ConfigCopier
     {
-        public PeerBlackListingCommand(ICommandContext commandContext) : base(commandContext) { }
-
-        protected override SetPeerBlacklistRequest GetMessage(PeerBlackListingOptions option)
+        protected override IEnumerable<string> RequiredConfigFiles(NetworkType network, string overrideNetworkFile = null)
         {
-            return new SetPeerBlacklistRequest
+            return new List<string>
             {
-                PublicKey = option.PublicKey.ToUtf8ByteString(),
-                Ip = option.IpAddress.ToUtf8ByteString(),
-                Blacklist = option.BlackListFlag
+                PoaConstants.P2PMessageHandlerConfigFile,
+                PoaConstants.RpcAuthenticationCredentialsFile,
+                PoaConstants.RpcMessageHandlerConfigFile,
+                Constants.SerilogJsonConfigFile,
+                Constants.NetworkConfigFile(network, overrideNetworkFile)
             };
         }
     }

@@ -37,7 +37,7 @@ using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Transport;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Wire;
 using Catalyst.TestUtils;
 using Google.Protobuf;
 using NSubstitute;

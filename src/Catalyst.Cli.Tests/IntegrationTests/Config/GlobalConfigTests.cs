@@ -26,8 +26,16 @@ using System.IO;
 using System.Linq;
 using Autofac;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.Cli.Commands;
+using Catalyst.Cli.Commands;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Rpc.Client;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using Xunit;
 using Xunit.Abstractions;
@@ -37,26 +45,40 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
     public sealed class GlobalConfigTests : FileSystemBasedTest
     {
         public static readonly List<object[]> Networks = 
-            new List<Network> {Network.Devnet, Network.Mainnet, Network.Testnet}.Select(n => new object[] {n}).ToList();
+            new List<NetworkType> {NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}.Select(n => new object[] {n}).ToList();
 
         public GlobalConfigTests(ITestOutputHelper output) : base(output) { }
 
         [Theory]
         [MemberData(nameof(Networks))]
         [Trait(Traits.TestType, Traits.IntegrationTest)]
-        public void Registering_All_Configs_Should_Allow_Resolving_ICatalystCli(Network network)
+        public void Registering_All_Configs_Should_Allow_Resolving_ICatalystCli(NetworkType network)
         {
             var configFilesUsed = new[]
                 {
                     Constants.NetworkConfigFile(network),
                     Constants.SerilogJsonConfigFile,
-                    Constants.ShellNodesConfigFile,
-                    Constants.ShellConfigFile
+                    CliConstants.ShellNodesConfigFile,
+                    CliConstants.ShellConfigFile,
+                    CliConstants.RpcResponseHandlersConfigFile,
+                    CliConstants.CliCommandsConfigFile
                 }
                .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
 
             using (var containerProvider = new ContainerProvider(configFilesUsed, FileSystem, Output))
             {
+                var containerBuilder = containerProvider.ContainerBuilder;
+                containerBuilder.RegisterModule(new CoreLibProvider());
+                containerBuilder.RegisterModule(new KeystoreModule());
+                containerBuilder.RegisterModule(new KeySignerModule());
+                containerBuilder.RegisterModule(new BulletProofsModule());
+                containerBuilder.RegisterModule(new RpcClientModule());
+
+                containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+                containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
+                containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+                containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
+
                 containerProvider.ConfigureContainerBuilder();
 
                 using (var scope = containerProvider.Container.BeginLifetimeScope(CurrentTestName + network))

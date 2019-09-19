@@ -21,11 +21,12 @@
 
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Catalyst.Core.Lib.Config;
-using Catalyst.Protocol.Common;
+using Catalyst.Protocol.Network;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
@@ -37,15 +38,14 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
     {
         public ConfigCopierTests(ITestOutputHelper output) : base(output) { }
 
-        private sealed class ConfigFilesOverwriteTestData : TheoryData<string, Network>
+        private sealed class ConfigFilesOverwriteTestData : TheoryData<string, NetworkType>
         {
             public ConfigFilesOverwriteTestData()
             {
-                Add(Constants.NetworkConfigFile(Network.Mainnet), Network.Mainnet);
-                Add(Constants.NetworkConfigFile(Network.Testnet), Network.Testnet);
-                Add(Constants.NetworkConfigFile(Network.Devnet), Network.Devnet);
-                Add(Constants.SerilogJsonConfigFile, Network.Devnet);
-                Add(Constants.MessageHandlersConfigFile, Network.Devnet);
+                Add(Constants.NetworkConfigFile(NetworkType.Mainnet), NetworkType.Mainnet);
+                Add(Constants.NetworkConfigFile(NetworkType.Testnet), NetworkType.Testnet);
+                Add(Constants.NetworkConfigFile(NetworkType.Devnet), NetworkType.Devnet);
+                Add(Constants.SerilogJsonConfigFile, NetworkType.Devnet);
             }
         }
 
@@ -53,12 +53,12 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
         [ClassData(typeof(ConfigFilesOverwriteTestData))]
         [Trait(Traits.TestType, Traits.IntegrationTest)]
         public void RunConfigStartUp_Should_Not_Overwrite_An_Existing_Config_File(string moduleFileName,
-            Network network)
+            NetworkType network)
         {
             RunConfigStartUp_Should_Not_Overwrite_Existing_Files(moduleFileName, network);
         }
 
-        private void RunConfigStartUp_Should_Not_Overwrite_Existing_Files(string fileName, Network network = Network.Devnet)
+        private void RunConfigStartUp_Should_Not_Overwrite_Existing_Files(string fileName, NetworkType network = NetworkType.Devnet)
         {
             var currentDirectory = FileSystem.GetCatalystDataDir();
             currentDirectory.Create();
@@ -75,7 +75,7 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             currentDirectory.Exists.Should().BeTrue("otherwise the test is not relevant");
             existingFileInfo.Exists.Should().BeTrue("otherwise the test is not relevant");
 
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network).ToList();
             var configFiles = EnumerateConfigFiles(currentDirectory);
@@ -89,18 +89,17 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
         private static IEnumerable<string> EnumerateConfigFiles(DirectoryInfo currentDirectory)
         {
             var filesOnDisk = currentDirectory.EnumerateFiles()
+                .Where(f => f.Extension.Equals(".json", StringComparison.CurrentCultureIgnoreCase))
                .Select(f => f.Name);
             return filesOnDisk;
         }
 
-        private IEnumerable<string> GetExpectedFileList(Network network)
+        private static IEnumerable<string> GetExpectedFileList(NetworkType network)
         {
             var requiredConfigFiles = new[]
             {
                 Constants.NetworkConfigFile(network),
-                Constants.SerilogJsonConfigFile,
-                Constants.MessageHandlersConfigFile,
-                Constants.RpcAuthenticationCredentialsFile
+                Constants.SerilogJsonConfigFile
             };
             return requiredConfigFiles;
         }
@@ -112,8 +111,8 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             var currentDirectory = FileSystem.GetCatalystDataDir();
             currentDirectory.Exists.Should().BeFalse("otherwise the test is not relevant");
 
-            var network = Network.Devnet;
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
+            var network = NetworkType.Devnet;
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, network);
 
             var expectedFileList = GetExpectedFileList(network);
             var configFiles = EnumerateConfigFiles(currentDirectory);
@@ -126,9 +125,17 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             var overrideFile = "TestOverride.json";
             var currentDirectory = FileSystem.GetCatalystDataDir();
             FileSystem.WriteTextFileToCddAsync(overrideFile,
-                File.ReadAllText(Path.Combine(Constants.ConfigSubFolder, Constants.NetworkConfigFile(Network.Devnet))));
-            new ConfigCopier().RunConfigStartUp(currentDirectory.FullName, Network.Devnet, null, true, overrideFile);
+                File.ReadAllText(Path.Combine(Constants.ConfigSubFolder, Constants.NetworkConfigFile(NetworkType.Devnet))));
+            new TestConfigCopier().RunConfigStartUp(currentDirectory.FullName, NetworkType.Devnet, null, true, overrideFile);
             File.Exists(Path.Combine(currentDirectory.FullName, overrideFile)).Should().BeTrue();
+        }
+
+        internal class TestConfigCopier : ConfigCopier
+        {
+            protected override IEnumerable<string> RequiredConfigFiles(NetworkType network, string overrideNetworkFile = null)
+            {
+                return new List<string>(GetExpectedFileList(network));
+            }
         }
     }
 }

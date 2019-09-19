@@ -40,7 +40,6 @@ using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Abstractions.Types;
-using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
@@ -49,7 +48,6 @@ using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Mempool;
-using Catalyst.Protocol.Common;
 using Catalyst.TestUtils;
 using Ipfs.Registry;
 using NSubstitute;
@@ -144,7 +142,7 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterInstance(_peerRepository).As<IPeerRepository>();
             _containerProvider.ContainerBuilder.RegisterType<TestFileSystem>().As<IFileSystem>()
                .WithParameter("rootPath", _nodeDirectory.FullName);
-            _containerProvider.ContainerBuilder.RegisterInstance(new NoDiscovery()).As<IPeerDiscovery>();
+            _containerProvider.ContainerBuilder.RegisterInstance(Substitute.For<IPeerDiscovery>()).As<IPeerDiscovery>();
             var keySigner = Substitute.For<IKeySigner>();
             keySigner.Verify(Arg.Any<ISignature>(), Arg.Any<byte[]>(), default).ReturnsForAnyArgs(true);
             _containerProvider.ContainerBuilder.RegisterInstance(keySigner).As<IKeySigner>();
