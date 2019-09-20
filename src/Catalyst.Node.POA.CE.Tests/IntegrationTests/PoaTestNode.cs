@@ -33,8 +33,8 @@ using Catalyst.Abstractions.Consensus;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.FileSystem;
-using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.KeySigner;
+using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
@@ -43,11 +43,11 @@ using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
-using Catalyst.Core.Lib.P2P;
 using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Mempool;
+using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
 using Ipfs.Registry;
 using NSubstitute;
@@ -55,15 +55,15 @@ using Serilog;
 using SharpRepository.InMemoryRepository;
 using Xunit.Abstractions;
 
-namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
+namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
 {
     public class PoaTestNode : ICatalystNode, IDisposable
     {
         private readonly DevDfs _dfs;
-        private readonly IMempool<MempoolDocument> _mempool;
+        private readonly IMempool<MempoolDocument> _memPool;
         private readonly ICatalystNode _node;
         private readonly DirectoryInfo _nodeDirectory;
-        private readonly IPeerIdentifier _nodePeerId;
+        private readonly PeerId _nodePeerId;
         private readonly IPeerSettings _nodeSettings;
         private readonly IPeerRepository _peerRepository;
         private readonly IRpcServerSettings _rpcSettings;
@@ -73,7 +73,7 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
         public PoaTestNode(string name,
             IPrivateKey privateKey,
             IPeerSettings nodeSettings,
-            IEnumerable<IPeerIdentifier> knownPeerIds,
+            IEnumerable<PeerId> knownPeerIds,
             IFileSystem parentTestFileSystem,
             ITestOutputHelper output)
         {
@@ -85,17 +85,17 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
             nodeFileSystem.GetCatalystDataDir().Returns(_nodeDirectory);
 
             _rpcSettings = RpcServerSettingsHelper.GetRpcServerSettings(nodeSettings.Port + 100);
-            _nodePeerId = new PeerIdentifier(nodeSettings);
+            _nodePeerId = nodeSettings.PeerId;
 
             var baseDfsFolder = Path.Combine(parentTestFileSystem.GetCatalystDataDir().FullName, "dfs");
             var hashingAlgorithm = HashingAlgorithm.All.First(x => x.Name == "blake2b-256");
             _dfs = new DevDfs(parentTestFileSystem, hashingAlgorithm, baseDfsFolder);
 
-            _mempool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()), Substitute.For<ILogger>());
+            _memPool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()), Substitute.For<ILogger>());
             _peerRepository = Substitute.For<IPeerRepository>();
             var peersInRepo = knownPeerIds.Select(p => new Peer
             {
-                PeerIdentifier = p
+                PeerId = p
             }).ToList();
             _peerRepository.AsQueryable().Returns(peersInRepo.AsQueryable());
             _peerRepository.GetAll().Returns(peersInRepo);
@@ -136,9 +136,9 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterInstance(new TestPasswordReader()).As<IPasswordReader>();
             _containerProvider.ContainerBuilder.RegisterInstance(_nodeSettings).As<IPeerSettings>();
             _containerProvider.ContainerBuilder.RegisterInstance(_rpcSettings).As<IRpcServerSettings>();
-            _containerProvider.ContainerBuilder.RegisterInstance(_nodePeerId).As<IPeerIdentifier>();
+            _containerProvider.ContainerBuilder.RegisterInstance(_nodePeerId).As<PeerId>();
             _containerProvider.ContainerBuilder.RegisterInstance(_dfs).As<IDfs>();
-            _containerProvider.ContainerBuilder.RegisterInstance(_mempool).As<IMempool<MempoolDocument>>();
+            _containerProvider.ContainerBuilder.RegisterInstance(_memPool).As<IMempool<MempoolDocument>>();
             _containerProvider.ContainerBuilder.RegisterInstance(_peerRepository).As<IPeerRepository>();
             _containerProvider.ContainerBuilder.RegisterType<TestFileSystem>().As<IFileSystem>()
                .WithParameter("rootPath", _nodeDirectory.FullName);

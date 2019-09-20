@@ -27,14 +27,14 @@ using System.Reactive.Linq;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
-using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Events;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
-using Catalyst.Core.Lib.P2P;
 using Catalyst.Core.Lib.Util;
+using Catalyst.Protocol.Peer;
 using Google.Protobuf;
+using Ipfs;
 
 namespace Catalyst.Cli.CommandTypes
 {
@@ -47,6 +47,7 @@ namespace Catalyst.Cli.CommandTypes
         private readonly IDisposable _eventStreamObserverClientAdded;
         private readonly IDisposable _eventStreamObserverClientRemoved;
         private readonly ConcurrentDictionary<int, IDisposable> _subscriptions;
+        private PeerId _recipientPeerId;
 
         protected BaseMessageCommand(ICommandContext commandContext) : base(commandContext)
         {
@@ -57,16 +58,18 @@ namespace Catalyst.Cli.CommandTypes
                .OfType<SocketClientRegistryClientRemoved>().Subscribe(SocketClientRegistryClientRemovedOnNext);
         }
 
-        protected IPeerIdentifier RecipientPeerIdentifier
+        protected PeerId RecipientPeerId
         {
             get
             {
-                var peerIdentifier = CommandContext.GetNodeConfig(Options.Node);
-                return new PeerIdentifier(peerIdentifier.PublicKey.KeyToBytes(), peerIdentifier.HostAddress, peerIdentifier.Port);
+                if (_recipientPeerId != null) return _recipientPeerId;
+                var rpcClientConfig = CommandContext.GetNodeConfig(Options.Node);
+                _recipientPeerId = rpcClientConfig.PublicKey.BuildPeerIdFromBase32CrockfordKey(rpcClientConfig.HostAddress, rpcClientConfig.Port);
+                return _recipientPeerId;
             }
         }
 
-        protected IPeerIdentifier SenderPeerIdentifier => CommandContext.PeerIdentifier;
+        protected PeerId SenderPeerId => CommandContext.PeerId;
 
         public void Dispose()
         {
@@ -85,8 +88,8 @@ namespace Catalyst.Cli.CommandTypes
             }
 
             var messageDto = new MessageDto(
-                message.ToProtocolMessage(SenderPeerIdentifier.PeerId),
-                RecipientPeerIdentifier);
+                message.ToProtocolMessage(SenderPeerId),
+                RecipientPeerId);
             Target.SendMessage(messageDto);
         }
 

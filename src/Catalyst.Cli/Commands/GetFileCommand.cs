@@ -55,16 +55,16 @@ namespace Catalyst.Cli.Commands
         public override void SendMessage(GetFileOptions opts)
         {
             var message = GetMessage(opts);
-            var protocolMessage = message.ToProtocolMessage(SenderPeerIdentifier.PeerId);
+            var protocolMessage = message.ToProtocolMessage(SenderPeerId);
             var correlationId = protocolMessage.CorrelationId.ToCorrelationId();
 
             var messageDto = new MessageDto(
                 protocolMessage,
-                RecipientPeerIdentifier);
+                RecipientPeerId);
 
             var fileTransfer = new DownloadFileTransferInformation(
-                SenderPeerIdentifier,
-                RecipientPeerIdentifier,
+                SenderPeerId,
+                RecipientPeerId,
                 Target.Channel,
                 correlationId,
                 opts.FileOutput,

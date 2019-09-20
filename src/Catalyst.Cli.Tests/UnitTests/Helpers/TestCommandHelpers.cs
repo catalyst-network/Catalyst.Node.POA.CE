@@ -37,6 +37,7 @@ using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Transport;
+using Catalyst.Core.Lib.Util;
 using Catalyst.Protocol.Wire;
 using Catalyst.TestUtils;
 using Google.Protobuf;
@@ -63,8 +64,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             commandContext.RpcClientFactory.Returns(nodeRpcClientFactory);
             commandContext.CertificateStore.Returns(certificateStore);
 
-            commandContext.PeerIdentifier.Returns(
-                PeerIdentifierHelper.GetPeerIdentifier("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G", IPAddress.Any, 9010));
+            commandContext.PeerId.Returns(
+                PeerIdHelper.GetPeerId("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G".KeyToBytes(), IPAddress.Any, 9010));
 
             var nodeRpcClient = MockNodeRpcClient();
             MockRpcNodeConfig(commandContext);
@@ -87,8 +88,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
 
             var hashingAlgorithm = Constants.HashAlgorithm;
             var deltaMultiHash = Encoding.UTF8.GetBytes("previous").ComputeMultihash(hashingAlgorithm);
-            commandContext.PeerIdentifier.Returns(
-                PeerIdentifierHelper.GetPeerIdentifier(deltaMultiHash, IPAddress.Any, 9010));
+            commandContext.PeerId.Returns(
+                PeerIdHelper.GetPeerId(deltaMultiHash.Digest, IPAddress.Any, 9010));
 
             return commandContext;
         }

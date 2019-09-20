@@ -33,7 +33,6 @@ using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Mempool.Documents;
-using Catalyst.Core.Lib.P2P;
 using Catalyst.Core.Modules.Ledger;
 using Serilog;
 
@@ -47,7 +46,7 @@ namespace Catalyst.Node.POA.CE
         private readonly ILedger _ledger;
         private readonly IKeySigner _keySigner;
         private readonly ILogger _logger;
-        private readonly IMempool<MempoolDocument> _mempool;
+        private readonly IMempool<MempoolDocument> _memPool;
         private readonly IPeerService _peer;
         private readonly IRpcServer _rpcServer;
         private readonly IPeerClient _peerClient;
@@ -62,7 +61,7 @@ namespace Catalyst.Node.POA.CE
             IRpcServer rpcServer,
             IPeerClient peerClient,
             IPeerSettings peerSettings,
-            IMempool<MempoolDocument> mempool,
+            IMempool<MempoolDocument> memPool,
             IContract contract = null)
         {
             _peer = peer;
@@ -74,7 +73,7 @@ namespace Catalyst.Node.POA.CE
             _keySigner = keySigner;
             _logger = logger;
             _rpcServer = rpcServer;
-            _mempool = mempool;
+            _memPool = memPool;
             _contract = contract;
         }
 
@@ -88,7 +87,7 @@ namespace Catalyst.Node.POA.CE
         public async Task RunAsync(CancellationToken ct)
         {
             _logger.Information("Starting the Catalyst Node");
-            _logger.Information("using PeerIdentifier: {0}", new PeerIdentifier(_peerSettings));
+            _logger.Information("using PeerIdentifier: {0}", _peerSettings.PeerId);
 
             await StartSockets().ConfigureAwait(false);
             Consensus.StartProducing();

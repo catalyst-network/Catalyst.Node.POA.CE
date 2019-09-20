@@ -1,22 +1,22 @@
 {
     "CatalystNodeConfiguration": {
-        "Peer": {
-            "Network": "Devnet",
-            "PublicKey": "<!--fill me -->,
-            "Port": 42076,
-            "BindAddress": "127.0.0.1",
-            "PublicIpAddress": "127.0.0.1",
-            "DnsServers": [
-                "127.0.0.1:5053"
-            ],
-            "SeedServers": [
-                "seed1.catalystnetwork.io",
-                "seed2.catalystnetwork.io",
-                "seed3.catalystnetwork.io",
-                "seed4.catalystnetwork.io",
-                "seed5.catalystnetwork.io"
-            ]
-        },
+      "Peer": {
+        "Network": "Devnet",
+        "PublicKey": "ksvyzbgtjwm2x5ge82w054gdr96wkxbhyabmgsj2vvbv8dfz0zwg",
+        "Port": 42076,
+        "BindAddress": "127.0.0.1",
+        "PublicIpAddress": "127.0.0.1",
+        "DnsServers": [
+          "127.0.0.1:5053"
+        ],
+        "SeedServers": [
+          "seed1.catalystnetwork.io",
+          "seed2.catalystnetwork.io",
+          "seed3.catalystnetwork.io",
+          "seed4.catalystnetwork.io",
+          "seed5.catalystnetwork.ior4389k98e98g0emjr8panyxa6z8611f561ypw2e5v2q54xrtzy5g"
+        ]
+      },
         "Rpc": {
             "BindAddress": "127.0.0.1",
             "Port": 42066,

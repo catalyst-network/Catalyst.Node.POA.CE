@@ -29,9 +29,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using Catalyst.Abstractions.P2P;
 using Catalyst.Core.Lib.Cryptography;
-using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Modules.Consensus.Cycle;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.TestUtils;
@@ -39,7 +38,7 @@ using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
+namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
 {
     public sealed class PoaConsensusTests : FileSystemBasedTest
     {
@@ -61,7 +60,7 @@ namespace Catalyst.Modules.POA.Consensus.Tests.IntegrationTests
                     var privateKey = context.GeneratePrivateKey();
                     var publicKey = privateKey.GetPublicKey();
                     var nodeSettings = PeerSettingsHelper.TestPeerSettings(publicKey.Bytes, 2000 + i);
-                    var peerIdentifier = new PeerIdentifier(nodeSettings) as IPeerIdentifier;
+                    var peerIdentifier = nodeSettings.PeerId;
                     var name = $"producer{i.ToString()}";
                     return new {index = i, name, privateKey, nodeSettings, peerIdentifier};
                 }
