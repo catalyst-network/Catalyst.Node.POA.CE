@@ -40,6 +40,7 @@ using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Abstractions.Types;
+using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
@@ -47,6 +48,7 @@ using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Mempool;
+using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
 using Ipfs.Registry;
@@ -104,6 +106,14 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                 return peersInRepo.First(p => p.DocumentId.Equals((string) ci[0]));
             });
 
+            _containerProvider = new ContainerProvider(new[]
+                {
+                    Constants.NetworkConfigFile(NetworkType.Devnet),
+                    Constants.SerilogJsonConfigFile
+                }
+                .Select(f => Path.Combine(Constants.ConfigSubFolder, f)), parentTestFileSystem, output);
+
+            CatalystNodePoa.RegisterNodeDependencies(_containerProvider.ContainerBuilder);
             _containerProvider.ConfigureContainerBuilder(true, true);
             OverrideContainerBuilderRegistrations();
 

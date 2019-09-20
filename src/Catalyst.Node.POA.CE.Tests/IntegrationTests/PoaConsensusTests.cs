@@ -30,7 +30,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Core.Lib.Cryptography;
-using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Modules.Consensus.Cycle;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.TestUtils;

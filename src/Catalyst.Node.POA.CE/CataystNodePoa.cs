@@ -22,9 +22,12 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Autofac;
 using Catalyst.Abstractions;
+using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Consensus;
 using Catalyst.Abstractions.Contract;
 using Catalyst.Abstractions.Dfs;
@@ -32,8 +35,22 @@ using Catalyst.Abstractions.KeySigner;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Rpc;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Mempool.Documents;
+using Catalyst.Core.Modules.Authentication;
+using Catalyst.Core.Modules.Consensus;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
 using Catalyst.Core.Modules.Ledger;
+using Catalyst.Core.Modules.Mempool;
+using Catalyst.Core.Modules.P2P.Discovery.Hastings;
+using Catalyst.Core.Modules.Rpc.Server;
+using Catalyst.Core.Modules.Web3;
+using Catalyst.Modules.POA.Consensus;
+using Catalyst.Modules.POA.P2P;
 using Serilog;
 
 namespace Catalyst.Node.POA.CE
@@ -103,6 +120,36 @@ namespace Catalyst.Node.POA.CE
             } while (!ct.IsCancellationRequested && !exit);
 
             _logger.Debug("Stopping the Catalyst Node");
+        }
+
+        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder)
+        {
+            // core modules
+            containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
+            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+
+            // core modules
+            containerBuilder.RegisterModule(new CoreLibProvider());
+            containerBuilder.RegisterModule(new MempoolModule());
+            containerBuilder.RegisterModule(new ConsensusModule());
+            containerBuilder.RegisterModule(new LedgerModule());
+            containerBuilder.RegisterModule(new DiscoveryHastingModule());
+            containerBuilder.RegisterModule(new RpcServerModule());
+            containerBuilder.RegisterModule(new BulletProofsModule());
+            containerBuilder.RegisterModule(new KeystoreModule());
+            containerBuilder.RegisterModule(new KeySignerModule());
+            containerBuilder.RegisterModule(new RpcServerModule());
+            containerBuilder.RegisterModule(new DfsModule());
+            containerBuilder.RegisterModule(new ConsensusModule());
+            containerBuilder.RegisterModule(new BulletProofsModule());
+            containerBuilder.RegisterModule(new AuthenticationModule());
+            containerBuilder.RegisterModule(new ApiModule("http://*:5005",
+                new List<string> {"Catalyst.Core.Modules.Web3"}));
+
+            // node modules
+            containerBuilder.RegisterModule(new PoaConsensusModule());
+            containerBuilder.RegisterModule(new PoaP2PModule());
         }
     }
 }

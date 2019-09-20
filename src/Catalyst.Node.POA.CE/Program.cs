@@ -99,37 +99,14 @@ namespace Catalyst.Node.POA.CE
         /// <returns></returns>
         private static void CustomBootLogic(Kernel kernel)
         {
-            // core modules
-            Kernel.ContainerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
-            Kernel.ContainerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
-            Kernel.ContainerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-
-            // core modules
-            Kernel.ContainerBuilder.RegisterModule(new CoreLibProvider());
-            Kernel.ContainerBuilder.RegisterModule(new MempoolModule());
-            Kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
-            Kernel.ContainerBuilder.RegisterModule(new LedgerModule());
-            Kernel.ContainerBuilder.RegisterModule(new DiscoveryHastingModule());
-            Kernel.ContainerBuilder.RegisterModule(new RpcServerModule());
-            Kernel.ContainerBuilder.RegisterModule(new BulletProofsModule());
-            Kernel.ContainerBuilder.RegisterModule(new KeystoreModule());
-            Kernel.ContainerBuilder.RegisterModule(new KeySignerModule());
-            Kernel.ContainerBuilder.RegisterModule(new RpcServerModule());
-            Kernel.ContainerBuilder.RegisterModule(new DfsModule());
-            Kernel.ContainerBuilder.RegisterModule(new ConsensusModule());
-            Kernel.ContainerBuilder.RegisterModule(new BulletProofsModule());
-            Kernel.ContainerBuilder.RegisterModule(new AuthenticationModule());
-            Kernel.ContainerBuilder.RegisterModule(new ApiModule("http://*:5005", new List<string> { "Catalyst.Core.Modules.Web3" }));
-
-            // node modules
-            kernel.ContainerBuilder.RegisterModule(new PoaConsensusModule());
-            kernel.ContainerBuilder.RegisterModule(new PoaP2PModule());
+            CatalystNodePoa.RegisterNodeDependencies(Kernel.ContainerBuilder);
 
             kernel.StartContainer();
             kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
                 .Wait();
         }
+
         public static int Main(string[] args)
         {
             // Parse the arguments.

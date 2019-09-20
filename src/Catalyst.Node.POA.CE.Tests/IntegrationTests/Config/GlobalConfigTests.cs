@@ -28,6 +28,7 @@ using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
