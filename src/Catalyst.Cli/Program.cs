@@ -67,8 +67,6 @@ namespace Catalyst.Cli
                    .WithConfigCopier(new CliConfigCopier())
                    .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
                    .WithConfigurationFile(CliConstants.ShellConfigFile)
-                   .WithConfigurationFile(CliConstants.RpcResponseHandlersConfigFile)
-                   .WithConfigurationFile(CliConstants.CliCommandsConfigFile)
                    .BuildKernel()
                    .StartCustom(StartCli);
 
@@ -99,17 +97,9 @@ namespace Catalyst.Cli
 
             var containerBuilder = kernel.ContainerBuilder;
 
-            containerBuilder.RegisterModule(new CoreLibProvider());
-            containerBuilder.RegisterModule(new KeystoreModule());
-            containerBuilder.RegisterModule(new KeySignerModule());
-            containerBuilder.RegisterModule(new BulletProofsModule());
-            containerBuilder.RegisterModule(new RpcClientModule());
+            CatalystCliBase.RegisterCoreModules(containerBuilder);
+            CatalystCliBase.RegisterClientDependencies(containerBuilder);
 
-            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
-            containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
-            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-            containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
-            
             kernel.StartContainer();
 
             kernel.Instance.Resolve<ICatalystCli>()

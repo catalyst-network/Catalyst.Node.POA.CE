@@ -44,7 +44,8 @@ namespace Catalyst.Cli
         /// <inheritdoc cref="ParseCommand" />
         public override bool ParseCommand(params string[] args)
         {
-            var parsedCommand = _commands.FirstOrDefault(command => command.CommandName.Equals(args[0], StringComparison.InvariantCultureIgnoreCase));
+            var parsedCommand = _commands.FirstOrDefault(command => 
+                command.CommandName.Equals(args[0], StringComparison.InvariantCultureIgnoreCase));
             var commandExists = parsedCommand != null;
 
             if (commandExists)

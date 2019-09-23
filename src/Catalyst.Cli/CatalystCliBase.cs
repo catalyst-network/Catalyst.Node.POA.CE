@@ -22,12 +22,29 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using Autofac;
+using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.Cli.Commands;
+using Catalyst.Abstractions.Cli.CommandTypes;
+using Catalyst.Abstractions.IO.Observers;
+using Catalyst.Abstractions.IO.Transport;
+using Catalyst.Abstractions.Rpc;
+using Catalyst.Cli.Commands;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.IO.Transport;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Rpc.Client;
+using NLog.LayoutRenderers;
 
 namespace Catalyst.Cli
 {
@@ -93,5 +110,31 @@ namespace Catalyst.Cli
 
         /// <inheritdoc />
         public abstract bool ParseCommand(params string[] args);
+
+        public static void RegisterClientDependencies(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+            containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
+            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            var socketClientRegistry = new SocketClientRegistry<IRpcClient>();
+            containerBuilder.RegisterInstance(socketClientRegistry).As<ISocketClientRegistry<IRpcClient>>();
+            containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
+            
+            containerBuilder.RegisterAssemblyTypes(Assembly.GetExecutingAssembly())
+                .AssignableTo<ICommand>().As<ICommand>();
+
+            containerBuilder.RegisterAssemblyTypes(typeof(RpcClientModule).Assembly)
+                .AssignableTo<IRpcResponseObserver>().As<IRpcResponseObserver>()
+                .PublicOnly();
+        }
+
+        public static void RegisterCoreModules(ContainerBuilder containerBuilder)
+        {
+            containerBuilder.RegisterModule(new CoreLibProvider());
+            containerBuilder.RegisterModule(new KeystoreModule());
+            containerBuilder.RegisterModule(new KeySignerModule());
+            containerBuilder.RegisterModule(new BulletProofsModule());
+            containerBuilder.RegisterModule(new RpcClientModule());
+        }
     }
 }

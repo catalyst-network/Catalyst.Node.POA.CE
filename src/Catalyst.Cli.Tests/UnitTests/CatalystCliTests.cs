@@ -30,6 +30,7 @@ using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
+using Catalyst.Core.Lib.IO.Transport;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
@@ -47,7 +48,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             var userOutput = Substitute.For<IUserOutput>();
             var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
-            var keyRegistry = Substitute.For<IKeyRegistry>();
+            var clientRegistry = new SocketClientRegistry<IRpcClient>();
 
             var cliSettings = configRoot.GetSection("CatalystCliConfig");
             cliSettings.GetSection("PublicKey").Value
@@ -56,7 +57,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             cliSettings.GetSection("Port").Value.Returns("5632");
 
             _commandContext = new CommandContext(configRoot, logger, userOutput,
-                nodeRpcClientFactory, certificateStore, keyRegistry);
+                nodeRpcClientFactory, certificateStore, clientRegistry);
         }
 
         private readonly ICommandContext _commandContext;
