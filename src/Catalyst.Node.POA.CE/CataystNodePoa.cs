@@ -36,7 +36,6 @@ using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.KeySigner;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
-using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Mempool.Documents;

@@ -26,7 +26,6 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
-using Nethereum.RLP;
 
 namespace Catalyst.Cli.Commands
 {

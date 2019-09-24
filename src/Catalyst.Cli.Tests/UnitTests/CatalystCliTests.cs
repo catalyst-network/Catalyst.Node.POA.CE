@@ -27,7 +27,6 @@ using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
-using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using Catalyst.Core.Lib.IO.Transport;

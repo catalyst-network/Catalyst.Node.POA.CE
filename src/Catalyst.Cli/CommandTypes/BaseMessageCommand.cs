@@ -31,10 +31,8 @@ using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Events;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
-using Catalyst.Core.Lib.Util;
 using Catalyst.Protocol.Peer;
 using Google.Protobuf;
-using Ipfs;
 
 namespace Catalyst.Cli.CommandTypes
 {
