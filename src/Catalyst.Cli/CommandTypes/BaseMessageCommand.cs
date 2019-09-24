@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Reactive.Linq;
+using System.Reflection;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
@@ -33,6 +34,7 @@ using Catalyst.Core.Lib.IO.Events;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
 using Catalyst.Protocol.Peer;
 using Google.Protobuf;
+using Serilog;
 
 namespace Catalyst.Cli.CommandTypes
 {
@@ -42,6 +44,8 @@ namespace Catalyst.Cli.CommandTypes
         where TResponse : IMessage<TResponse>
         where TOption : IOptionsBase
     {
+        private static readonly ILogger Logger = Log.Logger.ForContext(MethodBase.GetCurrentMethod().DeclaringType);
+
         private readonly IDisposable _eventStreamObserverClientAdded;
         private readonly IDisposable _eventStreamObserverClientRemoved;
         private readonly ConcurrentDictionary<int, IDisposable> _subscriptions;
@@ -114,9 +118,16 @@ namespace Catalyst.Cli.CommandTypes
 
         private void SocketClientRegistryClientAddedOnNext(SocketClientRegistryClientAdded clientAddedEvent)
         {
-            var client = CommandContext.SocketClientRegistry.GetClientFromRegistry(clientAddedEvent.SocketHashCode);
-            var subscription = client.SubscribeToResponse<TResponse>(CommandResponseOnNext);
-            _subscriptions.TryAdd(clientAddedEvent.SocketHashCode, subscription);
+            try
+            {
+                var client = CommandContext.SocketClientRegistry.GetClientFromRegistry(clientAddedEvent.SocketHashCode);
+                var subscription = client.SubscribeToResponse<TResponse>(CommandResponseOnNext);
+                _subscriptions.TryAdd(clientAddedEvent.SocketHashCode, subscription);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, "Error subscribing to Rpc response stream.");
+            }
         }
 
         private void SocketClientRegistryClientRemovedOnNext(SocketClientRegistryClientRemoved clientRemovedEvent)
