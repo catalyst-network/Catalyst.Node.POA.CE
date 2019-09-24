@@ -25,12 +25,15 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
-    public sealed class ChangeDataFolderCommand : BaseMessageCommand<SetPeerDataFolderRequest, SetPeerDataFolderResponse, ChangeDataFolderOptions>
+    public sealed class ChangeDataFolderCommand 
+        : BaseMessageCommand<SetPeerDataFolderRequest, SetPeerDataFolderResponse, ChangeDataFolderOptions>
     {
-        public ChangeDataFolderCommand(ICommandContext commandContext) : base(commandContext) { }
+        public ChangeDataFolderCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override SetPeerDataFolderRequest GetMessage(ChangeDataFolderOptions option)
         {

@@ -35,9 +35,7 @@ namespace Catalyst.Cli
             {
                 CliConstants.ShellNodesConfigFile,
                 Constants.SerilogJsonConfigFile,
-                CliConstants.ShellConfigFile,
-                CliConstants.RpcResponseHandlersConfigFile,
-                CliConstants.CliCommandsConfigFile
+                CliConstants.ShellConfigFile
             };
         }
     }

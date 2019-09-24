@@ -25,12 +25,14 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class GetVersionCommand : BaseMessageCommand<VersionRequest, VersionResponse, GetVersionOptions>
     {
-        public GetVersionCommand(ICommandContext commandContext) : base(commandContext) { }
+        public GetVersionCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override VersionRequest GetMessage(GetVersionOptions option)
         {

@@ -32,6 +32,7 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileTransfer;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
@@ -41,7 +42,7 @@ namespace Catalyst.Cli.Commands
         private readonly IUploadFileTransferFactory _uploadFileTransferFactory;
 
         public AddFileCommand(IUploadFileTransferFactory uploadFileTransferFactory,
-            ICommandContext commandContext) : base(commandContext)
+            ICommandContext commandContext, ILogger logger) : base(commandContext, logger)
         {
             _uploadFileTransferFactory = uploadFileTransferFactory;
         }

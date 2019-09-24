@@ -30,11 +30,5 @@ namespace Catalyst.Cli
 
         // <summary> Config file with nodes for use in rpc client </summary>
         public static string ShellNodesConfigFile => "nodes.json";
-
-        // <summary> Rpc response handlers dependencies file </summary>
-        public static string RpcResponseHandlersConfigFile => "rpc.response.handlers.json";
-
-        // <summary> Commands dependencies file </summary>
-        public static string CliCommandsConfigFile => "commands.json";
     }
 }

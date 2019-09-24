@@ -25,12 +25,14 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class PeerCountCommand : BaseMessageCommand<GetPeerCountRequest, GetPeerCountResponse, PeerCountOptions>
     {
-        public PeerCountCommand(ICommandContext commandContext) : base(commandContext) { }
+        public PeerCountCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override GetPeerCountRequest GetMessage(PeerCountOptions option) { return new GetPeerCountRequest(); }
     }

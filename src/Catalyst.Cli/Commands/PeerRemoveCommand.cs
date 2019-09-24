@@ -27,12 +27,14 @@ using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Google.Protobuf;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class PeerRemoveCommand : BaseMessageCommand<RemovePeerRequest, RemovePeerResponse, RemovePeerOptions>
     {
-        public PeerRemoveCommand(ICommandContext commandContext) : base(commandContext) { }
+        public PeerRemoveCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override RemovePeerRequest GetMessage(RemovePeerOptions option)
         {

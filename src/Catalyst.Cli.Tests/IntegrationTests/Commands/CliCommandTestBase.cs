@@ -27,11 +27,8 @@ using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Autofac;
 using Catalyst.Abstractions.Cli;
-using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.IO.Messaging.Dto;
 using Catalyst.Abstractions.Rpc;
-using Catalyst.Cli.Commands;
-using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Wire;
@@ -58,8 +55,6 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 
         protected CliCommandTestsBase(ITestOutputHelper output) : base(output, new[]
         {
-            Path.Combine(Constants.ConfigSubFolder, CliConstants.CliCommandsConfigFile),
-            Path.Combine(Constants.ConfigSubFolder, CliConstants.RpcResponseHandlersConfigFile),
             Path.Combine(Constants.ConfigSubFolder, TestConstants.TestShellNodesConfigFile),
             Path.Combine(Constants.ConfigSubFolder, CliConstants.ShellConfigFile),
         })
@@ -76,10 +71,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
         private void ConfigureModules()
         {
             var containerBuilder = ContainerProvider.ContainerBuilder;
-            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
-            containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
-            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-            containerBuilder.RegisterType<CommandContext>().As<ICommandContext>().SingleInstance();
+            CatalystCliBase.RegisterClientDependencies(containerBuilder);
         }
 
         private void CreateResolutionScope()

@@ -23,9 +23,11 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
+using Autofac.Core;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Consensus;
@@ -34,7 +36,6 @@ using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.KeySigner;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
-using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Mempool.Documents;
@@ -65,7 +66,6 @@ namespace Catalyst.Node.POA.CE
         private readonly ILogger _logger;
         private readonly IMempool<MempoolDocument> _memPool;
         private readonly IPeerService _peer;
-        private readonly IRpcServer _rpcServer;
         private readonly IPeerClient _peerClient;
         private readonly IPeerSettings _peerSettings;
 
@@ -75,7 +75,6 @@ namespace Catalyst.Node.POA.CE
             IDfs dfs,
             ILedger ledger,
             ILogger logger,
-            IRpcServer rpcServer,
             IPeerClient peerClient,
             IPeerSettings peerSettings,
             IMempool<MempoolDocument> memPool,
@@ -89,14 +88,12 @@ namespace Catalyst.Node.POA.CE
             _ledger = ledger;
             _keySigner = keySigner;
             _logger = logger;
-            _rpcServer = rpcServer;
             _memPool = memPool;
             _contract = contract;
         }
 
         public async Task StartSockets()
         {
-            await _rpcServer.StartAsync().ConfigureAwait(false);
             await _peerClient.StartAsync().ConfigureAwait(false);
             await _peer.StartAsync().ConfigureAwait(false);
         }
@@ -122,34 +119,43 @@ namespace Catalyst.Node.POA.CE
             _logger.Debug("Stopping the Catalyst Node");
         }
 
-        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder)
+        private static readonly Dictionary<Type, Func<IModule>> DefaultModulesByTypes = new Dictionary<Type, Func<IModule>>
+        {
+            {typeof(CoreLibProvider), () => new CoreLibProvider()},
+            {typeof(MempoolModule), () => new MempoolModule()},
+            {typeof(ConsensusModule), () => new ConsensusModule()},
+            {typeof(LedgerModule), () => new LedgerModule()},
+            {typeof(DiscoveryHastingModule), () => new DiscoveryHastingModule()},
+            {typeof(RpcServerModule), () => new RpcServerModule()},
+            {typeof(BulletProofsModule), () => new BulletProofsModule()},
+            {typeof(KeystoreModule), () => new KeystoreModule()},
+            {typeof(KeySignerModule), () => new KeySignerModule()},
+            {typeof(DfsModule), () => new DfsModule()},
+            {typeof(AuthenticationModule), () => new AuthenticationModule()},
+            {typeof(ApiModule), () => new ApiModule("http://*:5005",
+                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
+            {typeof(PoaP2PModule), () => new PoaP2PModule()},
+        };
+
+        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder, 
+            List<IModule> extraModuleInstances = default,
+            List<Type> excludedModules = default)
         {
             // core modules
             containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
 
-            // core modules
-            containerBuilder.RegisterModule(new CoreLibProvider());
-            containerBuilder.RegisterModule(new MempoolModule());
-            containerBuilder.RegisterModule(new ConsensusModule());
-            containerBuilder.RegisterModule(new LedgerModule());
-            containerBuilder.RegisterModule(new DiscoveryHastingModule());
-            containerBuilder.RegisterModule(new RpcServerModule());
-            containerBuilder.RegisterModule(new BulletProofsModule());
-            containerBuilder.RegisterModule(new KeystoreModule());
-            containerBuilder.RegisterModule(new KeySignerModule());
-            containerBuilder.RegisterModule(new RpcServerModule());
-            containerBuilder.RegisterModule(new DfsModule());
-            containerBuilder.RegisterModule(new ConsensusModule());
-            containerBuilder.RegisterModule(new BulletProofsModule());
-            containerBuilder.RegisterModule(new AuthenticationModule());
-            containerBuilder.RegisterModule(new ApiModule("http://*:5005",
-                new List<string> {"Catalyst.Core.Modules.Web3"}));
+            var modulesToRegister = DefaultModulesByTypes
+                .Where(p => excludedModules != null && !excludedModules.Contains(p.Key))
+                .Select(p => p.Value())
+                .Concat(extraModuleInstances ?? new List<IModule>());
 
-            // node modules
-            containerBuilder.RegisterModule(new PoaConsensusModule());
-            containerBuilder.RegisterModule(new PoaP2PModule());
+            foreach (var module in modulesToRegister)
+            {
+                containerBuilder.RegisterModule(module);
+            }
         }
     }
 }

@@ -27,9 +27,9 @@ using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
-using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
+using Catalyst.Core.Lib.IO.Transport;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
@@ -47,7 +47,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             var userOutput = Substitute.For<IUserOutput>();
             var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             var certificateStore = Substitute.For<ICertificateStore>();
-            var keyRegistry = Substitute.For<IKeyRegistry>();
+            var clientRegistry = new SocketClientRegistry<IRpcClient>();
 
             var cliSettings = configRoot.GetSection("CatalystCliConfig");
             cliSettings.GetSection("PublicKey").Value
@@ -56,7 +56,7 @@ namespace Catalyst.Cli.Tests.UnitTests
             cliSettings.GetSection("Port").Value.Returns("5632");
 
             _commandContext = new CommandContext(configRoot, logger, userOutput,
-                nodeRpcClientFactory, certificateStore, keyRegistry);
+                nodeRpcClientFactory, certificateStore, clientRegistry);
         }
 
         private readonly ICommandContext _commandContext;
@@ -78,7 +78,7 @@ namespace Catalyst.Cli.Tests.UnitTests
         public void ParseCommand_That_Does_Not_Exist_Should_Return_False()
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var command = new GetVersionCommand(_commandContext);
+            var command = new GetVersionCommand(_commandContext, Substitute.For<ILogger>());
             var commands = new List<ICommand> {command};
             var catalystCli = new CatalystCli(userOutput, commands);
             catalystCli.ParseCommand("test").Should().BeFalse();

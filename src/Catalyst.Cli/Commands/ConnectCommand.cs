@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Network;
 using Dawn;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class ConnectCommand : BaseCommand<ConnectOptions>
     {
-        public ConnectCommand(ICommandContext commandContext) : base(commandContext) { }
+        public ConnectCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         public static string InvalidSocketChannel => "Inactive socket channel.";
 

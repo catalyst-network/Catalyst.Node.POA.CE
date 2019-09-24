@@ -27,6 +27,7 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Microsoft.Reactive.Testing;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
@@ -41,7 +42,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var setPeerBlackListRequest = new SetPeerBlacklistResponse();
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var getPeerBlackListingCommand = new PeerBlackListingCommand(commandContext);
+            var getPeerBlackListingCommand = new PeerBlackListingCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, setPeerBlackListRequest);

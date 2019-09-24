@@ -76,7 +76,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                     output)).ToList();
         }
 
-        [Fact]
+        [Fact(Skip = "getting fixed in issue #1000")]
         public async Task Run_Consensus()
         {
             _nodes.AsParallel()
@@ -92,7 +92,8 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                .ConfigureAwait(false);
 
             var dfsDir = Path.Combine(FileSystem.GetCatalystDataDir().FullName, "dfs");
-            Directory.GetFiles(dfsDir).Length.Should().Be(1);
+            Directory.GetFiles(dfsDir).Length.Should().Be(1, 
+                "only the elected producer should score high enough to see his block elected.");
 
             _endOfTestCancellationSource.CancelAfter(TimeSpan.FromMinutes(3));
         }

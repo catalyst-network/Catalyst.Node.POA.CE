@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class GetPeerInfoCommand : BaseMessageCommand<GetPeerInfoRequest, GetPeerInfoResponse, GetPeerInfoOptions>
     {
-        public GetPeerInfoCommand(ICommandContext commandContext) : base(commandContext) { }
+        public GetPeerInfoCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override GetPeerInfoRequest GetMessage(GetPeerInfoOptions option)
         {

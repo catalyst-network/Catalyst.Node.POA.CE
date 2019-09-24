@@ -27,6 +27,7 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Microsoft.Reactive.Testing;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
@@ -41,7 +42,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var versionResponse = new VersionResponse {Version = "1.2.3.4"};
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var getVersionCommand = new GetVersionCommand(commandContext);
+            var getVersionCommand = new GetVersionCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, versionResponse);

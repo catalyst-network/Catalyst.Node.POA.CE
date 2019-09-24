@@ -95,7 +95,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.IO
 
             CheckSavedPath(_sourceFolder).Should().BeTrue();
 
-            GenerateConfigFilesDirectory();
+            CreateUniqueTestDirectory();
 
             var changeDataDir = Setup();
 

@@ -29,12 +29,20 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
 {
     public sealed class GetDeltaRequestTests
     {
+        private ILogger _logger;
+
+        public GetDeltaRequestTests()
+        {
+            _logger = Substitute.For<ILogger>();
+        }
+
         [Fact]
         public void GetDeltaRequest_Can_Be_Sent()
         {
@@ -43,7 +51,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             var deltaMultiHash = Encoding.UTF8.GetBytes("previous").ComputeMultihash(hashingAlgorithm);
             var commandContext = TestCommandHelpers.GenerateCliRequestCommandContext();
             var connectedNode = commandContext.GetConnectedNode(null);
-            var command = new GetDeltaCommand(commandContext);
+            var command = new GetDeltaCommand(commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-h", deltaMultiHash);
@@ -59,7 +67,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             //Arrange
             var hash = "test";
             var commandContext = TestCommandHelpers.GenerateCliRequestCommandContext();
-            var command = new GetDeltaCommand(commandContext);
+            var command = new GetDeltaCommand(commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-h", hash);

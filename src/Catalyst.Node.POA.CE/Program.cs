@@ -22,43 +22,14 @@
 #endregion
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using Autofac;
 using Catalyst.Abstractions;
-using Catalyst.Abstractions.Cli;
-using Catalyst.Abstractions.Consensus.Cycle;
-using Catalyst.Abstractions.Cryptography;
-using Catalyst.Abstractions.IO.Observers;
-using Catalyst.Abstractions.Network;
-using Catalyst.Abstractions.P2P;
-using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Types;
-using Catalyst.Core.Lib;
-using Catalyst.Core.Lib.Cli;
-using Catalyst.Core.Lib.Config;
-using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Lib.Kernel;
-using Catalyst.Core.Lib.P2P;
-using Catalyst.Core.Lib.P2P.Discovery;
-using Catalyst.Core.Modules.Authentication;
-using Catalyst.Core.Modules.Consensus;
-using Catalyst.Core.Modules.Consensus.Cycle;
-using Catalyst.Core.Modules.Cryptography.BulletProofs;
-using Catalyst.Core.Modules.Dfs;
-using Catalyst.Core.Modules.KeySigner;
-using Catalyst.Core.Modules.Keystore;
-using Catalyst.Core.Modules.Ledger;
-using Catalyst.Core.Modules.Mempool;
-using Catalyst.Core.Modules.P2P.Discovery.Hastings;
-using Catalyst.Core.Modules.Rpc.Server;
-using Catalyst.Core.Modules.Web3;
-using Catalyst.Modules.POA.Consensus;
-using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Network;
 using CommandLine;
-using DnsClient;
 
 namespace Catalyst.Node.POA.CE
 {

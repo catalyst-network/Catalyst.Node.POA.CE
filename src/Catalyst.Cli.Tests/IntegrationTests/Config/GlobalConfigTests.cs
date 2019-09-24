@@ -59,9 +59,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
                     Constants.NetworkConfigFile(network),
                     Constants.SerilogJsonConfigFile,
                     CliConstants.ShellNodesConfigFile,
-                    CliConstants.ShellConfigFile,
-                    CliConstants.RpcResponseHandlersConfigFile,
-                    CliConstants.CliCommandsConfigFile
+                    CliConstants.ShellConfigFile
                 }
                .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
 

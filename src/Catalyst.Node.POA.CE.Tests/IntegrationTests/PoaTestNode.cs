@@ -48,6 +48,8 @@ using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Mempool;
+using Catalyst.Core.Modules.Rpc.Server;
+using Catalyst.Core.Modules.Web3;
 using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
@@ -113,7 +115,9 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                 }
                 .Select(f => Path.Combine(Constants.ConfigSubFolder, f)), parentTestFileSystem, output);
 
-            CatalystNodePoa.RegisterNodeDependencies(_containerProvider.ContainerBuilder);
+            CatalystNodePoa.RegisterNodeDependencies(_containerProvider.ContainerBuilder,
+                excludedModules: new List<Type> { typeof(ApiModule), typeof(RpcServerModule) }
+            );
             _containerProvider.ConfigureContainerBuilder(true, true);
             OverrideContainerBuilderRegistrations();
 

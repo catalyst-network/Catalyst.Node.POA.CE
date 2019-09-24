@@ -29,10 +29,8 @@ using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.IO.Transport;
-using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Extensions;
-using Catalyst.Core.Lib.IO.Transport;
 using Catalyst.Core.Lib.Network;
 using Catalyst.Core.Lib.Util;
 using Catalyst.Core.Modules.Rpc.Client;
@@ -55,12 +53,12 @@ namespace Catalyst.Cli.Commands
             IUserOutput userOutput,
             IRpcClientFactory rpcClientFactory,
             ICertificateStore certificateStore,
-            IKeyRegistry keyRegistry)
+            ISocketClientRegistry<IRpcClient> socketClientRegistry)
         {
             _logger = logger;
             _rpcNodeConfigs = RpcClientSettings.BuildRpcNodeSettingList(config);
 
-            SocketClientRegistry = new SocketClientRegistry<IRpcClient>();
+            SocketClientRegistry = socketClientRegistry;
             PeerId = GetPeerIdentifierFromCliConfig(config);
             RpcClientFactory = rpcClientFactory;
             CertificateStore = certificateStore;

@@ -26,17 +26,7 @@ using System.Diagnostics;
 using System.IO;
 using Autofac;
 using Catalyst.Abstractions.Cli;
-using Catalyst.Abstractions.Cli.Commands;
-using Catalyst.Cli.Commands;
-using Catalyst.Core.Lib;
-using Catalyst.Core.Lib.Cli;
-using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Kernel;
-using Catalyst.Core.Lib.Util;
-using Catalyst.Core.Modules.Cryptography.BulletProofs;
-using Catalyst.Core.Modules.KeySigner;
-using Catalyst.Core.Modules.Keystore;
-using Catalyst.Core.Modules.Rpc.Client;
 
 namespace Catalyst.Cli
 {
@@ -67,8 +57,6 @@ namespace Catalyst.Cli
                    .WithConfigCopier(new CliConfigCopier())
                    .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
                    .WithConfigurationFile(CliConstants.ShellConfigFile)
-                   .WithConfigurationFile(CliConstants.RpcResponseHandlersConfigFile)
-                   .WithConfigurationFile(CliConstants.CliCommandsConfigFile)
                    .BuildKernel()
                    .StartCustom(StartCli);
 
@@ -99,17 +87,9 @@ namespace Catalyst.Cli
 
             var containerBuilder = kernel.ContainerBuilder;
 
-            containerBuilder.RegisterModule(new CoreLibProvider());
-            containerBuilder.RegisterModule(new KeystoreModule());
-            containerBuilder.RegisterModule(new KeySignerModule());
-            containerBuilder.RegisterModule(new BulletProofsModule());
-            containerBuilder.RegisterModule(new RpcClientModule());
+            CatalystCliBase.RegisterCoreModules(containerBuilder);
+            CatalystCliBase.RegisterClientDependencies(containerBuilder);
 
-            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
-            containerBuilder.RegisterType<CatalystCli>().As<ICatalystCli>();
-            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
-            containerBuilder.RegisterType<CommandContext>().As<ICommandContext>();
-            
             kernel.StartContainer();
 
             kernel.Instance.Resolve<ICatalystCli>()

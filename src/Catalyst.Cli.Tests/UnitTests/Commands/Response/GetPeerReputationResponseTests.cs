@@ -27,6 +27,7 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Microsoft.Reactive.Testing;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
@@ -44,7 +45,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var getPeerReputationResponse = new GetPeerReputationResponse {Reputation = 100};
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var getPeerReputationCommand = new PeerReputationCommand(commandContext);
+            var getPeerReputationCommand = new PeerReputationCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, getPeerReputationResponse);
