@@ -78,7 +78,7 @@ namespace Catalyst.Cli.Tests.UnitTests
         public void ParseCommand_That_Does_Not_Exist_Should_Return_False()
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var command = new GetVersionCommand(_commandContext);
+            var command = new GetVersionCommand(_commandContext, Substitute.For<ILogger>());
             var commands = new List<ICommand> {command};
             var catalystCli = new CatalystCli(userOutput, commands);
             catalystCli.ParseCommand("test").Should().BeFalse();

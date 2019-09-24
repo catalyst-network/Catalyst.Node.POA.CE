@@ -44,14 +44,13 @@ namespace Catalyst.Cli.CommandTypes
         where TResponse : IMessage<TResponse>
         where TOption : IOptionsBase
     {
-        private static readonly ILogger Logger = Log.Logger.ForContext(MethodBase.GetCurrentMethod().DeclaringType);
-
         private readonly IDisposable _eventStreamObserverClientAdded;
         private readonly IDisposable _eventStreamObserverClientRemoved;
         private readonly ConcurrentDictionary<int, IDisposable> _subscriptions;
         private PeerId _recipientPeerId;
 
-        protected BaseMessageCommand(ICommandContext commandContext) : base(commandContext)
+        protected BaseMessageCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger)
         {
             _subscriptions = new ConcurrentDictionary<int, IDisposable>();
             _eventStreamObserverClientAdded = CommandContext.SocketClientRegistry.EventStream

@@ -25,12 +25,14 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class GetInfoCommand : BaseMessageCommand<GetInfoRequest, GetInfoResponse, GetInfoOptions>
     {
-        public GetInfoCommand(ICommandContext commandContext) : base(commandContext) { }
+        public GetInfoCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override GetInfoRequest GetMessage(GetInfoOptions option)
         {

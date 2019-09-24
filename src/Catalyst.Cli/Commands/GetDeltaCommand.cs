@@ -35,21 +35,19 @@ namespace Catalyst.Cli.Commands
     {
         public static string UnableToRetrieveDeltaMessage => "Unable to retrieve delta.";
 
-        public GetDeltaCommand(ICommandContext commandContext) : base(commandContext) { }
+        public GetDeltaCommand(ICommandContext commandContext, ILogger logger) : base(commandContext, logger) { }
 
         protected override GetDeltaRequest GetMessage(GetDeltaOptions option)
         {
-            if (!Multihash.TryParse(option.Hash, out var hash))
+            if (Multihash.TryParse(option.Hash, out var hash))
             {
-                Log.Warning("Unable to parse hash {0} as a Multihash", option.Hash);
-                CommandContext.UserOutput.WriteLine($"Unable to parse hash {option.Hash} as a Multihash");
-                return default;
+                return new GetDeltaRequest { DeltaDfsHash = hash.ToBytes().ToByteString() };
             }
 
-            return new GetDeltaRequest
-            {
-                DeltaDfsHash = hash.ToBytes().ToByteString()
-            };
+            Log.Warning("Unable to parse hash {0} as a Multihash", option.Hash);
+            CommandContext.UserOutput.WriteLine($"Unable to parse hash {option.Hash} as a Multihash");
+            return default;
+
         }
 
         protected override void ResponseMessage(GetDeltaResponse response)

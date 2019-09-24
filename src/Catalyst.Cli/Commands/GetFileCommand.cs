@@ -30,16 +30,17 @@ using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileTransfer;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
-    public sealed class
-        GetFileCommand : BaseMessageCommand<GetFileFromDfsRequest, GetFileFromDfsResponse, GetFileOptions>
+    public sealed class GetFileCommand : 
+        BaseMessageCommand<GetFileFromDfsRequest, GetFileFromDfsResponse, GetFileOptions>
     {
         private readonly IDownloadFileTransferFactory _downloadFileTransferFactory;
 
         public GetFileCommand(IDownloadFileTransferFactory downloadFileTransferFactory,
-            ICommandContext commandContext) : base(commandContext)
+            ICommandContext commandContext, ILogger logger) : base(commandContext, logger)
         {
             _downloadFileTransferFactory = downloadFileTransferFactory;
         }

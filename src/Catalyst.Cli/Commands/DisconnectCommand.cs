@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Network;
 using Dawn;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public class DisconnectCommand : BaseCommand<DisconnectOptions>
     {
-        public DisconnectCommand(ICommandContext commandContext) : base(commandContext) { }
+        public DisconnectCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override bool ExecuteCommand(DisconnectOptions option)
         {

@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class MessageVerifyCommand : BaseMessageCommand<VerifyMessageRequest, VerifyMessageResponse, VerifyOptions>
     {
-        public MessageVerifyCommand(ICommandContext commandContext) : base(commandContext) { }
+        public MessageVerifyCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override VerifyMessageRequest GetMessage(VerifyOptions option)
         {
