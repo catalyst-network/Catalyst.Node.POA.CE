@@ -28,12 +28,14 @@ using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
 using Google.Protobuf;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class MessageSignCommand : BaseMessageCommand<SignMessageRequest, SignMessageResponse, SignOptions>
     {
-        public MessageSignCommand(ICommandContext commandContext) : base(commandContext) { }
+        public MessageSignCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override SignMessageRequest GetMessage(SignOptions option)
         {

@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class PeerReputationCommand : BaseMessageCommand<GetPeerReputationRequest, GetPeerReputationResponse, PeerReputationOptions>
     {
-        public PeerReputationCommand(ICommandContext commandContext) : base(commandContext) { }
+        public PeerReputationCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override GetPeerReputationRequest GetMessage(PeerReputationOptions option)
         {

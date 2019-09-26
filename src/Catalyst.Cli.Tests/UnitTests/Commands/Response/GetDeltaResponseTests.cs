@@ -28,6 +28,7 @@ using Catalyst.Protocol.Deltas;
 using Catalyst.Protocol.Rpc.Node;
 using Microsoft.Reactive.Testing;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
@@ -35,6 +36,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
     public sealed class GetDeltaResponseTests
     {
         private readonly TestScheduler _testScheduler = new TestScheduler();
+        private readonly ILogger _logger;
+
+        public GetDeltaResponseTests()
+        {
+            _logger = Substitute.For<ILogger>();
+        }
 
         [Fact]
         public void GetDeltaResponse_Can_Get_Output()
@@ -42,7 +49,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var deltaResponse = new GetDeltaResponse {Delta = new Delta()};
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var getDeltaCommand = new GetDeltaCommand(commandContext);
+            var getDeltaCommand = new GetDeltaCommand(commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, deltaResponse);
@@ -59,7 +66,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var deltaResponse = new GetDeltaResponse();
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var getDeltaCommand = new GetDeltaCommand(commandContext);
+            var getDeltaCommand = new GetDeltaCommand(commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, deltaResponse);

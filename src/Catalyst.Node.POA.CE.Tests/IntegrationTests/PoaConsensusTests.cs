@@ -76,7 +76,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                     output)).ToList();
         }
 
-        [Fact]
+        [Fact(Skip = "getting fixed in issue #1000")]
         public async Task Run_Consensus()
         {
             _nodes.AsParallel()

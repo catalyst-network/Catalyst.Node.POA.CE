@@ -24,6 +24,7 @@
 using System;
 using System.Collections.Concurrent;
 using System.Reactive.Linq;
+using System.Reflection;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
@@ -31,10 +32,9 @@ using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Events;
 using Catalyst.Core.Lib.IO.Messaging.Dto;
-using Catalyst.Core.Lib.Util;
 using Catalyst.Protocol.Peer;
 using Google.Protobuf;
-using Ipfs;
+using Serilog;
 
 namespace Catalyst.Cli.CommandTypes
 {
@@ -49,7 +49,8 @@ namespace Catalyst.Cli.CommandTypes
         private readonly ConcurrentDictionary<int, IDisposable> _subscriptions;
         private PeerId _recipientPeerId;
 
-        protected BaseMessageCommand(ICommandContext commandContext) : base(commandContext)
+        protected BaseMessageCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger)
         {
             _subscriptions = new ConcurrentDictionary<int, IDisposable>();
             _eventStreamObserverClientAdded = CommandContext.SocketClientRegistry.EventStream
@@ -116,9 +117,16 @@ namespace Catalyst.Cli.CommandTypes
 
         private void SocketClientRegistryClientAddedOnNext(SocketClientRegistryClientAdded clientAddedEvent)
         {
-            var client = CommandContext.SocketClientRegistry.GetClientFromRegistry(clientAddedEvent.SocketHashCode);
-            var subscription = client.SubscribeToResponse<TResponse>(CommandResponseOnNext);
-            _subscriptions.TryAdd(clientAddedEvent.SocketHashCode, subscription);
+            try
+            {
+                var client = CommandContext.SocketClientRegistry.GetClientFromRegistry(clientAddedEvent.SocketHashCode);
+                var subscription = client.SubscribeToResponse<TResponse>(CommandResponseOnNext);
+                _subscriptions.TryAdd(clientAddedEvent.SocketHashCode, subscription);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e, "Error subscribing to Rpc response stream.");
+            }
         }
 
         private void SocketClientRegistryClientRemovedOnNext(SocketClientRegistryClientRemoved clientRemovedEvent)

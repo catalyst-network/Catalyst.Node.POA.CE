@@ -27,7 +27,6 @@ using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
-using Catalyst.Abstractions.Keystore;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Cli.Commands;
 using Catalyst.Core.Lib.IO.Transport;
@@ -79,7 +78,7 @@ namespace Catalyst.Cli.Tests.UnitTests
         public void ParseCommand_That_Does_Not_Exist_Should_Return_False()
         {
             var userOutput = Substitute.For<IUserOutput>();
-            var command = new GetVersionCommand(_commandContext);
+            var command = new GetVersionCommand(_commandContext, Substitute.For<ILogger>());
             var commands = new List<ICommand> {command};
             var catalystCli = new CatalystCli(userOutput, commands);
             catalystCli.ParseCommand("test").Should().BeFalse();

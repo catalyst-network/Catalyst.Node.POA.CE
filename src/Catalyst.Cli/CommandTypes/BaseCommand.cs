@@ -27,24 +27,27 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
 using CommandLine;
+using Serilog;
 
 namespace Catalyst.Cli.CommandTypes
 {
-    public class BaseCommand<TOption> : ICommand
+    public abstract class BaseCommand<TOption> : ICommand
         where TOption : IOptionsBase
     {
         public string CommandName { get; }
         protected ICommandContext CommandContext { get; }
+        protected ILogger Logger { get; }
         protected IOptionsBase Options { get; set; }
         public Type OptionType => typeof(TOption);
 
-        protected BaseCommand(ICommandContext commandContext)
+        protected BaseCommand(ICommandContext commandContext, ILogger logger)
         {
             CommandContext = commandContext;
+            Logger = logger;
             CommandName = ((VerbAttribute) OptionType.GetCustomAttribute(typeof(VerbAttribute))).Name;
         }
 
-        protected virtual bool ExecuteCommand(TOption option) { return true; }
+        protected virtual bool ExecuteCommand(TOption option) => true;
 
         protected virtual bool ExecuteCommandInner(IOptionsBase optionsBase)
         {

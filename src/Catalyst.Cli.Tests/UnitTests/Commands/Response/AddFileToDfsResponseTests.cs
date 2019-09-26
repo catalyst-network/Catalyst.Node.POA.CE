@@ -28,6 +28,7 @@ using Catalyst.Protocol.Rpc.Node;
 using Google.Protobuf;
 using Microsoft.Reactive.Testing;
 using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
@@ -35,6 +36,12 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
     public sealed class AddFileToDfsResponseTests
     {
         private readonly TestScheduler _testScheduler = new TestScheduler();
+        private readonly ILogger _logger;
+
+        public AddFileToDfsResponseTests()
+        {
+            _logger = Substitute.For<ILogger>();
+        }
 
         [Fact]
         public void AddFileToDfsResponse_Failed_Can_Get_Output()
@@ -46,7 +53,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             };
 
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var addFileToDfsCommand = new AddFileCommand(null, commandContext);
+            var addFileToDfsCommand = new AddFileCommand(null, commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, addFileToDfsResponse);
@@ -68,7 +75,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             };
 
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var addFileToDfsCommand = new AddFileCommand(null, commandContext);
+            var addFileToDfsCommand = new AddFileCommand(null, commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, addFileToDfsResponse);
@@ -86,7 +93,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
             //Arrange
             var addFileToDfsResponse = new AddFileToDfsResponse();
             var commandContext = TestCommandHelpers.GenerateCliResponseCommandContext(_testScheduler);
-            var addFileToDfsCommand = new AddFileCommand(null, commandContext);
+            var addFileToDfsCommand = new AddFileCommand(null, commandContext, _logger);
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, addFileToDfsResponse);

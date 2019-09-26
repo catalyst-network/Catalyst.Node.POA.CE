@@ -31,7 +31,6 @@ using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.IO.Transport;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Core.Lib.Extensions;
-using Catalyst.Core.Lib.IO.Transport;
 using Catalyst.Core.Lib.Network;
 using Catalyst.Core.Lib.Util;
 using Catalyst.Core.Modules.Rpc.Client;

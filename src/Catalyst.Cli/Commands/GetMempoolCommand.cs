@@ -25,12 +25,13 @@ using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class GetMempoolCommand : BaseMessageCommand<GetMempoolRequest, GetMempoolResponse, GetMempoolOptions>
     {
-        public GetMempoolCommand(ICommandContext commandContext) : base(commandContext) { }
+        public GetMempoolCommand(ICommandContext commandContext, ILogger logger) : base(commandContext, logger) { }
         protected override GetMempoolRequest GetMessage(GetMempoolOptions option) { return new GetMempoolRequest(); }
     }
 }

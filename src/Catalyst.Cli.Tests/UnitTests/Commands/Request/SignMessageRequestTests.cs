@@ -25,6 +25,8 @@ using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
+using NSubstitute;
+using Serilog;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
@@ -37,7 +39,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             //Arrange
             var commandContext = TestCommandHelpers.GenerateCliRequestCommandContext();
             var connectedNode = commandContext.GetConnectedNode(null);
-            var command = new MessageSignCommand(commandContext);
+            var command = new MessageSignCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
             TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-m", "hello world");

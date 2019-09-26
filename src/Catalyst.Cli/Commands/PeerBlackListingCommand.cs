@@ -26,12 +26,14 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
+using Serilog;
 
 namespace Catalyst.Cli.Commands
 {
     public sealed class PeerBlackListingCommand : BaseMessageCommand<SetPeerBlacklistRequest, SetPeerBlacklistResponse, PeerBlackListingOptions>
     {
-        public PeerBlackListingCommand(ICommandContext commandContext) : base(commandContext) { }
+        public PeerBlackListingCommand(ICommandContext commandContext, ILogger logger) 
+            : base(commandContext, logger) { }
 
         protected override SetPeerBlacklistRequest GetMessage(PeerBlackListingOptions option)
         {
