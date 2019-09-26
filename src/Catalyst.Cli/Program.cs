@@ -27,6 +27,9 @@ using System.IO;
 using Autofac;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Core.Lib.Kernel;
+using Catalyst.Protocol.Network;
+using CommandLine;
+using Google.Protobuf.WellKnownTypes;
 
 namespace Catalyst.Cli
 {
@@ -34,6 +37,12 @@ namespace Catalyst.Cli
     {
         private static readonly Kernel Kernel;
 
+        internal class Options
+        {
+            [Option("network-file", HelpText = "The name of the network file")]
+            public string OverrideNetworkFile { get; set; }
+        }
+        
         static Program()
         {
             Kernel = Kernel.Initramfs(false, "Catalyst.Cli..log");
@@ -45,7 +54,17 @@ namespace Catalyst.Cli
         /// <summary>
         ///     Main cli loop
         /// </summary>
-        public static int Main()
+        public static int Main(string[] args)
+        {
+            // Parse the arguments.
+            Parser.Default
+                .ParseArguments<Options>(args)
+                .WithParsed(Run);
+
+            return Environment.ExitCode;
+        }
+
+        private static void Run(Options options)
         {
             Kernel.Logger.Information("Catalyst.Cli started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
@@ -53,24 +72,21 @@ namespace Catalyst.Cli
             try
             {
                 Kernel.WithDataDirectory()
-                   .WithSerilogConfigFile()
-                   .WithConfigCopier(new CliConfigCopier())
-                   .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
-                   .WithConfigurationFile(CliConstants.ShellConfigFile)
-                   .BuildKernel()
-                   .StartCustom(StartCli);
+                    .WithSerilogConfigFile()
+                    .WithConfigCopier(new CliConfigCopier())
+                    .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
+                    .WithConfigurationFile(CliConstants.ShellConfigFile)
+                    .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
+                    .BuildKernel()
+                    .StartCustom(StartCli);
 
                 Environment.ExitCode = 0;
-
-                return 0;
             }
             catch (Exception e)
             {
                 Kernel.Logger.Fatal(e, "Catalyst.Cli stopped unexpectedly");
                 Environment.ExitCode = 1;
             }
-
-            return Environment.ExitCode;
         }
 
 
