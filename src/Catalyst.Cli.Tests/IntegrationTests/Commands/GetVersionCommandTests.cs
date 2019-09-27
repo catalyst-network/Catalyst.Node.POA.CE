@@ -30,7 +30,9 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class GetVersionCommandTests : CliCommandTestsBase
     {
-        public GetVersionCommandTests(ITestOutputHelper output) : base(output) { }
+        public GetVersionCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Request_Node_Version()

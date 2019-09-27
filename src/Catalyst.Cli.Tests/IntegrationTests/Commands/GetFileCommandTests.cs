@@ -41,10 +41,13 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
         public static IEnumerable<object[]> GetFileData =>
             new List<object[]>
             {
-                new object[] {"/fake_file_hash", AppDomain.CurrentDomain.BaseDirectory + "/Config/addfile_test.json", true}
+                new object[]
+                    {"/fake_file_hash", AppDomain.CurrentDomain.BaseDirectory + "/Config/addfile_test.json", true}
             };
 
-        public GetFileCommandTests(ITestOutputHelper output) : base(output) { }
+        public GetFileCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Theory]
         [MemberData(nameof(GetFileData))]
@@ -58,7 +61,8 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 
             await TaskHelper.WaitForAsync(() => downloadFileFactory.Keys.Length > 0, TimeSpan.FromSeconds(5));
 
-            downloadFileFactory.GetFileTransferInformation(new CorrelationId(downloadFileFactory.Keys.First())).Expire();
+            downloadFileFactory.GetFileTransferInformation(new CorrelationId(downloadFileFactory.Keys.First()))
+                .Expire();
 
             var result = await task.ConfigureAwait(false);
             result.Should().Be(expectedResult);

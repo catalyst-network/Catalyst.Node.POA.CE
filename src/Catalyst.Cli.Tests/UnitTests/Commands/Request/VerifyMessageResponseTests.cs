@@ -42,7 +42,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             var command = new MessageVerifyCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
-            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-m", "hello world", "-p", "public key", "-s", "signature");
+            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-m", "hello world", "-p",
+                "public key", "-s", "signature");
 
             //Assert
             var requestSent = TestCommandHelpers.GetRequest<VerifyMessageRequest>(connectedNode);

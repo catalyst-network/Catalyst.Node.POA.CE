@@ -45,7 +45,9 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
                 new object[] {AppDomain.CurrentDomain.BaseDirectory + "/Config/addfile_test.json", true}
             };
 
-        public AddFileCommandTests(ITestOutputHelper output) : base(output) { }
+        public AddFileCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Theory]
         [MemberData(nameof(AddFileData))]
@@ -60,8 +62,9 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
             {
                 await TaskHelper.WaitForAsync(() => uploadFileTransferFactory.Keys.Length > 0, TimeSpan.FromSeconds(5));
 
-                uploadFileTransferFactory.GetFileTransferInformation(new CorrelationId(uploadFileTransferFactory.Keys.First()))
-                   .Expire();
+                uploadFileTransferFactory
+                    .GetFileTransferInformation(new CorrelationId(uploadFileTransferFactory.Keys.First()))
+                    .Expire();
             }
 
             var result = await task.ConfigureAwait(false);

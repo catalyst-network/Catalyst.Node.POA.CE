@@ -29,7 +29,9 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class ConnectNodeTests : CliCommandTestsBase
     {
-        public ConnectNodeTests(ITestOutputHelper output) : base(output) { }
+        public ConnectNodeTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Handle_Multiple_Connection_Attempts()

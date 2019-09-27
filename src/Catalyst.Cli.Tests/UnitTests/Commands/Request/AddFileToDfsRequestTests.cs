@@ -22,7 +22,6 @@
 #endregion
 
 
-
 /* This class needs unit tests to test functionality */
 using Xunit;
 
@@ -31,6 +30,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
     public sealed class AddFileToDfsRequestTests
     {
         [Fact]
-        public void AddFileToDfsRequest_Can_Be_Sent() { }
+        public void AddFileToDfsRequest_Can_Be_Sent()
+        {
+        }
     }
 }

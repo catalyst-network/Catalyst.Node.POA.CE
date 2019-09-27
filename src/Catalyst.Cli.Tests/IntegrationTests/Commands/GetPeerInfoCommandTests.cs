@@ -30,15 +30,18 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class GetPeerInfoCommandTests : CliCommandTestsBase
     {
-        public GetPeerInfoCommandTests(ITestOutputHelper output) : base(output) { }
+        public GetPeerInfoCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Send_Get_Peer_Info_Request()
         {
             var publicKey = "fake_public_key";
             var ipAddress = "127.0.0.1";
-            
-            var result = Shell.ParseCommand("getpeerinfo", NodeArgumentPrefix, ServerNodeName, "-i", ipAddress, "-p", publicKey);
+
+            var result = Shell.ParseCommand("getpeerinfo", NodeArgumentPrefix, ServerNodeName, "-i", ipAddress, "-p",
+                publicKey);
             result.Should().BeTrue();
 
             AssertSentMessageAndGetMessageContent<GetPeerInfoRequest>();

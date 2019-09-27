@@ -65,7 +65,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             commandContext.CertificateStore.Returns(certificateStore);
 
             commandContext.PeerId.Returns(
-                PeerIdHelper.GetPeerId("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G".KeyToBytes(), IPAddress.Any, 9010));
+                PeerIdHelper.GetPeerId("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G".KeyToBytes(),
+                    IPAddress.Any, 9010));
 
             var nodeRpcClient = MockNodeRpcClient();
             MockRpcNodeConfig(commandContext);
@@ -109,7 +110,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             IRpcClient rpcClient)
         {
             commandContext.RpcClientFactory.GetClient(Arg.Any<X509Certificate2>(), Arg.Any<IRpcClientConfig>())
-               .Returns(rpcClient);
+                .Returns(rpcClient);
             return commandContext.RpcClientFactory;
         }
 
@@ -173,8 +174,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             connected.Received(1).SendMessage(Arg.Any<IMessageDto<ProtocolMessage>>());
 
             var sentMessageDto = (IMessageDto<ProtocolMessage>) connected.ReceivedCalls()
-               .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
-               .GetArguments()[0];
+                .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
+                .GetArguments()[0];
 
             return sentMessageDto.Content.FromProtocolMessage<T>();
         }

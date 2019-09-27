@@ -30,14 +30,16 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class GetInfoCommandTests : CliCommandTestsBase
     {
-        public GetInfoCommandTests(ITestOutputHelper output) : base(output) { }
+        public GetInfoCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Request_Node_Info()
         {
             var result = Shell.ParseCommand("getinfo", NodeArgumentPrefix, ServerNodeName);
             result.Should().BeTrue();
-            
+
             AssertSentMessageAndGetMessageContent<GetInfoRequest>();
         }
     }

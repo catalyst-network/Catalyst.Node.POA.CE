@@ -42,7 +42,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             var command = new PeerReputationCommand(commandContext, Substitute.For<ILogger>());
 
             //Act
-            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-i", "10.1.1.1", "-p", "public key");
+            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-i", "10.1.1.1", "-p",
+                "public key");
 
             //Assert
             var requestSent = TestCommandHelpers.GetRequest<GetPeerReputationRequest>(connectedNode);

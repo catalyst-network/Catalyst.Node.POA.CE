@@ -50,7 +50,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
 
             //Act
             TestCommandHelpers.GenerateResponse(commandContext, getPeerInfoResponse);
-     
+
             _testScheduler.Start();
 
             //Assert
