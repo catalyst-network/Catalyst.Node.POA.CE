@@ -32,10 +32,12 @@ using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Consensus;
 using Catalyst.Abstractions.Contract;
+using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.KeySigner;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
+using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Mempool.Documents;
@@ -53,6 +55,7 @@ using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Serilog;
+using SimpleBase;
 
 namespace Catalyst.Node.POA.CE
 {
@@ -68,6 +71,7 @@ namespace Catalyst.Node.POA.CE
         private readonly IPeerService _peer;
         private readonly IPeerClient _peerClient;
         private readonly IPeerSettings _peerSettings;
+        private readonly IPublicKey _publicKey;
 
         public CatalystNodePoa(IKeySigner keySigner,
             IPeerService peer,
@@ -90,6 +94,9 @@ namespace Catalyst.Node.POA.CE
             _logger = logger;
             _memPool = memPool;
             _contract = contract;
+
+            var privateKey = keySigner.KeyStore.KeyStoreDecrypt(KeyRegistryTypes.DefaultKey);
+            _publicKey = keySigner.CryptoContext.GetPublicKey(privateKey);
         }
 
         public async Task StartSockets()
@@ -101,7 +108,7 @@ namespace Catalyst.Node.POA.CE
         public async Task RunAsync(CancellationToken ct)
         {
             _logger.Information("Starting the Catalyst Node");
-            _logger.Information("using PeerIdentifier: {0}", _peerSettings.PeerId);
+            _logger.Information($"***** using PublicKey: {Base32.Crockford.Encode(_publicKey.Bytes, false).ToLower()} *****");
 
             await StartSockets().ConfigureAwait(false);
             Consensus.StartProducing();
@@ -148,7 +155,7 @@ namespace Catalyst.Node.POA.CE
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
 
             var modulesToRegister = DefaultModulesByTypes
-                .Where(p => excludedModules != null && !excludedModules.Contains(p.Key))
+                .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))
                 .Select(p => p.Value())
                 .Concat(extraModuleInstances ?? new List<IModule>());
 
