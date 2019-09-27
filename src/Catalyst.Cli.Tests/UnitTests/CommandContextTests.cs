@@ -48,7 +48,7 @@ namespace Catalyst.Cli.Tests.UnitTests
 
             var cliSettings = configRoot.GetSection("CatalystCliConfig");
             cliSettings.GetSection("PublicKey").Value
-               .Returns("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G");
+                .Returns("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G");
             cliSettings.GetSection("BindAddress").Value.Returns("127.0.0.1");
             cliSettings.GetSection("Port").Value.Returns("5632");
 

@@ -47,7 +47,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
 
         public PoaConsensusTests(ITestOutputHelper output) : base(output)
         {
-            ContainerProvider.ConfigureContainerBuilder(true, true);
+            ContainerProvider.ConfigureContainerBuilder(true, true, true);
             _scope = ContainerProvider.Container.BeginLifetimeScope(CurrentTestName);
 
             var context = new CryptoContext(new CryptoWrapper());
@@ -76,7 +76,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                     output)).ToList();
         }
 
-        [Fact(Skip = "getting fixed in issue #1000")]
+        [Fact]
         public async Task Run_Consensus()
         {
             _nodes.AsParallel()

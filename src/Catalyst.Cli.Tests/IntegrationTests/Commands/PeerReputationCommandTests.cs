@@ -30,7 +30,9 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class PeerReputationCommandTests : CliCommandTestsBase
     {
-        public PeerReputationCommandTests(ITestOutputHelper output) : base(output) { }
+        public PeerReputationCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Send_Peer_Reputation_Request()

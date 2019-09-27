@@ -97,8 +97,8 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 
             var nodeRpcClientFactory = Substitute.For<IRpcClientFactory>();
             nodeRpcClientFactory
-               .GetClient(Arg.Any<X509Certificate2>(), Arg.Is<IRpcClientConfig>(c => c.NodeId == ServerNodeName))
-               .Returns(RpcClient);
+                .GetClient(Arg.Any<X509Certificate2>(), Arg.Is<IRpcClientConfig>(c => c.NodeId == ServerNodeName))
+                .Returns(RpcClient);
 
             ContainerProvider.ContainerBuilder.RegisterInstance(nodeRpcClientFactory).As<IRpcClientFactory>();
         }
@@ -111,8 +111,8 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
                 x.Content.FromProtocolMessage<T>() != null
             ));
             var sentMessageDto = (IMessageDto<ProtocolMessage>) RpcClient.ReceivedCalls()
-               .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
-               .GetArguments()[0];
+                .Single(c => c.GetMethodInfo().Name == nameof(IRpcClient.SendMessage))
+                .GetArguments()[0];
             var requestSent = sentMessageDto.Content.FromProtocolMessage<T>();
             return requestSent;
         }

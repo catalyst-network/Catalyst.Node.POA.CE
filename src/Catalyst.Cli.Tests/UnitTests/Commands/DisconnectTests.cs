@@ -54,7 +54,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
                     EndpointBuilder.BuildNewEndPoint(rpcNodeConfig.HostAddress, rpcNodeConfig.Port));
             socketClientRegistry.AddClientToRegistry(clientHashCode, nodeRpcClient);
 
-            var commands = new List<ICommand> {new DisconnectCommand(commandContext, Substitute.For<ILogger>()) };
+            var commands = new List<ICommand> {new DisconnectCommand(commandContext, Substitute.For<ILogger>())};
             var console = new CatalystCli(commandContext.UserOutput, commands);
 
             var isCommandParsed = console.ParseCommand("disconnect", "-n", "node1");

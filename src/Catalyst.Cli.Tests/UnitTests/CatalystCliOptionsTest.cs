@@ -37,10 +37,23 @@ namespace Catalyst.Cli.Tests.UnitTests
         public static IEnumerable<object[]> WorkingPaths =>
             new List<object[]>
             {
-                new object[] {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "forward", "Path", "Allocation")},
-                new object[] {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Data", "Concept")},
-                new object[] {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Azure", "CloudTechnology")},
-                new object[] {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "PencilCamera", "FolderFriend")}
+                new object[]
+                {
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "forward", "Path",
+                        "Allocation")
+                },
+                new object[]
+                    {Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Data", "Concept")},
+                new object[]
+                {
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Azure",
+                        "CloudTechnology")
+                },
+                new object[]
+                {
+                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "PencilCamera",
+                        "FolderFriend")
+                }
             };
 
         public CatalystCliOptionsTest()
@@ -60,7 +73,8 @@ namespace Catalyst.Cli.Tests.UnitTests
         [Theory]
         [InlineData("'q*Pen\0'cilL:\\123\\fak / e'")]
         [InlineData("'phmtbt*\0 3 / lopg'")]
-        [InlineData("'\0/gthgt5\000*\0 3 / woigwogmom4t4040gkwvkinwewowegmvowpmgopweWe will WIN anyway, but it would be much easier if the g5 undergmowgewgwgwegwegegegeg'")]
+        [InlineData(
+            "'\0/gthgt5\000*\0 3 / woigwogmom4t4040gkwvkinwewowegmvowpmgopweWe will WIN anyway, but it would be much easier if the g5 undergmowgewgwgwegwegegegeg'")]
         public void ChangeDataFolder_Does_Not_Set_Data_Folder_Property_Invalid_Path(string path)
         {
             _changeDataFolderOptions.DataFolder = path;

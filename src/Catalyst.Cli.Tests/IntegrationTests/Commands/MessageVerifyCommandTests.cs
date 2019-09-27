@@ -30,13 +30,16 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class MessageVerifyCommandTests : CliCommandTestsBase
     {
-        public MessageVerifyCommandTests(ITestOutputHelper output) : base(output) { }
+        public MessageVerifyCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Verify_Message()
         {
             var result = Shell.ParseCommand(
-                "verify", "-m", "test message", "-p", "public_key", "-s", "signature", NodeArgumentPrefix, ServerNodeName);
+                "verify", "-m", "test message", "-p", "public_key", "-s", "signature", NodeArgumentPrefix,
+                ServerNodeName);
             result.Should().BeTrue();
 
             AssertSentMessageAndGetMessageContent<VerifyMessageRequest>();

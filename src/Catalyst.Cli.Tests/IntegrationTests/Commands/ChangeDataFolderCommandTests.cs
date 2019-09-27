@@ -33,12 +33,15 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class ChangeDataFolderCommandTests : CliCommandTestsBase
     {
-        public ChangeDataFolderCommandTests(ITestOutputHelper output) : base(output) { }
+        public ChangeDataFolderCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Send_Change_Data_Folder_Request()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), Constants.CatalystDataDir);
+            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                Constants.CatalystDataDir);
             var result = Shell.ParseCommand("changedatafolder", NodeArgumentPrefix, ServerNodeName, "-c", path);
             result.Should().BeTrue();
 

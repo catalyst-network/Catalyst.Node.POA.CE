@@ -51,7 +51,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
             var commandContext = TestCommandHelpers.GenerateCliCommandContext();
             commandContext.GetNodeConfig(Arg.Any<string>()).Returns((IRpcClientConfig) null);
 
-            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger) };
+            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger)};
             var console = new CatalystCli(commandContext.UserOutput, commands);
 
             var exception = Record.Exception(() => console.ParseCommand("connect", "-n", "node1"));
@@ -64,7 +64,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
             var commandContext = TestCommandHelpers.GenerateCliCommandContext();
             TestCommandHelpers.MockRpcNodeConfig(commandContext);
 
-            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger) };
+            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger)};
             var console = new CatalystCli(commandContext.UserOutput, commands);
 
             var isCommandParsed = console.ParseCommand("connect", "-n", "test");
@@ -79,7 +79,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
             var commandContext = TestCommandHelpers.GenerateCliFullCommandContext();
             TestCommandHelpers.AddClientSocketRegistry(commandContext, _testScheduler);
 
-            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger) };
+            var commands = new List<ICommand> {new ConnectCommand(commandContext, _logger)};
             var console = new CatalystCli(commandContext.UserOutput, commands);
 
             var isCommandParsed = console.ParseCommand("connect", "-n", "test");
@@ -87,7 +87,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands
 
             commandContext.SocketClientRegistry.Registry.Count.Should().Be(1);
             commandContext.UserOutput.Received(1)
-               .WriteLine($"Connected to Node {commandContext.GetConnectedNode("test").Channel.RemoteAddress}");
+                .WriteLine($"Connected to Node {commandContext.GetConnectedNode("test").Channel.RemoteAddress}");
         }
     }
 }

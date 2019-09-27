@@ -24,5 +24,7 @@
 /* This class needs unit tests to test functionality */
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
 {
-    public sealed class GetFileFromDfsRequestTests { }
+    public sealed class GetFileFromDfsRequestTests
+    {
+    }
 }

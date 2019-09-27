@@ -44,10 +44,13 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
 {
     public sealed class GlobalConfigTests : FileSystemBasedTest
     {
-        public static readonly List<object[]> Networks = 
-            new List<NetworkType> {NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}.Select(n => new object[] {n}).ToList();
+        public static readonly List<object[]> Networks =
+            new List<NetworkType> {NetworkType.Devnet, NetworkType.Mainnet, NetworkType.Testnet}
+                .Select(n => new object[] {n}).ToList();
 
-        public GlobalConfigTests(ITestOutputHelper output) : base(output) { }
+        public GlobalConfigTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Theory]
         [MemberData(nameof(Networks))]
@@ -61,7 +64,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Config
                     CliConstants.ShellNodesConfigFile,
                     CliConstants.ShellConfigFile
                 }
-               .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
+                .Select(f => Path.Combine(Constants.ConfigSubFolder, f));
 
             using (var containerProvider = new ContainerProvider(configFilesUsed, FileSystem, Output))
             {

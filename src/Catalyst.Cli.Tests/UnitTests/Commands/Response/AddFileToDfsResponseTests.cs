@@ -62,7 +62,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
 
             //Assert
             commandContext.UserOutput.Received(1).WriteLine("File transfer completed, Response: " +
-                FileTransferResponseCodeTypes.Failed.Name + " Dfs Hash: " + addFileToDfsResponse.DfsHash);
+                                                            FileTransferResponseCodeTypes.Failed.Name + " Dfs Hash: " +
+                                                            addFileToDfsResponse.DfsHash);
         }
 
         [Fact]
@@ -84,7 +85,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Response
 
             //Assert
             commandContext.UserOutput.Received(1).WriteLine("File transfer completed, Response: " +
-                FileTransferResponseCodeTypes.Finished.Name + " Dfs Hash: " + addFileToDfsResponse.DfsHash);
+                                                            FileTransferResponseCodeTypes.Finished.Name +
+                                                            " Dfs Hash: " + addFileToDfsResponse.DfsHash);
         }
 
         [Fact]

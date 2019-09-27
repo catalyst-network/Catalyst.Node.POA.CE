@@ -28,7 +28,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using Castle.Components.DictionaryAdapter;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Consensus;
 using Catalyst.Abstractions.Cryptography;
@@ -54,7 +53,6 @@ using Catalyst.Core.Modules.Web3;
 using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
-using FluentAssertions;
 using Ipfs.Registry;
 using NSubstitute;
 using Serilog;
@@ -161,6 +159,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterInstance(Substitute.For<IPeerDiscovery>()).As<IPeerDiscovery>();
             var keySigner = Substitute.For<IKeySigner>();
             keySigner.Verify(Arg.Any<ISignature>(), Arg.Any<byte[]>(), default).ReturnsForAnyArgs(true);
+            keySigner.CryptoContext.SignatureLength.Returns(64);
             _containerProvider.ContainerBuilder.RegisterInstance(keySigner).As<IKeySigner>();
         }
 

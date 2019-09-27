@@ -30,14 +30,16 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
     public sealed class GetMempoolCommandTests : CliCommandTestsBase
     {
-        public GetMempoolCommandTests(ITestOutputHelper output) : base(output) { }
+        public GetMempoolCommandTests(ITestOutputHelper output) : base(output)
+        {
+        }
 
         [Fact]
         public void Cli_Can_Request_Node_Mempool()
         {
             var result = Shell.ParseCommand("getmempool", NodeArgumentPrefix, ServerNodeName);
             result.Should().BeTrue();
-            
+
             AssertSentMessageAndGetMessageContent<GetMempoolRequest>();
         }
     }
