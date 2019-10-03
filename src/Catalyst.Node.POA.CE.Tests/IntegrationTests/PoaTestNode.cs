@@ -88,14 +88,14 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             var nodeFileSystem = Substitute.ForPartsOf<FileSystem>();
             nodeFileSystem.GetCatalystDataDir().Returns(_nodeDirectory);
 
-            _rpcSettings = RpcServerSettingsHelper.GetRpcServerSettings(nodeSettings.Port + 100);
+            _rpcSettings = RpcSettingsHelper.GetRpcServerSettings(nodeSettings.Port + 100);
             _nodePeerId = nodeSettings.PeerId;
 
             var baseDfsFolder = Path.Combine(parentTestFileSystem.GetCatalystDataDir().FullName, "dfs");
             var hashingAlgorithm = HashingAlgorithm.All.First(x => x.Name == "blake2b-256");
             _dfs = new DevDfs(parentTestFileSystem, hashingAlgorithm, baseDfsFolder);
 
-            _memPool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()), Substitute.For<ILogger>());
+            _memPool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()));
             _peerRepository = Substitute.For<IPeerRepository>();
             var peersInRepo = knownPeerIds.Select(p => new Peer
             {

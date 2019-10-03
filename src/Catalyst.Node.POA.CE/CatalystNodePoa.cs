@@ -96,7 +96,7 @@ namespace Catalyst.Node.POA.CE
             _contract = contract;
 
             var privateKey = keySigner.KeyStore.KeyStoreDecrypt(KeyRegistryTypes.DefaultKey);
-            _publicKey = keySigner.CryptoContext.GetPublicKey(privateKey);
+            _publicKey = keySigner.CryptoContext.GetPublicKeyFromPrivateKey(privateKey);
         }
 
         public async Task StartSockets()

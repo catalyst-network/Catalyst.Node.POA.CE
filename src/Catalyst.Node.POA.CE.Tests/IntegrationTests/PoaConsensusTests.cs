@@ -32,6 +32,7 @@ using Autofac;
 using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Modules.Consensus.Cycle;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.KeySigner;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
@@ -50,7 +51,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             ContainerProvider.ConfigureContainerBuilder(true, true, true);
             _scope = ContainerProvider.Container.BeginLifetimeScope(CurrentTestName);
 
-            var context = new CryptoContext(new CryptoWrapper());
+            var context = new FfiWrapper();
 
             _endOfTestCancellationSource = new CancellationTokenSource();
 
