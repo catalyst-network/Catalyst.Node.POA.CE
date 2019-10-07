@@ -7,8 +7,7 @@
         <RepositoryUrl>https://github.com/catalyst-network/Catalyst.Node</RepositoryUrl>
         <PackageIconUrl>$(MSBuildThisFileDirectory)../assets/logo.png</PackageIconUrl>
         <RepositoryType>git</RepositoryType>
-        <RuntimeFrameworkVersion>2.2.1</RuntimeFrameworkVersion>
-        <LangVersion>7.3</LangVersion>
+        <RuntimeFrameworkVersion>3.0.0</RuntimeFrameworkVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Deterministic>true</Deterministic>
         <PlatformTarget>AnyCPU</PlatformTarget>
