@@ -24,7 +24,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Reactive.Linq;
-using System.Reflection;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cli.Options;
@@ -65,7 +64,7 @@ namespace Catalyst.Cli.CommandTypes
             {
                 if (_recipientPeerId != null) return _recipientPeerId;
                 var rpcClientConfig = CommandContext.GetNodeConfig(Options.Node);
-                _recipientPeerId = rpcClientConfig.PublicKey.BuildPeerIdFromBase32CrockfordKey(rpcClientConfig.HostAddress, rpcClientConfig.Port);
+                _recipientPeerId = rpcClientConfig.PublicKey.BuildPeerIdFromBase32Key(rpcClientConfig.HostAddress, rpcClientConfig.Port);
                 return _recipientPeerId;
             }
         }

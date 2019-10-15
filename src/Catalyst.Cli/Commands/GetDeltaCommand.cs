@@ -26,8 +26,8 @@ using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Protocol.Rpc.Node;
-using Multiformats.Hash;
 using Serilog;
+using TheDotNetLeague.MultiFormats.MultiHash;
 
 namespace Catalyst.Cli.Commands
 {
@@ -39,12 +39,15 @@ namespace Catalyst.Cli.Commands
 
         protected override GetDeltaRequest GetMessage(GetDeltaOptions option)
         {
-            if (Multihash.TryParse(option.Hash, out var hash))
-            {
-                return new GetDeltaRequest { DeltaDfsHash = hash.ToBytes().ToByteString() };
-            }
+            
+//            if (MultiHash.TryParse(option.Hash, out var hash))
+//            {
+//                return new GetDeltaRequest { DeltaDfsHash = hash.ToBytes().ToByteString() };
+//            }
 
-            Log.Warning("Unable to parse hash {0} as a Multihash", option.Hash);
+                return new GetDeltaRequest { DeltaDfsHash = option.Hash.ToUtf8ByteString() };
+
+                Log.Warning("Unable to parse hash {0} as a Multihash", option.Hash);
             CommandContext.UserOutput.WriteLine($"Unable to parse hash {option.Hash} as a Multihash");
             return default;
 

@@ -30,6 +30,7 @@ using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
 using NSubstitute;
 using Serilog;
+using TheDotNetLeague.MultiFormats.MultiHash;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
@@ -47,14 +48,13 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
         public void GetDeltaRequest_Can_Be_Sent()
         {
             //Arrange
-            var hashingAlgorithm = Constants.HashAlgorithm;
-            var deltaMultiHash = Encoding.UTF8.GetBytes("previous").ComputeMultihash(hashingAlgorithm);
+            var deltaMultiHash = MultiHash.ComputeHash(Encoding.UTF8.GetBytes("previous"), "blake2b-256");
             var commandContext = TestCommandHelpers.GenerateCliRequestCommandContext();
             var connectedNode = commandContext.GetConnectedNode(null);
             var command = new GetDeltaCommand(commandContext, _logger);
 
             //Act
-            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-h", deltaMultiHash);
+            TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-h", deltaMultiHash.ToBase32());
 
             //Assert
             var requestSent = TestCommandHelpers.GetRequest<GetDeltaRequest>(connectedNode);

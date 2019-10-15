@@ -22,10 +22,14 @@
 #endregion
 
 using System.Text;
+using Catalyst.Abstractions.Hashing;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
+using TheDotNetLeague.MultiFormats.MultiBase;
+using TheDotNetLeague.MultiFormats.MultiHash;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -40,14 +44,14 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
         [Fact]
         public void Cli_Can_Request_Node_Info()
         {
-            var hashingAlgorithm = Constants.HashAlgorithm;
-            var hash = Encoding.UTF8.GetBytes("hello").ComputeMultihash(hashingAlgorithm);
+            IHashProvider hashProvider = new HashProvider(HashingAlgorithm.GetAlgorithmMetadata("blake2b-256"));
+            var hash = hashProvider.ComputeUtf8MultiHash("hello");
 
-            var result = Shell.ParseCommand("getdelta", "-h", hash, NodeArgumentPrefix, ServerNodeName);
+            var result = Shell.ParseCommand("getdelta", "-h", hash.ToBase32(), NodeArgumentPrefix, ServerNodeName);
             result.Should().BeTrue();
 
             var request = AssertSentMessageAndGetMessageContent<GetDeltaRequest>();
-            request.DeltaDfsHash.AsMultihash().Should().Be(hash);
+            request.DeltaDfsHash.ToByteArray().ToBase32().Should().Be(hash.ToBase32());
         }
     }
 }

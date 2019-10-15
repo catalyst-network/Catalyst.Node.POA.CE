@@ -45,6 +45,7 @@ using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
 using Catalyst.Core.Modules.Ledger;
@@ -143,6 +144,7 @@ namespace Catalyst.Node.POA.CE
                 new List<string> {"Catalyst.Core.Modules.Web3"})},
             {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
+            {typeof(HashingModule), () => new HashingModule()},
         };
 
         public static void RegisterNodeDependencies(ContainerBuilder containerBuilder, 
