@@ -40,6 +40,7 @@ using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
@@ -55,6 +56,7 @@ using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
+using Catalyst.Modules.Server.Blazor;
 using Serilog;
 using SimpleBase;
 
@@ -68,7 +70,7 @@ namespace Catalyst.Node.POA.CE
         private readonly ILedger _ledger;
         private readonly IKeySigner _keySigner;
         private readonly ILogger _logger;
-        private readonly IMempool<MempoolDocument> _memPool;
+        private readonly IMempool<TransactionBroadcastDao> _memPool;
         private readonly IPeerService _peer;
         private readonly IPeerClient _peerClient;
         private readonly IPeerSettings _peerSettings;
@@ -82,7 +84,7 @@ namespace Catalyst.Node.POA.CE
             ILogger logger,
             IPeerClient peerClient,
             IPeerSettings peerSettings,
-            IMempool<MempoolDocument> memPool,
+            IMempool<TransactionBroadcastDao> memPool,
             IContract contract = null)
         {
             _peer = peer;
@@ -140,8 +142,9 @@ namespace Catalyst.Node.POA.CE
             {typeof(KeySignerModule), () => new KeySignerModule()},
             {typeof(DfsModule), () => new DfsModule()},
             {typeof(AuthenticationModule), () => new AuthenticationModule()},
-            {typeof(ApiModule), () => new ApiModule("http://*:5005",
-                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            //{typeof(ApiModule), () => new ApiModule("http://*:5005",
+            ////    new List<string> {"Catalyst.Core.Modules.Web3"})},
+            //{typeof(BlazorServerModule), () => new BlazorServerModule()},
             {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
             {typeof(HashingModule), () => new HashingModule()},
