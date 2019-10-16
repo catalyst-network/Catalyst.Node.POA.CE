@@ -39,6 +39,7 @@
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Modules.POA.Consensus\Catalyst.Modules.POA.Consensus.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Modules.POA.P2P.Discovery.Consortium\Catalyst.Modules.POA.P2P.Discovery.Consortium.csproj" />
+        <ProjectReference Include="..\Catalyst.Modules.Server.Blazor\Catalyst.Modules.Server.Blazor.csproj" />
     </ItemGroup>
     <ItemGroup>
         <None Update="Config\**\*.json">

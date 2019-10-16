@@ -55,6 +55,7 @@ using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
+using Catalyst.Modules.Server.Blazor;
 using Serilog;
 using SimpleBase;
 
@@ -68,7 +69,6 @@ namespace Catalyst.Node.POA.CE
         private readonly ILedger _ledger;
         private readonly IKeySigner _keySigner;
         private readonly ILogger _logger;
-        private readonly IMempool<MempoolDocument> _memPool;
         private readonly IPeerService _peer;
         private readonly IPeerClient _peerClient;
         private readonly IPeerSettings _peerSettings;
@@ -82,7 +82,6 @@ namespace Catalyst.Node.POA.CE
             ILogger logger,
             IPeerClient peerClient,
             IPeerSettings peerSettings,
-            IMempool<MempoolDocument> memPool,
             IContract contract = null)
         {
             _peer = peer;
@@ -93,7 +92,6 @@ namespace Catalyst.Node.POA.CE
             _ledger = ledger;
             _keySigner = keySigner;
             _logger = logger;
-            _memPool = memPool;
             _contract = contract;
 
             var privateKey = keySigner.KeyStore.KeyStoreDecrypt(KeyRegistryTypes.DefaultKey);
@@ -140,8 +138,9 @@ namespace Catalyst.Node.POA.CE
             {typeof(KeySignerModule), () => new KeySignerModule()},
             {typeof(DfsModule), () => new DfsModule()},
             {typeof(AuthenticationModule), () => new AuthenticationModule()},
-            {typeof(ApiModule), () => new ApiModule("http://*:5005",
-                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            //{typeof(ApiModule), () => new ApiModule("http://*:5005",
+            //    new List<string> {"Catalyst.Core.Modules.Web3"})},
+            {typeof(BlazorServerModule), () => new BlazorServerModule()},
             {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
             {typeof(HashingModule), () => new HashingModule()},
