@@ -1,5 +1,8 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@inject IPeerSettings PeerSettings
+ <h1>Peer Settings</h1> 
 
-Welcome to your new app.
+<p>Peer Public Key: @PeerSettings.PublicKey</p>
+<p>IP Bind Address: @PeerSettings.BindAddress</p>
+<p>Network Type: @PeerSettings.NetworkType</p>
