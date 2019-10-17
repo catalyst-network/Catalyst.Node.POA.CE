@@ -138,6 +138,7 @@ namespace Catalyst.Node.POA.CE
             {typeof(KeySignerModule), () => new KeySignerModule()},
             {typeof(DfsModule), () => new DfsModule()},
             {typeof(AuthenticationModule), () => new AuthenticationModule()},
+            //TODO Does not work anymore
             //{typeof(ApiModule), () => new ApiModule("http://*:5005",
             //    new List<string> {"Catalyst.Core.Modules.Web3"})},
             {typeof(BlazorServerModule), () => new BlazorServerModule()},
