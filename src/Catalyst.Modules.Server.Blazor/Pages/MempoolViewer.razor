@@ -2,8 +2,8 @@
 @using System.Threading
 @using Catalyst.Abstractions.Mempool.Repositories
 @using Catalyst.Core.Lib.DAO
-@using Catalyst.Core.Lib.P2P.Repository
 
+@implements IDisposable
 @inject IMempoolRepository<TransactionBroadcastDao> MempoolRepository
 
 <h1>Delta Viewer</h1>
@@ -21,7 +21,7 @@
     <tbody>
         @foreach (TransactionBroadcastDao dao in _mempoolList)
         {
-            <TransactionTableComponent Model="@dao"/>
+            <TransactionTableComponent Model="@dao" />
         }
     </tbody>
 </table>
@@ -42,4 +42,8 @@
         }, null, 1000, 1000);
     }
 
+    public void Dispose()
+    {
+        _timer?.Dispose();
+    }
 }
