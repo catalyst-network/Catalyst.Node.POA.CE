@@ -54,9 +54,9 @@ namespace Catalyst.Modules.Server.Blazor.Components
                 RawBytes = signature.SignatureBytes.ToByteString(), 
                 SigningContext = signingContext
             };
-            TransactionReceivedEvent
+            var status = TransactionReceivedEvent
                 .OnTransactionReceived(transaction.ToProtocolMessage(PeerSettings.PeerId, CorrelationId.GenerateCorrelationId()));
-            JsRuntime.InvokeAsync<object>("window.alert", "Success").ConfigureAwait(false);
+            JsRuntime.InvokeAsync<object>("window.alert", $"Transaction Status: {status.ToString()}").ConfigureAwait(false);
             Model = new SendTransactionModel();
             this.StateHasChanged();
         }
