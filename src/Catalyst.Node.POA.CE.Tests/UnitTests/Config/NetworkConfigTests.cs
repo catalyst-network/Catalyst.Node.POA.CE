@@ -82,11 +82,7 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             containerBuilder.RegisterModule(configModule);
             containerBuilder.RegisterInstance(configRoot).As<IConfigurationRoot>();
 
-            var ffiWrapper = new FfiWrapper();
-            var keySigner = Substitute.For<IKeySigner>();
-            keySigner.CryptoContext.GetPublicKeyFromPrivateKey(Arg.Any<IPrivateKey>()).Returns(ffiWrapper.GeneratePrivateKey().GetPublicKey());
-
-            var peerSettings = new PeerSettings(configRoot, keySigner);
+            var peerSettings = new PeerSettings(configRoot);
 
             peerSettings.Should().NotBeNull();
             peerSettings.NetworkType.Should().NotBeNull();
