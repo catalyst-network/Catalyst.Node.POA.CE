@@ -40,6 +40,7 @@ using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
@@ -57,6 +58,7 @@ using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
 using Serilog;
 using SimpleBase;
+using TheDotNetLeague.MultiFormats.MultiBase;
 
 namespace Catalyst.Node.POA.CE
 {
@@ -68,7 +70,7 @@ namespace Catalyst.Node.POA.CE
         private readonly ILedger _ledger;
         private readonly IKeySigner _keySigner;
         private readonly ILogger _logger;
-        private readonly IMempool<MempoolDocument> _memPool;
+        private readonly IMempool<TransactionBroadcastDao> _memPool;
         private readonly IPeerService _peer;
         private readonly IPeerClient _peerClient;
         private readonly IPeerSettings _peerSettings;
@@ -82,7 +84,7 @@ namespace Catalyst.Node.POA.CE
             ILogger logger,
             IPeerClient peerClient,
             IPeerSettings peerSettings,
-            IMempool<MempoolDocument> memPool,
+            IMempool<TransactionBroadcastDao> memPool,
             IContract contract = null)
         {
             _peer = peer;
@@ -109,7 +111,7 @@ namespace Catalyst.Node.POA.CE
         public async Task RunAsync(CancellationToken ct)
         {
             _logger.Information("Starting the Catalyst Node");
-            _logger.Information($"***** using PublicKey: {Base32.Crockford.Encode(_publicKey.Bytes, false).ToLower()} *****");
+            _logger.Information($"***** using PublicKey: {_publicKey.Bytes.ToBase32()} *****");
 
             await StartSockets().ConfigureAwait(false);
             Consensus.StartProducing();

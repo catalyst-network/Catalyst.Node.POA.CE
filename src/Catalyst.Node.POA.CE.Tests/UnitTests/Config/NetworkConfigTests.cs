@@ -27,11 +27,17 @@ using System.Linq;
 using System.Net;
 using Autofac;
 using Autofac.Configuration;
+using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.KeySigner;
+using Catalyst.Abstractions.Keystore;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.Protocol.Network;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
+using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using SharpRepository.Repository;
 using Xunit;
 
@@ -76,7 +82,11 @@ namespace Catalyst.Node.POA.CE.Tests.UnitTests.Config
             containerBuilder.RegisterModule(configModule);
             containerBuilder.RegisterInstance(configRoot).As<IConfigurationRoot>();
 
-            var peerSettings = new PeerSettings(configRoot);
+            var ffiWrapper = new FfiWrapper();
+            var keySigner = Substitute.For<IKeySigner>();
+            keySigner.CryptoContext.GetPublicKeyFromPrivateKey(Arg.Any<IPrivateKey>()).Returns(ffiWrapper.GeneratePrivateKey().GetPublicKey());
+
+            var peerSettings = new PeerSettings(configRoot, keySigner);
 
             peerSettings.Should().NotBeNull();
             peerSettings.NetworkType.Should().NotBeNull();
