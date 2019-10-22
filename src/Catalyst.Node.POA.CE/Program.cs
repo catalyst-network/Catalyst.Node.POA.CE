@@ -38,6 +38,7 @@ using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
 using Catalyst.Core.Modules.Ledger;
@@ -94,6 +95,7 @@ namespace Catalyst.Node.POA.CE
             kernel.StartContainer();
             kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
+                // ReSharper disable once VSTHRD002
                 .Wait();
         }
         
@@ -103,6 +105,7 @@ namespace Catalyst.Node.POA.CE
             {typeof(MempoolModule), () => new MempoolModule()},
             {typeof(ConsensusModule), () => new ConsensusModule()},
             {typeof(LedgerModule), () => new LedgerModule()},
+            {typeof(HashingModule), () => new HashingModule()},
             {typeof(DiscoveryHastingModule), () => new DiscoveryHastingModule()},
             {typeof(RpcServerModule), () => new RpcServerModule()},
             {typeof(BulletProofsModule), () => new BulletProofsModule()},
@@ -110,8 +113,7 @@ namespace Catalyst.Node.POA.CE
             {typeof(KeySignerModule), () => new KeySignerModule()},
             {typeof(DfsModule), () => new DfsModule()},
             {typeof(AuthenticationModule), () => new AuthenticationModule()},
-            {typeof(ApiModule), () => new ApiModule("http://*:5005",
-                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            {typeof(ApiModule), () => new ApiModule("http://*:5005", new List<string> {"Catalyst.Core.Modules.Web3"})},
             {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
         };
