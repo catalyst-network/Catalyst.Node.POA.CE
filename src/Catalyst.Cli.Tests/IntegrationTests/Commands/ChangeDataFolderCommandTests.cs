@@ -24,6 +24,7 @@
 using System;
 using System.IO;
 using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.Util;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
 using Xunit;
@@ -31,22 +32,28 @@ using Xunit.Abstractions;
 
 namespace Catalyst.Cli.Tests.IntegrationTests.Commands
 {
-    public sealed class ChangeDataFolderCommandTests : CliCommandTestsBase
+    public sealed class ChangeDataFolderCommandTests
+//    public sealed class ChangeDataFolderCommandTests : CliCommandTestsBase
     {
-        public ChangeDataFolderCommandTests(ITestOutputHelper output) : base(output)
-        {
-        }
-
-
+//        public ChangeDataFolderCommandTests(ITestOutputHelper output) : base(output)
+//        {
+//        }
+//        
         [Fact]
-        public void Cli_Can_Send_Change_Data_Folder_Request()
+        public void Key_to_bytes()
         {
-            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                Constants.CatalystDataDir);
-            var result = Shell.ParseCommand("changedatafolder", NodeArgumentPrefix, ServerNodeName, "-c", path);
-            result.Should().BeTrue();
-
-            AssertSentMessageAndGetMessageContent<SetPeerDataFolderResponse>();
+            "hv6vvbt2u567syz5labuqnfabsc3zobfwekl4cy3c574n6vkj7sq".KeyToBytes();
         }
+
+//        [Fact]
+//        public void Cli_Can_Send_Change_Data_Folder_Request()
+//        {
+//            var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+//                Constants.CatalystDataDir);
+//            var result = Shell.ParseCommand("changedatafolder", NodeArgumentPrefix, ServerNodeName, "-c", path);
+//            result.Should().BeTrue();
+//
+//            AssertSentMessageAndGetMessageContent<SetPeerDataFolderResponse>();
+//        }
     }
 }
