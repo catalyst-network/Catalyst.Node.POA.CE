@@ -36,8 +36,7 @@ namespace Catalyst.Cli.Tests.IntegrationTests.Commands
         public ChangeDataFolderCommandTests(ITestOutputHelper output) : base(output)
         {
         }
-
-
+        
         [Fact]
         public void Cli_Can_Send_Change_Data_Folder_Request()
         {
