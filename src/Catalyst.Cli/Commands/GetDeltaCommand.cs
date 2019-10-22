@@ -21,13 +21,16 @@
 
 #endregion
 
+using System;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Cli.CommandTypes;
 using Catalyst.Cli.Options;
 using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.Util;
 using Catalyst.Protocol.Rpc.Node;
-using Multiformats.Hash;
 using Serilog;
+using TheDotNetLeague.MultiFormats.MultiBase;
+using TheDotNetLeague.MultiFormats.MultiHash;
 
 namespace Catalyst.Cli.Commands
 {
@@ -35,19 +38,25 @@ namespace Catalyst.Cli.Commands
     {
         public static string UnableToRetrieveDeltaMessage => "Unable to retrieve delta.";
 
-        public GetDeltaCommand(ICommandContext commandContext, ILogger logger) : base(commandContext, logger) { }
+        public GetDeltaCommand(ICommandContext commandContext, ILogger logger) : base(commandContext, logger)
+        {
+        }
 
         protected override GetDeltaRequest GetMessage(GetDeltaOptions option)
         {
-            if (Multihash.TryParse(option.Hash, out var hash))
+            try
             {
-                return new GetDeltaRequest { DeltaDfsHash = hash.ToBytes().ToByteString() };
+                var hashBytes = MultiBase.Decode(option.Hash);
+                var cid = CidHelper.Cast(hashBytes);
+                var multiHash = new MultiHash(cid.Hash.ToArray());
+                return new GetDeltaRequest {DeltaDfsHash = hashBytes.ToByteString()};
             }
-
-            Log.Warning("Unable to parse hash {0} as a Multihash", option.Hash);
-            CommandContext.UserOutput.WriteLine($"Unable to parse hash {option.Hash} as a Multihash");
-            return default;
-
+            catch (FormatException fe)
+            {
+                Log.Warning("Unable to parse hash {0} as a Cid", option.Hash);
+                CommandContext.UserOutput.WriteLine($"Unable to parse hash {option.Hash} as a Cid");
+                return default;
+            }
         }
 
         protected override void ResponseMessage(GetDeltaResponse response)

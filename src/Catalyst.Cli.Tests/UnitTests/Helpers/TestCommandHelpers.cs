@@ -26,22 +26,22 @@ using System.Linq;
 using System.Net;
 using System.Reactive.Concurrency;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Cli.Commands;
 using Catalyst.Abstractions.Cli.CommandTypes;
 using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.Hashing;
 using Catalyst.Abstractions.IO.Messaging.Dto;
 using Catalyst.Abstractions.IO.Transport;
 using Catalyst.Abstractions.Rpc;
-using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.IO.Transport;
-using Catalyst.Core.Lib.Util;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Protocol.Wire;
 using Catalyst.TestUtils;
 using Google.Protobuf;
 using NSubstitute;
+using TheDotNetLeague.MultiFormats.MultiHash;
 
 namespace Catalyst.Cli.Tests.UnitTests.Helpers
 {
@@ -65,8 +65,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             commandContext.CertificateStore.Returns(certificateStore);
 
             commandContext.PeerId.Returns(
-                PeerIdHelper.GetPeerId("9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G".KeyToBytes(),
-                    IPAddress.Any, 9010));
+                "hv6vvbt2u567syz5labuqnfabsc3zobfwekl4cy3c574n6vkj7sq".BuildPeerIdFromBase32Key(IPAddress.Any, 9010));
 
             var nodeRpcClient = MockNodeRpcClient();
             MockRpcNodeConfig(commandContext);
@@ -87,8 +86,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             commandContext.RpcClientFactory.Returns(nodeRpcClientFactory);
             commandContext.CertificateStore.Returns(certificateStore);
 
-            var hashingAlgorithm = Constants.HashAlgorithm;
-            var deltaMultiHash = Encoding.UTF8.GetBytes("previous").ComputeMultihash(hashingAlgorithm);
+            IHashProvider hashProvider = new HashProvider(HashingAlgorithm.GetAlgorithmMetadata("blake2b-256"));
+            var deltaMultiHash = hashProvider.ComputeUtf8MultiHash("previous");
             commandContext.PeerId.Returns(
                 PeerIdHelper.GetPeerId(deltaMultiHash.Digest, IPAddress.Any, 9010));
 
@@ -100,7 +99,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Helpers
             var rpcNodeConfig = Substitute.For<IRpcClientConfig>();
             rpcNodeConfig.NodeId = "test";
             rpcNodeConfig.HostAddress = IPAddress.Any;
-            rpcNodeConfig.PublicKey = "9TEJQF7Y6Z31RB7XBPDYZT1ACPEK9BEC7N8R1E41GNZXT85RX20G";
+            rpcNodeConfig.PublicKey = "hv6vvbt2u567syz5labuqnfabsc3zobfwekl4cy3c574n6vkj7sq";
             rpcNodeConfig.Port = 9000;
             commandContext.GetNodeConfig(Arg.Any<string>()).Returns(rpcNodeConfig);
             return rpcNodeConfig;

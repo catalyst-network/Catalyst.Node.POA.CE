@@ -41,22 +41,23 @@ using Catalyst.Abstractions.P2P.Discovery;
 using Catalyst.Abstractions.Rpc;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
 using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
 using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
-using Ipfs.Registry;
 using NSubstitute;
-using Serilog;
 using SharpRepository.InMemoryRepository;
+using TheDotNetLeague.MultiFormats.MultiHash;
 using Xunit.Abstractions;
 
 namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
@@ -64,7 +65,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
     public class PoaTestNode : ICatalystNode, IDisposable
     {
         private readonly DevDfs _dfs;
-        private readonly IMempool<MempoolDocument> _memPool;
+        private readonly IMempool<TransactionBroadcastDao> _memPool;
         private readonly ICatalystNode _node;
         private readonly DirectoryInfo _nodeDirectory;
         private readonly PeerId _nodePeerId;
@@ -92,10 +93,10 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _nodePeerId = nodeSettings.PeerId;
 
             var baseDfsFolder = Path.Combine(parentTestFileSystem.GetCatalystDataDir().FullName, "dfs");
-            var hashingAlgorithm = HashingAlgorithm.All.First(x => x.Name == "blake2b-256");
-            _dfs = new DevDfs(parentTestFileSystem, hashingAlgorithm, baseDfsFolder);
+            var hashProvider = new HashProvider(HashingAlgorithm.GetAlgorithmMetadata("blake2b-256"));
+            _dfs = new DevDfs(parentTestFileSystem, hashProvider, baseDfsFolder);
 
-            _memPool = new Mempool(new TestMempoolDocumentRepository(new InMemoryRepository<MempoolDocument, string>()));
+            _memPool = new Mempool(new TestMempoolRepository(new InMemoryRepository<TransactionBroadcastDao, string>()));
             _peerRepository = Substitute.For<IPeerRepository>();
             var peersInRepo = knownPeerIds.Select(p => new Peer
             {
@@ -128,7 +129,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             var keyRegistry = _scope.Resolve<IKeyRegistry>();
             keyRegistry.AddItemToRegistry(KeyRegistryTypes.DefaultKey, privateKey);
 
-            keyStore.KeyStoreEncryptAsync(privateKey, KeyRegistryTypes.DefaultKey).ConfigureAwait(false).GetAwaiter()
+            keyStore.KeyStoreEncryptAsync(privateKey, nodeSettings.NetworkType, KeyRegistryTypes.DefaultKey).ConfigureAwait(false).GetAwaiter()
                .GetResult();
         }
 
@@ -152,7 +153,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterInstance(_rpcSettings).As<IRpcServerSettings>();
             _containerProvider.ContainerBuilder.RegisterInstance(_nodePeerId).As<PeerId>();
             _containerProvider.ContainerBuilder.RegisterInstance(_dfs).As<IDfs>();
-            _containerProvider.ContainerBuilder.RegisterInstance(_memPool).As<IMempool<MempoolDocument>>();
+            _containerProvider.ContainerBuilder.RegisterInstance(_memPool).As<IMempool<TransactionBroadcastDao>>();
             _containerProvider.ContainerBuilder.RegisterInstance(_peerRepository).As<IPeerRepository>();
             _containerProvider.ContainerBuilder.RegisterType<TestFileSystem>().As<IFileSystem>()
                .WithParameter("rootPath", _nodeDirectory.FullName);

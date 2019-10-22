@@ -21,22 +21,22 @@
 
 #endregion
 
-using System.Text;
 using Catalyst.Cli.Commands;
 using Catalyst.Cli.Tests.UnitTests.Helpers;
-using Catalyst.Core.Lib.Config;
-using Catalyst.Core.Lib.Extensions;
+using Catalyst.Core.Lib.Util;
+using Catalyst.Core.Modules.Hashing;
 using Catalyst.Protocol.Rpc.Node;
 using FluentAssertions;
 using NSubstitute;
 using Serilog;
+using TheDotNetLeague.MultiFormats.MultiHash;
 using Xunit;
 
 namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
 {
     public sealed class GetDeltaRequestTests
     {
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public GetDeltaRequestTests()
         {
@@ -47,8 +47,8 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
         public void GetDeltaRequest_Can_Be_Sent()
         {
             //Arrange
-            var hashingAlgorithm = Constants.HashAlgorithm;
-            var deltaMultiHash = Encoding.UTF8.GetBytes("previous").ComputeMultihash(hashingAlgorithm);
+            var hashProvider = new HashProvider(HashingAlgorithm.GetAlgorithmMetadata("blake2b-256"));
+            var deltaMultiHash = CidHelper.CreateCid(hashProvider.ComputeUtf8MultiHash("previous"));
             var commandContext = TestCommandHelpers.GenerateCliRequestCommandContext();
             var connectedNode = commandContext.GetConnectedNode(null);
             var command = new GetDeltaCommand(commandContext, _logger);
@@ -73,7 +73,7 @@ namespace Catalyst.Cli.Tests.UnitTests.Commands.Request
             TestCommandHelpers.GenerateRequest(commandContext, command, "-n", "node1", "-h", hash);
 
             //Assert
-            commandContext.UserOutput.Received(1).WriteLine($"Unable to parse hash {hash} as a Multihash");
+            commandContext.UserOutput.Received(1).WriteLine($"Unable to parse hash {hash} as a Cid");
         }
     }
 }

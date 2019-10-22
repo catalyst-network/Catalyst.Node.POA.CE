@@ -26,6 +26,7 @@
     <ItemGroup>
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Authentication\Catalyst.Core.Modules.Authentication.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Dfs\Catalyst.Core.Modules.Dfs.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Hashing\Catalyst.Core.Modules.Hashing.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.KeySigner\Catalyst.Core.Modules.KeySigner.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Keystore\Catalyst.Core.Modules.Keystore.csproj" />
         <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Ledger\Catalyst.Core.Modules.Ledger.csproj" />
