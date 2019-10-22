@@ -24,6 +24,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Types;
@@ -68,14 +69,13 @@ namespace Catalyst.Node.POA.CE
         /// </summary>
         /// <param name="kernel"></param>
         /// <returns></returns>
-        private static void CustomBootLogic(Kernel kernel)
+        private static async Task CustomBootLogic(Kernel kernel)
         {
             CatalystNodePoa.RegisterNodeDependencies(Kernel.ContainerBuilder);
 
             kernel.StartContainer();
-            kernel.Instance.Resolve<ICatalystNode>()
-                .RunAsync(new CancellationToken())
-                .Wait();
+            await kernel.Instance.Resolve<ICatalystNode>()
+                .RunAsync(new CancellationToken());
         }
 
         public static int Main(string[] args)
@@ -107,7 +107,7 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
                     .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
-                    .StartCustom(CustomBootLogic);
+                    .StartCustomAsync(CustomBootLogic);
 
                 Environment.ExitCode = 0;
             }
