@@ -53,10 +53,9 @@ using Catalyst.Core.Modules.Web3;
 using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
-using Ipfs.Registry;
 using NSubstitute;
-using Serilog;
 using SharpRepository.InMemoryRepository;
+using TheDotNetLeague.MultiFormats.MultiHash;
 using Xunit.Abstractions;
 
 namespace Catalyst.Node.POA.CE.Tests.IntegrationTests

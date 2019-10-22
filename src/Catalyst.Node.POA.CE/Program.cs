@@ -22,12 +22,31 @@
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading;
 using Autofac;
+using Autofac.Core;
 using Catalyst.Abstractions;
+using Catalyst.Abstractions.Cli;
 using Catalyst.Abstractions.Types;
+using Catalyst.Core.Lib;
+using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Kernel;
+using Catalyst.Core.Modules.Authentication;
+using Catalyst.Core.Modules.Consensus;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
+using Catalyst.Core.Modules.Dfs;
+using Catalyst.Core.Modules.KeySigner;
+using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Ledger;
+using Catalyst.Core.Modules.Mempool;
+using Catalyst.Core.Modules.P2P.Discovery.Hastings;
+using Catalyst.Core.Modules.Rpc.Server;
+using Catalyst.Core.Modules.Web3;
+using Catalyst.Modules.POA.Consensus;
+using Catalyst.Modules.POA.P2P;
 using Catalyst.Protocol.Network;
 using CommandLine;
 
@@ -68,14 +87,53 @@ namespace Catalyst.Node.POA.CE
         /// </summary>
         /// <param name="kernel"></param>
         /// <returns></returns>
-        private static void CustomBootLogic(Kernel kernel)
+        private static async System.Threading.Tasks.Task CustomBootLogic(Kernel kernel)
         {
-            CatalystNodePoa.RegisterNodeDependencies(Kernel.ContainerBuilder);
+            RegisterNodeDependencies(Kernel.ContainerBuilder);
 
             kernel.StartContainer();
             kernel.Instance.Resolve<ICatalystNode>()
                 .RunAsync(new CancellationToken())
                 .Wait();
+        }
+        
+        private static readonly Dictionary<Type, Func<IModule>> DefaultModulesByTypes = new Dictionary<Type, Func<IModule>>
+        {
+            {typeof(CoreLibProvider), () => new CoreLibProvider()},
+            {typeof(MempoolModule), () => new MempoolModule()},
+            {typeof(ConsensusModule), () => new ConsensusModule()},
+            {typeof(LedgerModule), () => new LedgerModule()},
+            {typeof(DiscoveryHastingModule), () => new DiscoveryHastingModule()},
+            {typeof(RpcServerModule), () => new RpcServerModule()},
+            {typeof(BulletProofsModule), () => new BulletProofsModule()},
+            {typeof(KeystoreModule), () => new KeystoreModule()},
+            {typeof(KeySignerModule), () => new KeySignerModule()},
+            {typeof(DfsModule), () => new DfsModule()},
+            {typeof(AuthenticationModule), () => new AuthenticationModule()},
+            {typeof(ApiModule), () => new ApiModule("http://*:5005",
+                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
+            {typeof(PoaP2PModule), () => new PoaP2PModule()},
+        };
+
+        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder, 
+            List<IModule> extraModuleInstances = default,
+            List<Type> excludedModules = default)
+        {
+            // core modules
+            containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
+            containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
+            containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+
+            var modulesToRegister = DefaultModulesByTypes
+                .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))
+                .Select(p => p.Value())
+                .Concat(extraModuleInstances ?? new List<IModule>());
+
+            foreach (var module in modulesToRegister)
+            {
+                containerBuilder.RegisterModule(module);
+            }
         }
 
         public static int Main(string[] args)
@@ -107,7 +165,7 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
                     .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
-                    .StartCustom(CustomBootLogic);
+                    .StartCustomAsync(CustomBootLogic);
 
                 Environment.ExitCode = 0;
             }
