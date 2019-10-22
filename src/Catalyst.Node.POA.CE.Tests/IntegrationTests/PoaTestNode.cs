@@ -116,7 +116,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
                 }
                 .Select(f => Path.Combine(Constants.ConfigSubFolder, f)), parentTestFileSystem, output);
 
-            CatalystNodePoa.RegisterNodeDependencies(_containerProvider.ContainerBuilder,
+            Program.RegisterNodeDependencies(_containerProvider.ContainerBuilder,
                 excludedModules: new List<Type> { typeof(ApiModule), typeof(RpcServerModule) }
             );
             _containerProvider.ConfigureContainerBuilder(true, true);
