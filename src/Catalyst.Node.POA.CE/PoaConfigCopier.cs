@@ -33,9 +33,7 @@ namespace Catalyst.Node.POA.CE
         {
             return new List<string>
             {
-                PoaConstants.P2PMessageHandlerConfigFile,
                 PoaConstants.RpcAuthenticationCredentialsFile,
-                PoaConstants.RpcMessageHandlerConfigFile,
                 Constants.SerilogJsonConfigFile,
                 Constants.NetworkConfigFile(network, overrideNetworkFile)
             };
