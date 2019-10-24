@@ -25,12 +25,6 @@ namespace Catalyst.Node.POA.CE
 {
     public static class PoaConstants
     {
-        // <summary> RPC message handlers </summary>
-        public static string RpcMessageHandlerConfigFile => "p2p.message.handlers.json";
-
-        // <summary> P2P message handlers </summary>
-        public static string P2PMessageHandlerConfigFile => "rpc.message.handlers.json";
-
         /// <summary>The allowed RPC node operators default XML configuration.</summary>
         public static string RpcAuthenticationCredentialsFile => "AuthCredentials.xml";
     }

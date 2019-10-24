@@ -25,12 +25,14 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Core;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.IO.Observers;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
@@ -128,6 +130,14 @@ namespace Catalyst.Node.POA.CE
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
 
+            // message handlers
+            containerBuilder.RegisterAssemblyTypes(typeof(CoreLibProvider).Assembly)
+                .AssignableTo<IP2PMessageObserver>().As<IP2PMessageObserver>();
+
+            containerBuilder.RegisterAssemblyTypes(typeof(RpcServerModule).Assembly)
+                .AssignableTo<IRpcRequestObserver>().As<IRpcRequestObserver>()
+                .PublicOnly();
+
             var modulesToRegister = DefaultModulesByTypes
                 .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))
                 .Select(p => p.Value())
@@ -159,8 +169,6 @@ namespace Catalyst.Node.POA.CE
                 await Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
-                    .WithConfigurationFile(PoaConstants.P2PMessageHandlerConfigFile)
-                    .WithConfigurationFile(PoaConstants.RpcMessageHandlerConfigFile)
                     .WithSerilogConfigFile()
                     .WithConfigCopier(new PoaConfigCopier())
                     .WithPersistenceConfiguration()
