@@ -135,7 +135,7 @@ namespace Catalyst.Node.POA.CE
                 .AssignableTo<IP2PMessageObserver>().As<IP2PMessageObserver>();
 
             containerBuilder.RegisterAssemblyTypes(typeof(RpcServerModule).Assembly)
-                .AssignableTo<IRpcRequestObserver>().As<IRpcResponseObserver>()
+                .AssignableTo<IRpcRequestObserver>().As<IRpcRequestObserver>()
                 .PublicOnly();
 
             var modulesToRegister = DefaultModulesByTypes
