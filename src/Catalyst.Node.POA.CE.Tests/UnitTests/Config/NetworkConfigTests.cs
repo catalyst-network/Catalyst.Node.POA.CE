@@ -27,11 +27,17 @@ using System.Linq;
 using System.Net;
 using Autofac;
 using Autofac.Configuration;
+using Catalyst.Abstractions.Cryptography;
+using Catalyst.Abstractions.KeySigner;
+using Catalyst.Abstractions.Keystore;
 using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.P2P;
+using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.Protocol.Network;
 using FluentAssertions;
 using Microsoft.Extensions.Configuration;
+using NSubstitute;
+using NSubstitute.ReturnsExtensions;
 using SharpRepository.Repository;
 using Xunit;
 

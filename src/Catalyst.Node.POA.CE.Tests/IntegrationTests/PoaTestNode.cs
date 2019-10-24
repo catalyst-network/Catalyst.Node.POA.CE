@@ -129,7 +129,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             var keyRegistry = _scope.Resolve<IKeyRegistry>();
             keyRegistry.AddItemToRegistry(KeyRegistryTypes.DefaultKey, privateKey);
 
-            keyStore.KeyStoreEncryptAsync(privateKey, KeyRegistryTypes.DefaultKey).ConfigureAwait(false).GetAwaiter()
+            keyStore.KeyStoreEncryptAsync(privateKey, nodeSettings.NetworkType, KeyRegistryTypes.DefaultKey).ConfigureAwait(false).GetAwaiter()
                .GetResult();
         }
 
@@ -153,7 +153,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterInstance(_rpcSettings).As<IRpcServerSettings>();
             _containerProvider.ContainerBuilder.RegisterInstance(_nodePeerId).As<PeerId>();
             _containerProvider.ContainerBuilder.RegisterInstance(_dfs).As<IDfs>();
-            _containerProvider.ContainerBuilder.RegisterInstance(_memPool).As<IMempool<MempoolDocument>>();
+            _containerProvider.ContainerBuilder.RegisterInstance(_memPool).As<IMempool<TransactionBroadcastDao>>();
             _containerProvider.ContainerBuilder.RegisterInstance(_peerRepository).As<IPeerRepository>();
             _containerProvider.ContainerBuilder.RegisterType<TestFileSystem>().As<IFileSystem>()
                .WithParameter("rootPath", _nodeDirectory.FullName);

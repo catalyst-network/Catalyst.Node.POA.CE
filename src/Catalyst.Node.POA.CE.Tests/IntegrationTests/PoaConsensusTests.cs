@@ -29,10 +29,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Autofac;
-using Catalyst.Core.Lib.Cryptography;
 using Catalyst.Core.Modules.Consensus.Cycle;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
-using Catalyst.Core.Modules.KeySigner;
 using Catalyst.TestUtils;
 using FluentAssertions;
 using Xunit;
@@ -80,8 +78,9 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
         [Fact]
         public async Task Run_Consensus()
         {
+            TestMappers.Start();
             _nodes.AsParallel()
-               .ForAll(n =>
+                .ForAll(n =>
                 {
                     n.RunAsync(_endOfTestCancellationSource.Token);
                     n.Consensus.StartProducing();
@@ -90,10 +89,10 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             await Task.Delay(Debugger.IsAttached
                     ? TimeSpan.FromHours(3)
                     : CycleConfiguration.Default.CycleDuration.Multiply(1.3))
-               .ConfigureAwait(false);
+                .ConfigureAwait(false);
 
             var dfsDir = Path.Combine(FileSystem.GetCatalystDataDir().FullName, "dfs");
-            Directory.GetFiles(dfsDir).Length.Should().Be(1, 
+            Directory.GetFiles(dfsDir).Length.Should().Be(1,
                 "only the elected producer should score high enough to see his block elected.");
 
             _endOfTestCancellationSource.CancelAfter(TimeSpan.FromMinutes(3));
@@ -108,7 +107,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             }
 
             if (_endOfTestCancellationSource.Token.IsCancellationRequested
-             && _endOfTestCancellationSource.Token.CanBeCanceled)
+                && _endOfTestCancellationSource.Token.CanBeCanceled)
             {
                 _endOfTestCancellationSource.Cancel();
             }
