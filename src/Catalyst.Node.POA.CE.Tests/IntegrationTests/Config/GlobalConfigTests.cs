@@ -27,9 +27,12 @@ using System.Linq;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.DAO;
 using Catalyst.Abstractions.P2P.Discovery;
+using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
 using Catalyst.Core.Lib.Config;
+using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
 using Catalyst.Core.Modules.Cryptography.BulletProofs;
@@ -88,6 +91,11 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
             containerBuilder.RegisterModule(new KeystoreModule());
             containerBuilder.RegisterModule(new BulletProofsModule());
             containerBuilder.RegisterModule(new AuthenticationModule());
+
+            containerBuilder.RegisterAssemblyTypes(typeof(CoreLibProvider).Assembly)
+                .AssignableTo<IMapperInitializer>().As<IMapperInitializer>();
+            containerBuilder.RegisterType<MapperProvider>().As<IMapperProvider>()
+                .SingleInstance();
 
             using (var scope = _containerProvider.Container.BeginLifetimeScope(CurrentTestName + network))
             {
