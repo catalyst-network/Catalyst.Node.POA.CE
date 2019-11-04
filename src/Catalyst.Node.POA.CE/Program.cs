@@ -32,10 +32,12 @@ using Autofac;
 using Autofac.Core;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Cli;
+using Catalyst.Abstractions.DAO;
 using Catalyst.Abstractions.IO.Observers;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib;
 using Catalyst.Core.Lib.Cli;
+using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Lib.Kernel;
 using Catalyst.Core.Modules.Authentication;
 using Catalyst.Core.Modules.Consensus;
@@ -137,6 +139,12 @@ namespace Catalyst.Node.POA.CE
             containerBuilder.RegisterAssemblyTypes(typeof(RpcServerModule).Assembly)
                 .AssignableTo<IRpcRequestObserver>().As<IRpcRequestObserver>()
                 .PublicOnly();
+
+            // DAO MapperInitialisers
+            containerBuilder.RegisterAssemblyTypes(typeof(CoreLibProvider).Assembly)
+                .AssignableTo<IMapperInitializer>().As<IMapperInitializer>();
+            containerBuilder.RegisterType<MapperProvider>().As<IMapperProvider>()
+                .SingleInstance();
 
             var modulesToRegister = DefaultModulesByTypes
                 .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))
