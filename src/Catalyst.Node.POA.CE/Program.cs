@@ -24,6 +24,7 @@
 using System;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions;
 using Catalyst.Abstractions.Types;
@@ -68,7 +69,7 @@ namespace Catalyst.Node.POA.CE
         /// </summary>
         /// <param name="kernel"></param>
         /// <returns></returns>
-        private static void CustomBootLogic(Kernel kernel)
+        private static async Task CustomBootLogicAsync(Kernel kernel)
         {
             CatalystNodePoa.RegisterNodeDependencies(Kernel.ContainerBuilder);
 
@@ -83,19 +84,19 @@ namespace Catalyst.Node.POA.CE
             // Parse the arguments.
             Parser.Default
                .ParseArguments<Options>(args)
-               .WithParsed(Run);
+               .WithParsed(async o => await RunAsync(o).ConfigureAwait(false));
 
             return Environment.ExitCode;
         }
 
-        private static void Run(Options options)
+        private static async Task RunAsync(Options options)
         {
             Kernel.Logger.Information("Catalyst.Node started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
 
             try
             {
-                Kernel
+                await Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
                     .WithConfigurationFile(PoaConstants.P2PMessageHandlerConfigFile)
@@ -107,7 +108,7 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
                     .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
-                    .StartCustom(CustomBootLogic);
+                    .StartCustomAsync(CustomBootLogicAsync);
 
                 Environment.ExitCode = 0;
             }

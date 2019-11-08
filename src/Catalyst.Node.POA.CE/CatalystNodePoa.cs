@@ -56,6 +56,7 @@ using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
+using Catalyst.Modules.Server.Blazor;
 using Serilog;
 using SimpleBase;
 using TheDotNetLeague.MultiFormats.MultiBase;
@@ -95,14 +96,13 @@ namespace Catalyst.Node.POA.CE
             _ledger = ledger;
             _keySigner = keySigner;
             _logger = logger;
-            _memPool = memPool;
             _contract = contract;
 
             var privateKey = keySigner.KeyStore.KeyStoreDecrypt(KeyRegistryTypes.DefaultKey);
             _publicKey = keySigner.CryptoContext.GetPublicKeyFromPrivateKey(privateKey);
         }
 
-        public async Task StartSockets()
+        public async Task StartSocketsAsync()
         {
             await _peerClient.StartAsync().ConfigureAwait(false);
             await _peer.StartAsync().ConfigureAwait(false);
@@ -113,7 +113,7 @@ namespace Catalyst.Node.POA.CE
             _logger.Information("Starting the Catalyst Node");
             _logger.Information($"***** using PublicKey: {_publicKey.Bytes.ToBase32()} *****");
 
-            await StartSockets().ConfigureAwait(false);
+            await StartSocketsAsync().ConfigureAwait(false);
             Consensus.StartProducing();
 
             bool exit;
@@ -142,8 +142,10 @@ namespace Catalyst.Node.POA.CE
             {typeof(KeySignerModule), () => new KeySignerModule()},
             {typeof(DfsModule), () => new DfsModule()},
             {typeof(AuthenticationModule), () => new AuthenticationModule()},
-            {typeof(ApiModule), () => new ApiModule("http://*:5005",
-                new List<string> {"Catalyst.Core.Modules.Web3"})},
+            //TODO Does not work anymore
+            //{typeof(ApiModule), () => new ApiModule("http://*:5005",
+            //    new List<string> {"Catalyst.Core.Modules.Web3"})},
+            {typeof(BlazorServerModule), () => new BlazorServerModule()},
             {typeof(PoaConsensusModule), () => new PoaConsensusModule()},
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
             {typeof(HashingModule), () => new HashingModule()},
@@ -157,6 +159,7 @@ namespace Catalyst.Node.POA.CE
             containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            containerBuilder.RegisterType<MapperProvider>().As<IMapperProvider>().SingleInstance();
 
             var modulesToRegister = DefaultModulesByTypes
                 .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))

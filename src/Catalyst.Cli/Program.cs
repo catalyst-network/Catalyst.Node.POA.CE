@@ -24,6 +24,7 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Threading.Tasks;
 using Autofac;
 using Catalyst.Abstractions.Cli;
 using Catalyst.Core.Lib.Kernel;
@@ -59,26 +60,26 @@ namespace Catalyst.Cli
             // Parse the arguments.
             Parser.Default
                 .ParseArguments<Options>(args)
-                .WithParsed(Run);
+                .WithParsed(o => _ = RunAsync(o));
 
             return Environment.ExitCode;
         }
 
-        private static void Run(Options options)
+        private static async Task RunAsync(Options options)
         {
             Kernel.Logger.Information("Catalyst.Cli started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
 
             try
             {
-                Kernel.WithDataDirectory()
+                await Kernel.WithDataDirectory()
                     .WithSerilogConfigFile()
                     .WithConfigCopier(new CliConfigCopier())
                     .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
                     .WithConfigurationFile(CliConstants.ShellConfigFile)
                     .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
                     .BuildKernel()
-                    .StartCustom(StartCli);
+                    .StartCustomAsync(StartCliAsync);
 
                 Environment.ExitCode = 0;
             }
@@ -90,7 +91,7 @@ namespace Catalyst.Cli
         }
 
 
-        private static void StartCli(Kernel kernel)
+        private static Task StartCliAsync(Kernel kernel)
         {
             const int bufferSize = 1024 * 67 + 128;
 
@@ -110,6 +111,7 @@ namespace Catalyst.Cli
 
             kernel.Instance.Resolve<ICatalystCli>()
                 .RunConsole(kernel.CancellationTokenProvider.CancellationTokenSource.Token);
+            return Task.CompletedTask;
         }
     }
 }
