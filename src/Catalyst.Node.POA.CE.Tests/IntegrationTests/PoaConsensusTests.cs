@@ -78,6 +78,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
         [Fact]
         public async Task Run_Consensus()
         {
+            TestMappers.Start();
             _nodes.AsParallel()
                 .ForAll(n =>
                 {
