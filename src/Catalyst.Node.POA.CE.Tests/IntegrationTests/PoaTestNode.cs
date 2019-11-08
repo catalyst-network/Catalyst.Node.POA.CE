@@ -142,7 +142,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             await _node.RunAsync(cancellationSourceToken).ConfigureAwait(false);
         }
 
-        public async Task StartSockets() { await _node.StartSockets(); }
+        public async Task StartSocketsAsync() { await _node.StartSocketsAsync(); }
 
         public void Dispose() { Dispose(true); }
 

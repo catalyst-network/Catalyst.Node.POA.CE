@@ -102,7 +102,7 @@ namespace Catalyst.Node.POA.CE
             _publicKey = keySigner.CryptoContext.GetPublicKeyFromPrivateKey(privateKey);
         }
 
-        public async Task StartSockets()
+        public async Task StartSocketsAsync()
         {
             await _peerClient.StartAsync().ConfigureAwait(false);
             await _peer.StartAsync().ConfigureAwait(false);
@@ -113,7 +113,7 @@ namespace Catalyst.Node.POA.CE
             _logger.Information("Starting the Catalyst Node");
             _logger.Information($"***** using PublicKey: {_publicKey.Bytes.ToBase32()} *****");
 
-            await StartSockets().ConfigureAwait(false);
+            await StartSocketsAsync().ConfigureAwait(false);
             Consensus.StartProducing();
 
             bool exit;
@@ -159,6 +159,7 @@ namespace Catalyst.Node.POA.CE
             containerBuilder.RegisterType<CatalystNodePoa>().As<ICatalystNode>();
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
+            containerBuilder.RegisterType<MapperProvider>().As<IMapperProvider>().SingleInstance();
 
             var modulesToRegister = DefaultModulesByTypes
                 .Where(p => excludedModules == null || !excludedModules.Contains(p.Key))
