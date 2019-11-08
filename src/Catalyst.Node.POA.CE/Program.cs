@@ -93,7 +93,7 @@ namespace Catalyst.Node.POA.CE
         /// </summary>
         /// <param name="kernel"></param>
         /// <returns></returns>
-        private static async Task CustomBootLogic(Kernel kernel)
+        private static void CustomBootLogic(Kernel kernel)
         {
             RegisterNodeDependencies(Kernel.ContainerBuilder);
 
@@ -103,7 +103,7 @@ namespace Catalyst.Node.POA.CE
                 // ReSharper disable once VSTHRD002
                 .Wait();
         }
-        
+
         private static readonly Dictionary<Type, Func<IModule>> DefaultModulesByTypes = new Dictionary<Type, Func<IModule>>
         {
             {typeof(CoreLibProvider), () => new CoreLibProvider()},
@@ -123,7 +123,7 @@ namespace Catalyst.Node.POA.CE
             {typeof(PoaP2PModule), () => new PoaP2PModule()},
         };
 
-        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder, 
+        public static void RegisterNodeDependencies(ContainerBuilder containerBuilder,
             List<IModule> extraModuleInstances = default,
             List<Type> excludedModules = default)
         {
@@ -143,7 +143,7 @@ namespace Catalyst.Node.POA.CE
             // DAO MapperInitialisers
             containerBuilder.RegisterAssemblyTypes(typeof(CoreLibProvider).Assembly)
                 .AssignableTo<IMapperInitializer>().As<IMapperInitializer>();
-            containerBuilder.RegisterType<MapperProvider>().As<IMapperProvider>()
+            containerBuilder.RegisterType<MapperProvider>().As<IStartable>()
                 .SingleInstance();
 
             var modulesToRegister = DefaultModulesByTypes
@@ -162,19 +162,19 @@ namespace Catalyst.Node.POA.CE
             // Parse the arguments.
             Parser.Default
                .ParseArguments<Options>(args)
-               .WithParsed(async o => await RunAsync(o).ConfigureAwait(false));
+               .WithParsed(o => Run(o));
 
             return Environment.ExitCode;
         }
 
-        private static async Task RunAsync(Options options)
+        private static void Run(Options options)
         {
             Kernel.Logger.Information("Catalyst.Node started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
 
             try
             {
-                await Kernel
+                Kernel
                     .WithDataDirectory()
                     .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
                     .WithSerilogConfigFile()
@@ -184,7 +184,7 @@ namespace Catalyst.Node.POA.CE
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
                     .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
-                    .StartCustomAsync(CustomBootLogic);
+                    .StartCustom(CustomBootLogic);
 
                 Environment.ExitCode = 0;
             }

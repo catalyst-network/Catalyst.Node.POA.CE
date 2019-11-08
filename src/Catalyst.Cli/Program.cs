@@ -60,26 +60,26 @@ namespace Catalyst.Cli
             // Parse the arguments.
             Parser.Default
                 .ParseArguments<Options>(args)
-                .WithParsed(async o => await RunAsync(o).ConfigureAwait(false));
+                .WithParsed(o => Run(o));
 
             return Environment.ExitCode;
         }
 
-        private static async Task RunAsync(Options options)
+        private static void Run(Options options)
         {
             Kernel.Logger.Information("Catalyst.Cli started with process id {0}",
                 Process.GetCurrentProcess().Id.ToString());
 
             try
             {
-                await Kernel.WithDataDirectory()
+                Kernel.WithDataDirectory()
                     .WithSerilogConfigFile()
                     .WithConfigCopier(new CliConfigCopier())
                     .WithConfigurationFile(CliConstants.ShellNodesConfigFile)
                     .WithConfigurationFile(CliConstants.ShellConfigFile)
                     .WithNetworksConfigFile(NetworkType.Devnet, options.OverrideNetworkFile)
                     .BuildKernel()
-                    .StartCustomAsync(StartCli);
+                    .StartCustom(StartCli);
 
                 Environment.ExitCode = 0;
             }
@@ -91,7 +91,7 @@ namespace Catalyst.Cli
         }
 
 
-        private static async Task StartCli(Kernel kernel)
+        private static void StartCli(Kernel kernel)
         {
             const int bufferSize = 1024 * 67 + 128;
 
