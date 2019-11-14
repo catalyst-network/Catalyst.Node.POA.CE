@@ -46,6 +46,7 @@ using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Kvm;
 using Catalyst.Core.Modules.Ledger;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.P2P.Discovery.Hastings;
@@ -53,8 +54,10 @@ using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
 using Catalyst.Modules.POA.Consensus;
 using Catalyst.Modules.POA.P2P;
+using Catalyst.Modules.Repository.CosmosDb;
 using Catalyst.Protocol.Network;
 using CommandLine;
+using SharpRepository.Repository;
 
 namespace Catalyst.Node.POA.CE
 {
@@ -110,6 +113,7 @@ namespace Catalyst.Node.POA.CE
             {typeof(MempoolModule), () => new MempoolModule()},
             {typeof(ConsensusModule), () => new ConsensusModule()},
             {typeof(LedgerModule), () => new LedgerModule()},
+            {typeof(KvmModule), () => new KvmModule()},
             {typeof(HashingModule), () => new HashingModule()},
             {typeof(DiscoveryHastingModule), () => new DiscoveryHastingModule()},
             {typeof(RpcServerModule), () => new RpcServerModule()},
@@ -155,6 +159,10 @@ namespace Catalyst.Node.POA.CE
             {
                 containerBuilder.RegisterModule(module);
             }
+
+            //containerBuilder.Register(c => new CosmosDbRepository<TransactionBroadcastDao>("https://localhost:8081", "C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==", "mempool", true))
+            //    .As<IRepository<TransactionBroadcastDao, string>>()
+            //    .SingleInstance();
         }
 
         public static int Main(string[] args)

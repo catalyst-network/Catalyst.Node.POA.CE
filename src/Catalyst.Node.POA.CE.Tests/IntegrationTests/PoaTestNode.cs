@@ -44,7 +44,6 @@ using Catalyst.Core.Lib.Config;
 using Catalyst.Core.Lib.DAO;
 using Catalyst.Core.Lib.Extensions;
 using Catalyst.Core.Lib.FileSystem;
-using Catalyst.Core.Lib.Mempool.Documents;
 using Catalyst.Core.Lib.P2P.Models;
 using Catalyst.Core.Lib.P2P.Repository;
 using Catalyst.Core.Modules.Dfs;
@@ -142,7 +141,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             await _node.RunAsync(cancellationSourceToken).ConfigureAwait(false);
         }
 
-        public async Task StartSockets() { await _node.StartSockets(); }
+        public async Task StartSocketsAsync() { await _node.StartSocketsAsync(); }
 
         public void Dispose() { Dispose(true); }
 
