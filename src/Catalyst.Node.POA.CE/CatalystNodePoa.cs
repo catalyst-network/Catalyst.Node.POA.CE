@@ -30,11 +30,11 @@ using Catalyst.Abstractions.Contract;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.KeySigner;
+using Catalyst.Abstractions.Ledger;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib.DAO;
-using Catalyst.Core.Modules.Ledger;
 using Serilog;
 using TheDotNetLeague.MultiFormats.MultiBase;
 
