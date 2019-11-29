@@ -46,6 +46,7 @@ using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Kvm;
 using Catalyst.Core.Modules.Ledger;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.P2P.Discovery.Hastings;
@@ -107,6 +108,7 @@ namespace Catalyst.Node.POA.CE
         private static readonly Dictionary<Type, Func<IModule>> DefaultModulesByTypes = new Dictionary<Type, Func<IModule>>
         {
             {typeof(CoreLibProvider), () => new CoreLibProvider()},
+            {typeof(KvmModule), () => new KvmModule()},
             {typeof(MempoolModule), () => new MempoolModule()},
             {typeof(ConsensusModule), () => new ConsensusModule()},
             {typeof(LedgerModule), () => new LedgerModule()},

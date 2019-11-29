@@ -51,6 +51,7 @@ using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.Rpc.Server;
 using Catalyst.Core.Modules.Web3;
+using Catalyst.Protocol.Cryptography;
 using Catalyst.Protocol.Network;
 using Catalyst.Protocol.Peer;
 using Catalyst.TestUtils;
