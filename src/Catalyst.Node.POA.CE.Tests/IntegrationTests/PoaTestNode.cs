@@ -157,7 +157,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _containerProvider.ContainerBuilder.RegisterType<TestFileSystem>().As<IFileSystem>()
                .WithParameter("rootPath", _nodeDirectory.FullName);
             _containerProvider.ContainerBuilder.RegisterInstance(Substitute.For<IPeerDiscovery>()).As<IPeerDiscovery>();
-            var keySigner = Substitute.For<IKeySigner>();
+            var keySigner = Substitute.For<SubstituteKeySigner>();
             keySigner.Verify(Arg.Any<ISignature>(), Arg.Any<byte[]>(), default).ReturnsForAnyArgs(true);
             keySigner.CryptoContext.SignatureLength.Returns(64);
             _containerProvider.ContainerBuilder.RegisterInstance(keySigner).As<IKeySigner>();
@@ -174,5 +174,15 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests
             _peerRepository?.Dispose();
             _containerProvider?.Dispose();
         }
+    }
+    
+    public abstract class SubstituteKeySigner : IKeySigner
+    {
+        public abstract IKeyStore KeyStore { get; }
+        public abstract ICryptoContext CryptoContext { get; }
+        public ISignature Sign(ReadOnlySpan<byte> data, SigningContext signingContext) => Sign(data.ToArray(), signingContext);
+        public abstract ISignature Sign(byte[] data, SigningContext signingContext);
+        public bool Verify(ISignature signature, ReadOnlySpan<byte> data, SigningContext signingContext) => Verify(signature, data.ToArray(), signingContext);
+        public abstract bool Verify(ISignature signature, byte[] data, SigningContext signingContext);
     }
 }
