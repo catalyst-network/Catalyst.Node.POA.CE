@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalyst.Node.POA.CE", "Cat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalyst.Node.POA.CE.Tests", "Catalyst.Node.POA.CE.Tests\Catalyst.Node.POA.CE.Tests.csproj", "{5FB7FCBC-3848-4434-8E6F-D0C479FF9382}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalyst.Core", "Catalyst.Core", "{31CBF8EE-F057-4903-BD38-4DA20B39833F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalyst.Framework", "Catalyst.Framework", "{31CBF8EE-F057-4903-BD38-4DA20B39833F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalyst.Abstractions", "..\submodules\Catalyst.Framework\src\Catalyst.Abstractions\Catalyst.Abstractions.csproj", "{01E07F92-FA02-4384-9014-F5AEF3C4E606}"
 EndProject
@@ -46,6 +46,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionIt
 		..\README.md = ..\README.md
 		..\scripts\run-node.sh = ..\scripts\run-node.sh
 		..\SECURITY.md = ..\SECURITY.md
+		..\azure-pipelines.yml = ..\azure-pipelines.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Catalyst.Protocol", "..\submodules\Catalyst.Framework\src\Catalyst.Protocol\Catalyst.Protocol.csproj", "{F8847400-418A-470A-9E27-988990451481}"
