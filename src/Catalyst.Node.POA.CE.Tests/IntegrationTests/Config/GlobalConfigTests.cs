@@ -39,6 +39,7 @@ using Catalyst.Core.Modules.Cryptography.BulletProofs;
 using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Kvm;
 using Catalyst.Core.Modules.Ledger;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.Rpc.Server;
@@ -82,6 +83,7 @@ namespace Catalyst.Node.POA.CE.Tests.IntegrationTests.Config
             containerBuilder.RegisterType<ConsoleUserOutput>().As<IUserOutput>();
             containerBuilder.RegisterType<ConsoleUserInput>().As<IUserInput>();
             containerBuilder.RegisterInstance(Substitute.For<IPeerDiscovery>()).As<IPeerDiscovery>();
+            containerBuilder.RegisterModule(new KvmModule());
             containerBuilder.RegisterModule(new KeySignerModule());
             containerBuilder.RegisterModule(new ConsensusModule());
             containerBuilder.RegisterModule(new DfsModule());
