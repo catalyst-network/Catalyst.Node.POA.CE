@@ -46,6 +46,7 @@ using Catalyst.Core.Modules.Dfs;
 using Catalyst.Core.Modules.Hashing;
 using Catalyst.Core.Modules.KeySigner;
 using Catalyst.Core.Modules.Keystore;
+using Catalyst.Core.Modules.Kvm;
 using Catalyst.Core.Modules.Ledger;
 using Catalyst.Core.Modules.Mempool;
 using Catalyst.Core.Modules.P2P.Discovery.Hastings;
@@ -60,8 +61,8 @@ namespace Catalyst.Node.POA.CE
 {
     internal class Options
     {
-        [Option("ipfs-password", HelpText = "The password for IPFS.  Defaults to prompting for the password.")]
-        public string IpfsPassword { get; set; }
+        [Option("dfs-password", HelpText = "The password for dfs.  Defaults to prompting for the password.")]
+        public string DfsPassword { get; set; }
 
         [Option("ssl-cert-password", HelpText = "The password for ssl cert.  Defaults to prompting for the password.")]
         public string SslCertPassword { get; set; }
@@ -107,6 +108,7 @@ namespace Catalyst.Node.POA.CE
         private static readonly Dictionary<Type, Func<IModule>> DefaultModulesByTypes = new Dictionary<Type, Func<IModule>>
         {
             {typeof(CoreLibProvider), () => new CoreLibProvider()},
+            {typeof(KvmModule), () => new KvmModule()},
             {typeof(MempoolModule), () => new MempoolModule()},
             {typeof(ConsensusModule), () => new ConsensusModule()},
             {typeof(LedgerModule), () => new LedgerModule()},
@@ -182,7 +184,7 @@ namespace Catalyst.Node.POA.CE
                     .WithPersistenceConfiguration()
                     .BuildKernel(options.OverwriteConfig)
                     .WithPassword(PasswordRegistryTypes.DefaultNodePassword, options.NodePassword)
-                    .WithPassword(PasswordRegistryTypes.IpfsPassword, options.IpfsPassword)
+                    .WithPassword(PasswordRegistryTypes.IpfsPassword, options.DfsPassword)
                     .WithPassword(PasswordRegistryTypes.CertificatePassword, options.SslCertPassword)
                     .StartCustomAsync(CustomBootLogic);
 
@@ -190,7 +192,7 @@ namespace Catalyst.Node.POA.CE
             }
             catch (Exception e)
             {
-                Kernel.Logger.Fatal(e, "Catalyst.Node stopped unexpectedly");
+                Kernel.Logger.Fatal(e, "Catalyst.Node.POA.CE stopped unexpectedly");
                 Environment.ExitCode = 1;
             }
         }

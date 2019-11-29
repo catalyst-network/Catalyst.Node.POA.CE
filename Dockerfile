@@ -11,4 +11,4 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.2
 RUN apt update -y; apt-get install dnsutils lsof -y
 WORKDIR /app
 COPY --from=build-env /app/output .
-CMD ["dotnet", "Catalyst.Dfs.SeedNode.dll", "--ipfs-password", "test"]
+CMD ["dotnet", "Catalyst.Node.POA.CE.dll", "--dfs-password", "test"]

@@ -30,11 +30,11 @@ using Catalyst.Abstractions.Contract;
 using Catalyst.Abstractions.Cryptography;
 using Catalyst.Abstractions.Dfs;
 using Catalyst.Abstractions.KeySigner;
+using Catalyst.Abstractions.Ledger;
 using Catalyst.Abstractions.Mempool;
 using Catalyst.Abstractions.P2P;
 using Catalyst.Abstractions.Types;
 using Catalyst.Core.Lib.DAO;
-using Catalyst.Core.Modules.Ledger;
 using Serilog;
 using TheDotNetLeague.MultiFormats.MultiBase;
 
@@ -80,7 +80,7 @@ namespace Catalyst.Node.POA.CE
             _publicKey = keySigner.CryptoContext.GetPublicKeyFromPrivateKey(privateKey);
         }
 
-        public async Task StartSockets()
+        public async Task StartSocketsAsync()
         {
             await _peerClient.StartAsync().ConfigureAwait(false);
             await _peer.StartAsync().ConfigureAwait(false);
@@ -91,7 +91,7 @@ namespace Catalyst.Node.POA.CE
             _logger.Information("Starting the Catalyst Node");
             _logger.Information($"***** using PublicKey: {_publicKey.Bytes.ToBase32()} *****");
 
-            await StartSockets().ConfigureAwait(false);
+            await StartSocketsAsync().ConfigureAwait(false);
             Consensus.StartProducing();
 
             bool exit;

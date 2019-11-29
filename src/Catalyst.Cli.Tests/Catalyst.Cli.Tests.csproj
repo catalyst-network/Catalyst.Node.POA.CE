@@ -15,7 +15,7 @@
     </PropertyGroup>
     <Import Project="..\Common.TestProjects.props" />
     <ItemGroup>
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.TestUtils\Catalyst.TestUtils.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.TestUtils\Catalyst.TestUtils.csproj" />
         <ProjectReference Include="..\Catalyst.Cli\Catalyst.Cli.csproj" />
     </ItemGroup>
 </Project>

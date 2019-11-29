@@ -23,10 +23,10 @@
         </None>
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Cryptography.BulletProofs\Catalyst.Core.Modules.Cryptography.BulletProofs.csproj" />
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.KeySigner\Catalyst.Core.Modules.KeySigner.csproj" />
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Keystore\Catalyst.Core.Modules.Keystore.csproj" />
-        <ProjectReference Include="..\..\submodules\Catalyst.Node\src\Catalyst.Core.Modules.Rpc.Client\Catalyst.Core.Modules.Rpc.Client.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.Core.Lib\Catalyst.Core.Lib.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.Core.Modules.Cryptography.BulletProofs\Catalyst.Core.Modules.Cryptography.BulletProofs.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.Core.Modules.KeySigner\Catalyst.Core.Modules.KeySigner.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.Core.Modules.Keystore\Catalyst.Core.Modules.Keystore.csproj" />
+        <ProjectReference Include="..\..\submodules\Catalyst.Framework\src\Catalyst.Core.Modules.Rpc.Client\Catalyst.Core.Modules.Rpc.Client.csproj" />
     </ItemGroup>
 </Project>
